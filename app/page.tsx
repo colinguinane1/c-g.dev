@@ -21,7 +21,7 @@ export default async function EnhancedPortfolioComponent() {
         <Projects />
         <BlogList posts={posts} />
         <ComponentList components={components} />
-        <Contact />
+      
       </main>
     </div>
   );
