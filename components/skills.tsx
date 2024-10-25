@@ -2,16 +2,21 @@
 
 import FadeInSection from "./FadeInView";
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { DiMongodb } from "react-icons/di";
 import { FaReact } from "react-icons/fa";
 import { FaNodeJs } from "react-icons/fa";
 import { IoIosGitBranch } from "react-icons/io";
 import { RiNextjsFill } from "react-icons/ri";
+import { RiSupabaseFill } from "react-icons/ri";
 import { SiTypescript } from "react-icons/si";
 import { SiExpress } from "react-icons/si";
 
 export default function Skills() {
+  const { resolvedTheme } = useTheme();
+
+  const darkMode = resolvedTheme === "dark";
   const iconSize = 25;
   const skills = [
     {
@@ -34,14 +39,16 @@ export default function Skills() {
     },
     {
       label: "Next.js",
-      color: "white",
-      icon: <RiNextjsFill size={iconSize} color={"white"} />,
+      color: darkMode ? "white" : "black",
+      icon: (
+        <RiNextjsFill size={iconSize} color={darkMode ? "white" : "black"} />
+      ),
       description: "React Framework",
     },
     {
       label: "Express",
-      color: "white",
-      icon: <SiExpress size={iconSize} color={"white"} />,
+      color: darkMode ? "white" : "black",
+      icon: <SiExpress size={iconSize} color={darkMode ? "white" : "black"} />,
       description: "Node.js Framework",
     },
     {
@@ -57,9 +64,15 @@ export default function Skills() {
       description: "Structured Database",
     },
     {
+      label: "Supabase",
+      color: "green",
+      icon: <BiLogoPostgresql size={iconSize} color="blue" />,
+      description: "Structured Database",
+    },
+    {
       label: "Git",
       color: "orange",
-      icon: <IoIosGitBranch size={iconSize} color="orange" />,
+      icon: <RiSupabaseFill size={iconSize} color="orange" />,
       description: "Version control",
     },
   ];
