@@ -66,13 +66,13 @@ export default function Skills() {
     {
       label: "Supabase",
       color: "green",
-      icon: <BiLogoPostgresql size={iconSize} color="blue" />,
+      icon: <RiSupabaseFill size={iconSize} color="blue" />,
       description: "Structured Database",
     },
     {
       label: "Git",
       color: "orange",
-      icon: <RiSupabaseFill size={iconSize} color="orange" />,
+      icon: <IoIosGitBranch size={iconSize} color="orange" />,
       description: "Version control",
     },
   ];
