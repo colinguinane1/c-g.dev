@@ -59,15 +59,15 @@ export default function Skills() {
     },
     {
       label: "PostgreSQL",
-      color: "blue",
-      icon: <BiLogoPostgresql size={iconSize} color="blue" />,
+      color: "CornflowerBlue",
+      icon: <BiLogoPostgresql size={iconSize} color="CornflowerBlue" />,
       description: "Structured Database",
     },
     {
       label: "Supabase",
-      color: "green",
-      icon: <RiSupabaseFill size={iconSize} color="green" />,
-      description: "Structured Database",
+      color: "Chartreuse",
+      icon: <RiSupabaseFill size={iconSize} color="Chartreuse" />,
+      description: "Backend Service",
     },
     {
       label: "Git",
