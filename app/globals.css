@@ -52,21 +52,6 @@ code[data-theme*=" "] span {
   }
 }
 
-pre {
-  overflow-x: auto;
-  background: --var(card);
-  color: --var(card-foreground);
-  background-color: var(--card);
-  font-size: small;
-  border-radius: 0.5rem;
- 
-  padding: 1rem 0;
-}
-
-pre [data-line] {
-  padding: 0 1rem;
-}
-
 body {
   font-family: DM+sans-serif, Helvetica, sans-serif;
   scroll-behavior: smooth;
@@ -79,16 +64,6 @@ body {
   }
 }
 
-.code-block pre {
-  max-width: 100%;
-  overflow-x: auto;
-  word-break: break-word;
-}
-
-.code-block code {
-  white-space: pre-wrap;
-  word-break: break-word;
-}
 
 @layer base {
   :root {
