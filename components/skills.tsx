@@ -66,7 +66,7 @@ export default function Skills() {
     {
       label: "Supabase",
       color: "green",
-      icon: <RiSupabaseFill size={iconSize} color="blue" />,
+      icon: <RiSupabaseFill size={iconSize} color="green" />,
       description: "Structured Database",
     },
     {
