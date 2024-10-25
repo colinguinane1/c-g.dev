@@ -35,7 +35,9 @@ export default function RootLayout({
         <body className="max-w-2xl min-w-screen min-w-96 min-h-screen">
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Header />
-            <div className="w-screen min-h-screen md:mt-10">{children}</div>
+            <div className="w-screen md:w-fit min-h-screen md:mt-10">
+              {children}
+            </div>
             <Footer />
           </ThemeProvider>
         </body>

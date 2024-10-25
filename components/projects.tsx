@@ -221,7 +221,7 @@ export default function Projects() {
                         </CardContent>
                       </Card>
                     </DrawerTrigger>
-                    <DrawerContent className="">
+                    <DrawerContent className=" h-fit">
                       <DrawerHeader className="text-left">
                         <DrawerTitle className="text-2xl font-extrabold text-primary">
                           {" "}
@@ -247,14 +247,7 @@ export default function Projects() {
                           Project Details:
                         </h4>
                         <p className="mb-2">{project.longDescription}</p>
-                        <h4 className="font-semibold mb-2  text-primary">
-                          Challenges:
-                        </h4>
-                        <p className="mb-2">{project.challenges}</p>
-                        <h4 className="font-semibold mb-2  text-primary">
-                          Outcome:
-                        </h4>
-                        <p className="mb-4">{project.outcome}</p>
+
                         <div className="flex space-x-4">
                           <Button
                             variant="outline"

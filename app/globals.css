@@ -52,22 +52,6 @@ code[data-theme*=" "] span {
   }
 }
 
-pre {
-  overflow-x: auto;
-  background: --var(card);
-  color: --var(card-foreground);
-  background-color: var(--card);
-  font-size: small;
-  border-radius: 0.5rem;
- 
-  padding: 1rem 0;
-  margin-bottom: 2rem;
-}
-
-pre [data-line] {
-  padding: 0 1rem;
-}
-
 body {
   font-family: DM+sans-serif, Helvetica, sans-serif;
   scroll-behavior: smooth;
@@ -79,6 +63,7 @@ body {
     text-wrap: balance;
   }
 }
+
 
 @layer base {
   :root {

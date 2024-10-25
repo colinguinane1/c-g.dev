@@ -39,7 +39,7 @@ export default function NHeader() {
           ease: [0.16, 1, 0.3, 1],
         }}
         exit={{ y: 0 }}
-        className={`flex  md:absolute  md:top-0 left-0     items-center ${
+        className={`flex w-full  md:absolute  md:top-0 left-0     items-center ${
           isOpen && "border-b bg-background/50 backdrop-blur-lg"
         }  flex-col px-4 py-1  overflow-hidden z-20`} // Prevent content overflow
       >

@@ -5,7 +5,7 @@ import rehypePrettyCode from "rehype-pretty-code"
 const options = {
   theme: {
     dark: "github-dark-dimmed",
-    light: "material-theme-lighter",
+    light: "one-light",
   },
   keepBackground: false,
   

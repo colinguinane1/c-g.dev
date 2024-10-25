@@ -1,5 +1,4 @@
 import UIClientMDXContent from "../UI-MDXClient";
-import { Badge } from "@/components/ui/badge";
 import type { Metadata } from "next";
 import Image from "next/image";
 import fs from "node:fs";
@@ -67,19 +66,16 @@ export default async function Page({ params }: { params: { slug: string } }) {
             />
           )}
           <div className="">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black capitalize leading-tight">
-              {post.metadata.title}
-            </h1>
-          </div>
-          <div className="">
+            {" "}
             <p className="font-semibold text-sm  sm:text-base md:text-lg">
               <span className="pr-1">{post.metadata.publishDate}</span>
             </p>
-            <div className="mt-2">
-              {" "}
-              <Badge> {post.metadata.category}</Badge>
-            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black capitalize leading-tight">
+              {post.metadata.title}
+            </h1>
+            <p>{post.metadata.description}</p>
           </div>
+          <div className=""></div>
           <UIClientMDXContent slug={slug} />
         </article>
       </div>
