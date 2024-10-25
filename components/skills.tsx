@@ -69,7 +69,7 @@ export default function Skills() {
       <section id="skills" className="mb-6 w-full">
         <h2 className="text-2xl font-bold  mb-4">Skills</h2>
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 w-full gap-2"
+          className="grid grid-cols-2 w-full gap-2"
           variants={{
             hidden: { opacity: 0 },
             visible: {
@@ -102,7 +102,7 @@ export default function Skills() {
                       {" "}
                       {skill.label}
                     </h1>
-                    <p>{skill.description}</p>
+                    <p className="hidden md:block">{skill.description}</p>
                   </div>
                 </div>
               </FadeInSection>
