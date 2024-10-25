@@ -1,30 +1,67 @@
 "use client";
 
 import FadeInSection from "./FadeInView";
-import { Badge } from "./ui/badge";
 import { motion } from "framer-motion";
-import {
-  Code,
-  Database,
-  GitBranch,
-  LucideServerCog,
-  Server,
-  Settings,
-} from "lucide-react";
+import { BiLogoPostgresql } from "react-icons/bi";
+import { DiMongodb } from "react-icons/di";
+import { FaReact } from "react-icons/fa";
+import { FaNodeJs } from "react-icons/fa";
+import { IoIosGitBranch } from "react-icons/io";
+import { RiNextjsFill } from "react-icons/ri";
+import { SiTypescript } from "react-icons/si";
+import { SiExpress } from "react-icons/si";
 
 export default function Skills() {
-  const iconSize = 15;
+  const iconSize = 25;
   const skills = [
-    { label: "JavaScript", icon: <Code size={iconSize} /> },
-    { label: "TypeScript", icon: <Code size={iconSize} /> },
-    { label: "React", icon: <Settings size={iconSize} /> },
-    { label: "Node.js", icon: <Server size={iconSize} /> },
-    { label: "Next.js", icon: <Settings size={iconSize} /> },
-    { label: "Express", icon: <Server size={iconSize} /> },
-    { label: "MongoDB", icon: <Database size={iconSize} /> },
-    { label: "SQL", icon: <Database size={iconSize} /> },
-    { label: "REST APIs", icon: <LucideServerCog size={iconSize} /> },
-    { label: "Git", icon: <GitBranch size={iconSize} /> },
+    {
+      label: "TypeScript",
+      color: "blue",
+      icon: <SiTypescript size={iconSize} color="blue" />,
+      description: "JavaScript with type safety.",
+    },
+    {
+      label: "React",
+      color: "teal",
+      icon: <FaReact size={iconSize} color={"teal"} />,
+      description: "JavaScript Library",
+    },
+    {
+      label: "Node.js",
+      color: "green",
+      icon: <FaNodeJs size={iconSize} color={"green"} />,
+      description: "Server language",
+    },
+    {
+      label: "Next.js",
+      color: "white",
+      icon: <RiNextjsFill size={iconSize} color={"white"} />,
+      description: "React Framework",
+    },
+    {
+      label: "Express",
+      color: "white",
+      icon: <SiExpress size={iconSize} color={"white"} />,
+      description: "Node.js Framework",
+    },
+    {
+      label: "MongoDB",
+      color: "green",
+      icon: <DiMongodb size={iconSize} color={"green"} />,
+      description: "NoSQL Database",
+    },
+    {
+      label: "PostgreSQL",
+      color: "blue",
+      icon: <BiLogoPostgresql size={iconSize} color="blue" />,
+      description: "Structured Database",
+    },
+    {
+      label: "Git",
+      color: "orange",
+      icon: <IoIosGitBranch size={iconSize} color="orange" />,
+      description: "Version control",
+    },
   ];
 
   return (
@@ -53,11 +90,17 @@ export default function Skills() {
                 visible: { opacity: 1, y: 0 },
               }}
             >
-              <Badge className="flex items-center gap-2" variant="secondary">
-                {skill.icon}
-
-                {skill.label}
-              </Badge>
+              <div className="flex items-center gap-2 border bg-card p-3 rounded-md">
+                <div
+                  style={{ backgroundColor: skill.color }}
+                  className="w-10 h-10 opacity-15 relative items-center  justify-center flex rounded-md"
+                ></div>{" "}
+                <div className="absolute left-[21px] "> {skill.icon}</div>
+                <div className="flex flex-col">
+                  <h1 className="font-bold tracking-tighter"> {skill.label}</h1>
+                  <p>{skill.description}</p>
+                </div>
+              </div>
             </motion.div>
           ))}
         </motion.div>
