@@ -1,7 +1,7 @@
 "use client";
 
 import FadeInSection from "./FadeInView";
-import { color, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { DiMongodb } from "react-icons/di";
@@ -113,8 +113,7 @@ export default function Skills() {
           initial="hidden"
           animate="visible"
         >
-          <p>Front End</p>
-          <div className="grid grid-cols-2 gap-2 mb-2">
+          <div className="grid grid-cols-2 gap-2 mb-4">
             {frontendSkills.map((skill, index) => (
               <motion.div
                 key={index}
@@ -145,7 +144,7 @@ export default function Skills() {
               </motion.div>
             ))}
           </div>
-
+          <hr className="pb-4"></hr>
           <div className="grid grid-cols-2 gap-2">
             {backendSkills.map((skill, index) => (
               <motion.div
