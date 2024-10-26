@@ -124,7 +124,7 @@ export default function Skills() {
                 }}
               >
                 <FadeInSection>
-                  <div className="flex items-center gap-2 border bg-card p-3 rounded-md">
+                  <div className="flex items-center gap-2 border bg-card  p-3 rounded-md">
                     <div
                       style={{
                         backgroundColor: skill.color,
