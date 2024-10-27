@@ -47,26 +47,26 @@ export default function Projects() {
       skills: [
         {
           label: "TypeScript",
-          color: "blue",
+          color: "0, 0, 255", // Blue with 20% opacity
           icon: <SiTypescript size={iconSize} color="blue" />,
           description: "JavaScript with type safety.",
         },
         {
           label: "PostgreSQL",
-          color: "CornflowerBlue",
+          color: "100, 149, 237", // CornflowerBlue with 20% opacity
           icon: <BiLogoPostgresql size={iconSize} color="CornflowerBlue" />,
           description: "Structured Database",
         },
         {
           label: "Supabase",
-          color: "Chartreuse",
+          color: "127, 255, 0", // Chartreuse with 20% opacity
           icon: <RiSupabaseFill size={iconSize} color="Chartreuse" />,
           description: "Backend Service",
         },
         {
           label: "Next.js",
-          color: "gray",
-          icon: <RiNextjsFill size={iconSize} color={"gray"} />,
+          color: "128, 128, 128", // Gray with 20% opacity
+          icon: <RiNextjsFill size={iconSize} color="gray" />,
           description: "React Framework",
         },
       ],
@@ -86,20 +86,20 @@ export default function Projects() {
       skills: [
         {
           label: "TypeScript",
-          color: "blue",
+          color: "0, 0, 255", // Blue with 20% opacity
           icon: <SiTypescript size={iconSize} color="blue" />,
           description: "JavaScript with type safety.",
         },
         {
           label: "Firebase",
-          color: "red",
+          color: "255, 0, 0", // Red with 20% opacity
           icon: <IoLogoFirebase size={iconSize} color="red" />,
           description: "Backend Service",
         },
         {
           label: "Next.js",
-          color: "gray",
-          icon: <RiNextjsFill size={iconSize} color={"gray"} />,
+          color: "128, 128, 128", // Gray with 20% opacity
+          icon: <RiNextjsFill size={iconSize} color="gray" />,
           description: "React Framework",
         },
       ],
@@ -118,19 +118,19 @@ export default function Projects() {
       skills: [
         {
           label: "Firebase",
-          color: "red",
+          color: "255, 0, 0", // Red with 20% opacity
           icon: <IoLogoFirebase size={iconSize} color="red" />,
           description: "Backend Service",
         },
         {
           label: "Next.js",
-          color: "gray",
+          color: "128, 128, 128", // Gray with 20% opacity
           icon: <RiNextjsFill size={iconSize} color={"gray"} />,
           description: "React Framework",
         },
         {
           label: "JavaScript",
-          color: "yellow",
+          color: "255, 255, 0", // Yellow with 20% opacity
           icon: <IoLogoJavascript size={iconSize} color="yellow" />,
           description: "Programming Language",
         },
@@ -184,7 +184,13 @@ export default function Projects() {
                           <div className="mt-4 flex flex-wrap gap-2">
                             {project.skills.map((skill) => (
                               <FadeInSection key={skill.label}>
-                                <div className=" border w-8 h-8 items-center  justify-center flex rounded-md">
+                                <div
+                                  style={{
+                                    backgroundColor: `rgba(${skill.color}, 0.2)`,
+                                    borderColor: `rgba(${skill.color})`,
+                                  }}
+                                  className=" border w-8 h-8 items-center  justify-center flex rounded-md"
+                                >
                                   {" "}
                                   <div className="  "> {skill.icon}</div>
                                   <div className="flex flex-col">
@@ -280,7 +286,13 @@ export default function Projects() {
                           <div className="mt-4 flex flex-wrap gap-2">
                             {project.skills.map((skill) => (
                               <FadeInSection key={skill.label}>
-                                <div className=" border w-8 h-8 items-center  justify-center flex rounded-md">
+                                <div
+                                  style={{
+                                    backgroundColor: `rgba(${skill.color}, 0.2)`,
+                                    borderColor: `rgba(${skill.color})`,
+                                  }}
+                                  className=" border w-8 h-8 items-center  justify-center flex rounded-md"
+                                >
                                   {" "}
                                   <div className="  "> {skill.icon}</div>
                                   <div className="flex flex-col">
