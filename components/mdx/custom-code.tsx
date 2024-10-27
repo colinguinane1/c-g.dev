@@ -20,7 +20,7 @@ const Code = (props: any) => {
 
   return (
     <div>
-      <div className="relative rounded-lg bg-card border h-fit text-white">
+      <div className="relative rounded-b-md bg-card border h-fit text-white">
         <div className="flex absolute right-2 top-[5px] justify-between items-center">
           <button
             type="button"

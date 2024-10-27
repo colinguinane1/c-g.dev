@@ -31,6 +31,7 @@ The MERN stack offers several advantages for developers:
 MongoDB is a NoSQL database that stores data in JSON-like documents. It’s suitable for applications requiring flexible schemas.
 
 **Example of a MongoDB Document:**
+<FileName name="mongo.json">
 ```json
 {
   "name": "John Doe",
@@ -39,11 +40,13 @@ MongoDB is a NoSQL database that stores data in JSON-like documents. It’s suit
   "isAdmin": true
 }
 ```
+</FileName>
 
 ### Express.js
 Express.js is a lightweight web framework for Node.js. It provides tools and middleware to build robust APIs quickly.
 
 **Sample Express.js Route:**
+<FileName name="server.js">
 ```javascript
 const express = require('express');
 const app = express();
@@ -54,11 +57,13 @@ app.get('/api/hello', (req, res) => {
 
 app.listen(3000, () => console.log('Server running on port 3000'));
 ```
+</FileName>
 
 ### React.js
 React is a frontend library developed by Facebook. It makes it easy to create interactive UIs by breaking them into reusable components.
 
 **Example React Component:**
+<FileName name="HelloWorld.jsx">
 ```javascript
 import React from 'react';
 
@@ -68,6 +73,7 @@ function HelloWorld() {
 
 export default HelloWorld;
 ```
+</FileName>
 
 ### Node.js
 Node.js is a runtime environment that allows JavaScript to run on the server. It’s known for handling concurrent requests efficiently.
