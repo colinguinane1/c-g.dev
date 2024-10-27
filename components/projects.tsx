@@ -9,7 +9,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -30,15 +29,47 @@ import { useMediaQuery } from "@/lib/media-query";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
+import { BiLogoPostgresql } from "react-icons/bi";
+import { IoLogoJavascript } from "react-icons/io5";
+import { IoLogoFirebase } from "react-icons/io5";
+import { RiNextjsFill } from "react-icons/ri";
+import { RiSupabaseFill } from "react-icons/ri";
+import { SiTypescript } from "react-icons/si";
 
 export default function Projects() {
+  const iconSize = 18;
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const projects = [
     {
       title: "Blog Platform",
       image: "/devnotes.png",
       description: "A full stack blog platform intended for developers.",
-      technologies: ["Vercel", "Next.JS", "Supabase", "PostgreSQL", "Prisma"],
+      skills: [
+        {
+          label: "TypeScript",
+          color: "blue",
+          icon: <SiTypescript size={iconSize} color="blue" />,
+          description: "JavaScript with type safety.",
+        },
+        {
+          label: "PostgreSQL",
+          color: "CornflowerBlue",
+          icon: <BiLogoPostgresql size={iconSize} color="CornflowerBlue" />,
+          description: "Structured Database",
+        },
+        {
+          label: "Supabase",
+          color: "Chartreuse",
+          icon: <RiSupabaseFill size={iconSize} color="Chartreuse" />,
+          description: "Backend Service",
+        },
+        {
+          label: "Next.js",
+          color: "gray",
+          icon: <RiNextjsFill size={iconSize} color={"gray"} />,
+          description: "React Framework",
+        },
+      ],
       longDescription:
         "devnotes.me is a platform for developers to share their knowledge and experiences. The site is built with Next.js and deployed on Vercel. User authentication, data storage, and a PostgreSQL are from Supabase. This project uses NextJS server actions to handle server-side logic and Prisma for database management.",
       challenges:
@@ -52,7 +83,26 @@ export default function Projects() {
       title: "Fast Food Ordering App",
       image: "/fastfood.png",
       description: "An app that allows users to order food from a restaurants.",
-      technologies: ["Next.JS", "Firebase", "Firestore", "PostgreSQL"],
+      skills: [
+        {
+          label: "TypeScript",
+          color: "blue",
+          icon: <SiTypescript size={iconSize} color="blue" />,
+          description: "JavaScript with type safety.",
+        },
+        {
+          label: "Firebase",
+          color: "red",
+          icon: <IoLogoFirebase size={iconSize} color="red" />,
+          description: "Backend Service",
+        },
+        {
+          label: "Next.js",
+          color: "gray",
+          icon: <RiNextjsFill size={iconSize} color={"gray"} />,
+          description: "React Framework",
+        },
+      ],
       longDescription:
         "This app allows users to browse a menu, add items to their cart, and place an order. The app uses Next.js for the frontend and Firebase for the database.",
       challenges:
@@ -65,7 +115,26 @@ export default function Projects() {
       title: "Music Portfolio",
       image: "/music-app.png",
       description: "A portfolio website for the music i compose as a hobby.",
-      technologies: ["NextJS", "Google Cloud"],
+      skills: [
+        {
+          label: "Firebase",
+          color: "red",
+          icon: <IoLogoFirebase size={iconSize} color="red" />,
+          description: "Backend Service",
+        },
+        {
+          label: "Next.js",
+          color: "gray",
+          icon: <RiNextjsFill size={iconSize} color={"gray"} />,
+          description: "React Framework",
+        },
+        {
+          label: "JavaScript",
+          color: "yellow",
+          icon: <IoLogoJavascript size={iconSize} color="yellow" />,
+          description: "Programming Language",
+        },
+      ],
       longDescription:
         "This project is a portfolio website for my music compositions. The site uses React for the frontend and Node.js for the backend. The weather data is fetched from the OpenWeatherMap API.",
       challenges:
@@ -113,15 +182,20 @@ export default function Projects() {
                             {project.description}
                           </CardDescription>
                           <div className="mt-4 flex flex-wrap gap-2">
-                            {project.technologies.map((tech, techIndex) => (
-                              <Badge
-                                key={techIndex}
-                                variant="outline"
-                                className="border-gray-500 text-gray-500 dark:border-gray-400 dark:text-gray-400"
-                              >
-                                {tech}
-                              </Badge>
-                            ))}{" "}
+                            {project.skills.map((skill) => (
+                              <FadeInSection key={skill.label}>
+                                <div className=" border w-8 h-8 items-center  justify-center flex rounded-md">
+                                  {" "}
+                                  <div className="  "> {skill.icon}</div>
+                                  <div className="flex flex-col">
+                                    <h1 className="font-bold hidden tracking-tighter">
+                                      {" "}
+                                      {skill.label}
+                                    </h1>
+                                  </div>{" "}
+                                </div>
+                              </FadeInSection>
+                            ))}
                           </div>{" "}
                           <Button variant={"outline"} className="mt-4">
                             <ArrowUpRight className="mr-1" size={20} />
@@ -204,15 +278,20 @@ export default function Projects() {
                             {project.description}
                           </CardDescription>
                           <div className="mt-4 flex flex-wrap gap-2">
-                            {project.technologies.map((tech, techIndex) => (
-                              <Badge
-                                key={techIndex}
-                                variant="outline"
-                                className="border-gray-500 text-gray-500 dark:border-gray-400 dark:text-gray-400"
-                              >
-                                {tech}
-                              </Badge>
-                            ))}{" "}
+                            {project.skills.map((skill) => (
+                              <FadeInSection key={skill.label}>
+                                <div className=" border w-8 h-8 items-center  justify-center flex rounded-md">
+                                  {" "}
+                                  <div className="  "> {skill.icon}</div>
+                                  <div className="flex flex-col">
+                                    <h1 className="font-bold hidden tracking-tighter">
+                                      {" "}
+                                      {skill.label}
+                                    </h1>
+                                  </div>{" "}
+                                </div>
+                              </FadeInSection>
+                            ))}
                           </div>{" "}
                           <Button variant={"outline"} className="mt-4">
                             <ArrowUpRight className="mr-1" size={20} />

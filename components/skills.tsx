@@ -2,7 +2,6 @@
 
 import FadeInSection from "./FadeInView";
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { DiMongodb } from "react-icons/di";
 import { FaReact } from "react-icons/fa";
@@ -15,86 +14,79 @@ import { RiTailwindCssFill } from "react-icons/ri";
 import { SiTypescript } from "react-icons/si";
 import { SiExpress } from "react-icons/si";
 
+export const iconSize = 25;
+export const backendSkills = [
+  {
+    label: "Node.js",
+    color: "green",
+    icon: <FaNodeJs size={iconSize} color={"green"} />,
+    description: "Server language",
+  },
+  {
+    label: "Express",
+    color: "gray",
+    icon: <SiExpress size={iconSize} color={"gray"} />,
+    description: "Node.js Framework",
+  },
+  {
+    label: "MongoDB",
+    color: "green",
+    icon: <DiMongodb size={iconSize} color={"green"} />,
+    description: "NoSQL Database",
+  },
+  {
+    label: "PostgreSQL",
+    color: "CornflowerBlue",
+    icon: <BiLogoPostgresql size={iconSize} color="CornflowerBlue" />,
+    description: "Structured Database",
+  },
+  {
+    label: "Supabase",
+    color: "Chartreuse",
+    icon: <RiSupabaseFill size={iconSize} color="Chartreuse" />,
+    description: "Backend Service",
+  },
+  {
+    label: "Firebase",
+    color: "red",
+    icon: <IoLogoFirebase size={iconSize} color="red" />,
+    description: "Backend Service",
+  },
+];
+export const frontendSkills = [
+  {
+    label: "TypeScript",
+    color: "blue",
+    icon: <SiTypescript size={iconSize} color="blue" />,
+    description: "JavaScript with type safety.",
+  },
+  {
+    label: "React",
+    color: "teal",
+    icon: <FaReact size={iconSize} color={"teal"} />,
+    description: "JavaScript Library",
+  },
+
+  {
+    label: "Next.js",
+    color: "gray",
+    icon: <RiNextjsFill size={iconSize} color={"gray"} />,
+    description: "React Framework",
+  },
+  {
+    label: "Tailwind",
+    color: "cyan",
+    icon: <RiTailwindCssFill size={iconSize} color="cyan" />,
+    description: "Utility-first CSS",
+  },
+  {
+    label: "Git",
+    color: "orange",
+    icon: <IoIosGitBranch size={iconSize} color="orange" />,
+    description: "Version control",
+  },
+];
 export default function Skills() {
-  const { resolvedTheme } = useTheme();
-
-  const darkMode = resolvedTheme === "dark";
-  const iconSize = 25;
-
-  const backendSkills = [
-    {
-      label: "Node.js",
-      color: "green",
-      icon: <FaNodeJs size={iconSize} color={"green"} />,
-      description: "Server language",
-    },
-    {
-      label: "Express",
-      color: darkMode ? "white" : "black",
-      icon: <SiExpress size={iconSize} color={darkMode ? "white" : "black"} />,
-      description: "Node.js Framework",
-    },
-    {
-      label: "MongoDB",
-      color: "green",
-      icon: <DiMongodb size={iconSize} color={"green"} />,
-      description: "NoSQL Database",
-    },
-    {
-      label: "PostgreSQL",
-      color: "CornflowerBlue",
-      icon: <BiLogoPostgresql size={iconSize} color="CornflowerBlue" />,
-      description: "Structured Database",
-    },
-    {
-      label: "Supabase",
-      color: "Chartreuse",
-      icon: <RiSupabaseFill size={iconSize} color="Chartreuse" />,
-      description: "Backend Service",
-    },
-    {
-      label: "Firebase",
-      color: "red",
-      icon: <IoLogoFirebase size={iconSize} color="red" />,
-      description: "Backend Service",
-    },
-  ];
-  const frontendSkills = [
-    {
-      label: "TypeScript",
-      color: "blue",
-      icon: <SiTypescript size={iconSize} color="blue" />,
-      description: "JavaScript with type safety.",
-    },
-    {
-      label: "React",
-      color: "teal",
-      icon: <FaReact size={iconSize} color={"teal"} />,
-      description: "JavaScript Library",
-    },
-
-    {
-      label: "Next.js",
-      color: darkMode ? "white" : "black",
-      icon: (
-        <RiNextjsFill size={iconSize} color={darkMode ? "white" : "black"} />
-      ),
-      description: "React Framework",
-    },
-    {
-      label: "Tailwind",
-      color: "cyan",
-      icon: <RiTailwindCssFill size={iconSize} color="cyan" />,
-      description: "Utility-first CSS",
-    },
-    {
-      label: "Git",
-      color: "orange",
-      icon: <IoIosGitBranch size={iconSize} color="orange" />,
-      description: "Version control",
-    },
-  ];
-
   return (
     <FadeInSection>
       <section id="skills" className="mb-6 w-full">
