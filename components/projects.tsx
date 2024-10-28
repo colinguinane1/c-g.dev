@@ -47,7 +47,7 @@ export default function Projects() {
       skills: [
         {
           label: "TypeScript",
-          color: "0, 0, 255", // Blue with 20% opacity
+          color: "0, 0, 200", // Blue with 20% opacity
           icon: <SiTypescript size={iconSize} color="blue" />,
           description: "JavaScript with type safety.",
         },
@@ -86,7 +86,7 @@ export default function Projects() {
       skills: [
         {
           label: "TypeScript",
-          color: "0, 0, 255", // Blue with 20% opacity
+          color: "0, 0, 200", // Blue with 20% opacity
           icon: <SiTypescript size={iconSize} color="blue" />,
           description: "JavaScript with type safety.",
         },
@@ -130,8 +130,8 @@ export default function Projects() {
         },
         {
           label: "JavaScript",
-          color: "255, 255, 0", // Yellow with 20% opacity
-          icon: <IoLogoJavascript size={iconSize} color="yellow" />,
+          color: "245, 167, 39", // Yellow with 20% opacity
+          icon: <IoLogoJavascript size={iconSize} color="orange" />,
           description: "Programming Language",
         },
       ],
@@ -148,7 +148,9 @@ export default function Projects() {
   return (
     <FadeInSection>
       <section id="projects" className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">Projects</h2>
+        <h2 className="text-2xl tracking-tighter text-primary font-bold mb-4">
+          Projects
+        </h2>
         <div className="grid gap-6   ">
           {projects.map((project, index) => (
             <motion.div
@@ -173,7 +175,7 @@ export default function Projects() {
                               objectFit: "cover",
                             }}
                           />
-                          <CardTitle className="text-primary tracking-tight">
+                          <CardTitle className="text-primary tracking-tighter">
                             {project.title}
                           </CardTitle>
                         </CardHeader>
@@ -183,24 +185,23 @@ export default function Projects() {
                           </CardDescription>
                           <div className="mt-4 flex flex-wrap gap-2">
                             {project.skills.map((skill) => (
-                              <FadeInSection key={skill.label}>
-                                <div
-                                  style={{
-                                    backgroundColor: `rgba(${skill.color}, 0.2)`,
-                                    borderColor: `rgba(${skill.color})`,
-                                  }}
-                                  className=" border w-8 h-8 items-center  justify-center flex rounded-md"
-                                >
-                                  {" "}
-                                  <div className="  "> {skill.icon}</div>
-                                  <div className="flex flex-col">
-                                    <h1 className="font-bold hidden tracking-tighter">
-                                      {" "}
-                                      {skill.label}
-                                    </h1>
-                                  </div>{" "}
-                                </div>
-                              </FadeInSection>
+                              <div
+                                key={skill.label}
+                                style={{
+                                  backgroundColor: `rgba(${skill.color}, 0.2)`,
+                                  borderColor: `rgba(${skill.color})`,
+                                }}
+                                className=" border w-8 h-8 items-center  justify-center flex rounded-md"
+                              >
+                                {" "}
+                                <div className="  "> {skill.icon}</div>
+                                <div className="flex flex-col">
+                                  <h1 className="font-bold hidden tracking-tighter">
+                                    {" "}
+                                    {skill.label}
+                                  </h1>
+                                </div>{" "}
+                              </div>
                             ))}
                           </div>{" "}
                           <Button variant={"outline"} className="mt-4">
@@ -291,7 +292,7 @@ export default function Projects() {
                                     backgroundColor: `rgba(${skill.color}, 0.2)`,
                                     borderColor: `rgba(${skill.color})`,
                                   }}
-                                  className=" border w-8 h-8 items-center  justify-center flex rounded-md"
+                                  className=" border w-8 h-8 items-center  justify-center flex rounded-full"
                                 >
                                   {" "}
                                   <div className="  "> {skill.icon}</div>
@@ -321,6 +322,33 @@ export default function Projects() {
 
                         <DrawerDescription>
                           {project.description}
+                          <div className="my-4 flex flex-wrap gap-2">
+                            {project.skills.map((skill) => (
+                              <FadeInSection key={skill.label}>
+                                <div
+                                  style={{
+                                    backgroundColor: `rgba(${skill.color}, 0.2)`,
+                                    borderColor: `rgba(${skill.color})`,
+                                  }}
+                                  className=" border p-2 gap-1 items-center  justify-center flex rounded-full"
+                                >
+                                  {" "}
+                                  <div className="  "> {skill.icon}</div>
+                                  <div className="flex flex-col">
+                                    <h1
+                                      style={{
+                                        color: `rgba(${skill.color}, 0.7) `,
+                                      }}
+                                      className="font-bold tracking-tighter"
+                                    >
+                                      {" "}
+                                      {skill.label}
+                                    </h1>
+                                  </div>{" "}
+                                </div>
+                              </FadeInSection>
+                            ))}
+                          </div>{" "}
                         </DrawerDescription>
                         <Image
                           src={project.image}

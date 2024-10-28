@@ -18,79 +18,82 @@ export const iconSize = 25;
 export const backendSkills = [
   {
     label: "Node.js",
-    color: "green",
-    icon: <FaNodeJs size={iconSize} color={"green"} />,
+    color: "0, 128, 0", // Green
+    icon: <FaNodeJs size={iconSize} color="green" />,
     description: "Server language",
   },
   {
     label: "Express",
-    color: "gray",
-    icon: <SiExpress size={iconSize} color={"gray"} />,
+    color: "128, 128, 128", // Gray
+    icon: <SiExpress size={iconSize} color="gray" />,
     description: "Node.js Framework",
   },
   {
     label: "MongoDB",
-    color: "green",
-    icon: <DiMongodb size={iconSize} color={"green"} />,
+    color: "0, 128, 0", // Green
+    icon: <DiMongodb size={iconSize} color="green" />,
     description: "NoSQL Database",
   },
   {
     label: "PostgreSQL",
-    color: "CornflowerBlue",
+    color: "100, 149, 237", // CornflowerBlue
     icon: <BiLogoPostgresql size={iconSize} color="CornflowerBlue" />,
     description: "Structured Database",
   },
   {
     label: "Supabase",
-    color: "Chartreuse",
+    color: "127, 255, 0", // Chartreuse
     icon: <RiSupabaseFill size={iconSize} color="Chartreuse" />,
     description: "Backend Service",
   },
   {
     label: "Firebase",
-    color: "red",
+    color: "255, 0, 0", // Red
     icon: <IoLogoFirebase size={iconSize} color="red" />,
     description: "Backend Service",
   },
 ];
+
 export const frontendSkills = [
   {
     label: "TypeScript",
-    color: "blue",
+    color: "0, 0, 255", // Blue
     icon: <SiTypescript size={iconSize} color="blue" />,
     description: "JavaScript with type safety.",
   },
   {
     label: "React",
-    color: "teal",
-    icon: <FaReact size={iconSize} color={"teal"} />,
+    color: "0, 128, 128", // Teal
+    icon: <FaReact size={iconSize} color="teal" />,
     description: "JavaScript Library",
   },
-
   {
     label: "Next.js",
-    color: "gray",
-    icon: <RiNextjsFill size={iconSize} color={"gray"} />,
+    color: "128, 128, 128", // Gray
+    icon: <RiNextjsFill size={iconSize} color="gray" />,
     description: "React Framework",
   },
   {
     label: "Tailwind",
-    color: "cyan",
+    color: "0, 255, 255", // Cyan
     icon: <RiTailwindCssFill size={iconSize} color="cyan" />,
     description: "Utility-first CSS",
   },
   {
     label: "Git",
-    color: "orange",
+    color: "255, 165, 0", // Orange
     icon: <IoIosGitBranch size={iconSize} color="orange" />,
     description: "Version control",
   },
 ];
+
 export default function Skills() {
   return (
     <FadeInSection>
       <section id="skills" className="mb-6 w-full">
-        <h2 className="text-2xl font-bold  mb-4">Skills</h2>
+        <h2 className="text-2xl font-bold tracking-tighter text-primary  mb-4">
+          Skills
+        </h2>
         <motion.div
           className="w-full gap-2"
           variants={{
@@ -119,7 +122,8 @@ export default function Skills() {
                   <div className="flex items-center gap-2 border bg-card  p-3 rounded-md">
                     <div
                       style={{
-                        backgroundColor: skill.color,
+                        backgroundColor: `rgba(${skill.color}, 0.5)`,
+                        borderColor: `rgba(${skill.color})`,
                       }}
                       className="w-10 h-10 opacity-15 relative border items-center  justify-center flex rounded-md"
                     ></div>{" "}
@@ -134,10 +138,7 @@ export default function Skills() {
                   </div>
                 </FadeInSection>
               </motion.div>
-            ))}
-          </div>
-          <hr className="pb-4"></hr>
-          <div className="grid grid-cols-2 gap-2">
+            ))}{" "}
             {backendSkills.map((skill, index) => (
               <motion.div
                 key={index}
@@ -147,10 +148,13 @@ export default function Skills() {
                 }}
               >
                 <FadeInSection>
-                  <div className="flex items-center gap-2 border bg-card p-3 rounded-md">
+                  <div className="flex items-center gap-2 border bg-card  p-3 rounded-md">
                     <div
-                      style={{ backgroundColor: skill.color }}
-                      className="w-10 h-10 opacity-15 relative items-center  justify-center flex rounded-md"
+                      style={{
+                        backgroundColor: `rgba(${skill.color}, 0.5)`,
+                        borderColor: `rgba(${skill.color})`,
+                      }}
+                      className="w-10 h-10 opacity-15 relative border items-center  justify-center flex rounded-md"
                     ></div>{" "}
                     <div className="absolute left-[21px] "> {skill.icon}</div>
                     <div className="flex flex-col">

@@ -13,7 +13,9 @@ export default function ComponentList({
     <FadeInSection>
       <section className="pb-10 w-full">
         <div className="flex items-center justify-between ">
-          <h2 className="text-2xl py-4 font-bold">UI Components</h2>
+          <h2 className="text-2xl py-4 font-bold tracking-tighter text-primary">
+            UI Components
+          </h2>
           <Link className="flex items-center" href="/components">
             See More <ChevronRight size={15} />
           </Link>
