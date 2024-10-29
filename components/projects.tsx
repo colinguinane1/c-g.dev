@@ -59,7 +59,7 @@ export default function Projects() {
         },
         {
           label: "Supabase",
-          color: "127, 255, 0", // Chartreuse with 20% opacity
+          color: "0, 255, 0",
           icon: <RiSupabaseFill size={iconSize} color="Chartreuse" />,
           description: "Backend Service",
         },
@@ -188,7 +188,7 @@ export default function Projects() {
                               <div
                                 key={skill.label}
                                 style={{
-                                  backgroundColor: `rgba(${skill.color}, 0.2)`,
+                                  backgroundColor: `rgba(${skill.color}, 0.1)`,
                                   borderColor: `rgba(${skill.color})`,
                                 }}
                                 className=" border w-8 h-8 items-center  justify-center flex rounded-md"
@@ -286,24 +286,23 @@ export default function Projects() {
                           </CardDescription>
                           <div className="mt-4 flex flex-wrap gap-2">
                             {project.skills.map((skill) => (
-                              <FadeInSection key={skill.label}>
-                                <div
-                                  style={{
-                                    backgroundColor: `rgba(${skill.color}, 0.2)`,
-                                    borderColor: `rgba(${skill.color})`,
-                                  }}
-                                  className=" border w-8 h-8 items-center  justify-center flex rounded-full"
-                                >
-                                  {" "}
-                                  <div className="  "> {skill.icon}</div>
-                                  <div className="flex flex-col">
-                                    <h1 className="font-bold hidden tracking-tighter">
-                                      {" "}
-                                      {skill.label}
-                                    </h1>
-                                  </div>{" "}
-                                </div>
-                              </FadeInSection>
+                              <div
+                                key={skill.label}
+                                style={{
+                                  backgroundColor: `rgba(${skill.color}, 0.1)`,
+                                  borderColor: `rgba(${skill.color}, 0.2)`,
+                                }}
+                                className=" border w-8 h-8 items-center  justify-center flex rounded-md"
+                              >
+                                {" "}
+                                <div className="  "> {skill.icon}</div>
+                                <div className="flex flex-col">
+                                  <h1 className="font-bold hidden tracking-tighter">
+                                    {" "}
+                                    {skill.label}
+                                  </h1>
+                                </div>{" "}
+                              </div>
                             ))}
                           </div>{" "}
                           <Button variant={"outline"} className="mt-4">
@@ -324,29 +323,23 @@ export default function Projects() {
                           {project.description}
                           <div className="my-4 flex flex-wrap gap-2">
                             {project.skills.map((skill) => (
-                              <FadeInSection key={skill.label}>
-                                <div
-                                  style={{
-                                    backgroundColor: `rgba(${skill.color}, 0.2)`,
-                                    borderColor: `rgba(${skill.color})`,
-                                  }}
-                                  className=" border p-2 gap-1 items-center  justify-center flex rounded-full"
-                                >
-                                  {" "}
-                                  <div className="  "> {skill.icon}</div>
-                                  <div className="flex flex-col">
-                                    <h1
-                                      style={{
-                                        color: `rgba(${skill.color}, 0.7) `,
-                                      }}
-                                      className="font-bold tracking-tighter"
-                                    >
-                                      {" "}
-                                      {skill.label}
-                                    </h1>
-                                  </div>{" "}
-                                </div>
-                              </FadeInSection>
+                              <div
+                                key={skill.label}
+                                style={{
+                                  backgroundColor: `rgba(${skill.color}, 0.05)`,
+                                  borderColor: `rgba(${skill.color}, 0.3)`,
+                                }}
+                                className=" border p-2 gap-1 items-center  justify-center flex rounded-md"
+                              >
+                                {" "}
+                                <div className="  "> {skill.icon}</div>
+                                <div className="flex flex-col">
+                                  <h1 className="font-bold tracking-tighter">
+                                    {" "}
+                                    {skill.label}
+                                  </h1>
+                                </div>{" "}
+                              </div>
                             ))}
                           </div>{" "}
                         </DrawerDescription>
