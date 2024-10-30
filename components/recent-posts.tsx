@@ -14,7 +14,9 @@ type Post = {
 export default function RecentPosts({ posts }: { posts: Post[] }) {
   return (
     <section>
-      <h1 className="text-4xl font-bold mb-8">Recent Blogs</h1>
+      <h1 className="text-4xl font-bold mb-8 tracking-tighter text-primary">
+        Recent Blogs
+      </h1>
       <div className="grid gap-6">
         {posts.map((post) => (
           <div key={post.slug} className="p-4 border rounded-md shadow">

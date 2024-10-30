@@ -9,7 +9,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -30,21 +29,55 @@ import { useMediaQuery } from "@/lib/media-query";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
+import { BiLogoPostgresql } from "react-icons/bi";
+import { IoLogoJavascript } from "react-icons/io5";
+import { IoLogoFirebase } from "react-icons/io5";
+import { RiNextjsFill } from "react-icons/ri";
+import { RiSupabaseFill } from "react-icons/ri";
+import { SiTypescript } from "react-icons/si";
 
 export default function Projects() {
+  const iconSize = 18;
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const projects = [
     {
       title: "Blog Platform",
       image: "/devnotes.png",
       description: "A full stack blog platform intended for developers.",
-      technologies: ["Vercel", "Next.JS", "Supabase", "PostgreSQL", "Prisma"],
-      longDescription:
-        "devnotes.me is a platform for developers to share their knowledge and experiences. The site is built with Next.js and deployed on Vercel. User authentication, data storage, and a PostgreSQL are from Supabase. This project uses NextJS server actions to handle server-side logic and Prisma for database management.",
-      challenges:
-        "Creating a full platform where users can create, edit, and delete posts, as well as like and comment on other posts. The users can also edit their profile and view other users' profiles.",
-      outcome:
-        "devnotes has gained a small following of developers who use the platform to share their knowledge and experiences.",
+      skills: [
+        {
+          label: "TypeScript",
+          color: "0, 0, 200", // Blue with 20% opacity
+          icon: <SiTypescript size={iconSize} color="blue" />,
+          description: "JavaScript with type safety.",
+        },
+        {
+          label: "PostgreSQL",
+          color: "100, 149, 237", // CornflowerBlue with 20% opacity
+          icon: <BiLogoPostgresql size={iconSize} color="CornflowerBlue" />,
+          description: "Structured Database",
+        },
+        {
+          label: "Supabase",
+          color: "0, 255, 0",
+          icon: <RiSupabaseFill size={iconSize} color="Chartreuse" />,
+          description: "Backend Service",
+        },
+        {
+          label: "Next.js",
+          color: "128, 128, 128", // Gray with 20% opacity
+          icon: <RiNextjsFill size={iconSize} color="gray" />,
+          description: "React Framework",
+        },
+      ],
+      features: [
+        "Authentication",
+        "Users can create, edit, and delete posts",
+        "Users can comment on posts",
+        "Users can like posts",
+        "Users can search for posts",
+        "Rich Markdown Support",
+      ],
       github: "https://github.com/colinguinane1/devnotes.me",
       live: "https://devnotes.me",
     },
@@ -52,12 +85,31 @@ export default function Projects() {
       title: "Fast Food Ordering App",
       image: "/fastfood.png",
       description: "An app that allows users to order food from a restaurants.",
-      technologies: ["Next.JS", "Firebase", "Firestore", "PostgreSQL"],
-      longDescription:
-        "This app allows users to browse a menu, add items to their cart, and place an order. The app uses Next.js for the frontend and Firebase for the database.",
-      challenges:
-        "Creating a seamless user experience for ordering food online.",
-      outcome: "Increased knowledge of Next.js and Firebase.",
+      skills: [
+        {
+          label: "TypeScript",
+          color: "0, 0, 200", // Blue with 20% opacity
+          icon: <SiTypescript size={iconSize} color="blue" />,
+          description: "JavaScript with type safety.",
+        },
+        {
+          label: "Firebase",
+          color: "255, 0, 0", // Red with 20% opacity
+          icon: <IoLogoFirebase size={iconSize} color="red" />,
+          description: "Backend Service",
+        },
+        {
+          label: "Next.js",
+          color: "128, 128, 128", // Gray with 20% opacity
+          icon: <RiNextjsFill size={iconSize} color="gray" />,
+          description: "React Framework",
+        },
+      ],
+      features: [
+        "Users can browse food items",
+        "Users can add items to cart",
+        "Users can place an order",
+      ],
       github: "https://github.com/colinguinane1/fast-food-app",
       live: "https://food.colinguinane.com",
     },
@@ -65,13 +117,27 @@ export default function Projects() {
       title: "Music Portfolio",
       image: "/music-app.png",
       description: "A portfolio website for the music i compose as a hobby.",
-      technologies: ["NextJS", "Google Cloud"],
-      longDescription:
-        "This project is a portfolio website for my music compositions. The site uses React for the frontend and Node.js for the backend. The weather data is fetched from the OpenWeatherMap API.",
-      challenges:
-        "Creating a responsive and visually appealing dashboard that displays my music.",
-      outcome:
-        "A clean and modern portfolio website that showcases my music compositions.",
+      skills: [
+        {
+          label: "Firebase",
+          color: "255, 0, 0", // Red with 20% opacity
+          icon: <IoLogoFirebase size={iconSize} color="red" />,
+          description: "Backend Service",
+        },
+        {
+          label: "Next.js",
+          color: "128, 128, 128", // Gray with 20% opacity
+          icon: <RiNextjsFill size={iconSize} color={"gray"} />,
+          description: "React Framework",
+        },
+        {
+          label: "JavaScript",
+          color: "245, 167, 39", // Yellow with 20% opacity
+          icon: <IoLogoJavascript size={iconSize} color="orange" />,
+          description: "Programming Language",
+        },
+      ],
+      features: ["Users can browse music", "Users can play music"],
       github: "https://github.com/colinguinane1/MusicPortfolio",
       live: "https://music.colinguinane.com",
     },
@@ -79,7 +145,9 @@ export default function Projects() {
   return (
     <FadeInSection>
       <section id="projects" className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">Projects</h2>
+        <h2 className="text-2xl tracking-tighter text-primary font-bold mb-4">
+          Projects
+        </h2>
         <div className="grid gap-6   ">
           {projects.map((project, index) => (
             <motion.div
@@ -104,7 +172,7 @@ export default function Projects() {
                               objectFit: "cover",
                             }}
                           />
-                          <CardTitle className="text-primary tracking-tight">
+                          <CardTitle className="text-primary tracking-tighter">
                             {project.title}
                           </CardTitle>
                         </CardHeader>
@@ -113,15 +181,25 @@ export default function Projects() {
                             {project.description}
                           </CardDescription>
                           <div className="mt-4 flex flex-wrap gap-2">
-                            {project.technologies.map((tech, techIndex) => (
-                              <Badge
-                                key={techIndex}
-                                variant="outline"
-                                className="border-gray-500 text-gray-500 dark:border-gray-400 dark:text-gray-400"
+                            {project.skills.map((skill) => (
+                              <div
+                                key={skill.label}
+                                style={{
+                                  backgroundColor: `rgba(${skill.color}, 0.1)`,
+                                  borderColor: `rgba(${skill.color})`,
+                                }}
+                                className=" border w-8 h-8 items-center  justify-center flex rounded-md"
                               >
-                                {tech}
-                              </Badge>
-                            ))}{" "}
+                                {" "}
+                                <div className="  "> {skill.icon}</div>
+                                <div className="flex flex-col">
+                                  <h1 className="font-bold hidden tracking-tighter">
+                                    {" "}
+                                    {skill.label}
+                                  </h1>
+                                </div>{" "}
+                              </div>
+                            ))}
                           </div>{" "}
                           <Button variant={"outline"} className="mt-4">
                             <ArrowUpRight className="mr-1" size={20} />
@@ -137,6 +215,27 @@ export default function Projects() {
                         </DialogTitle>
                         <DialogDescription className="text-gray-600 dark:text-gray-300">
                           {project.description}
+                          <div className="my-4 flex flex-wrap gap-2">
+                            {project.skills.map((skill) => (
+                              <div
+                                key={skill.label}
+                                style={{
+                                  backgroundColor: `rgba(${skill.color}, 0.05)`,
+                                  borderColor: `rgba(${skill.color}, 0.3)`,
+                                }}
+                                className=" border p-2 gap-1 items-center  justify-center flex rounded-md"
+                              >
+                                {" "}
+                                <div className="  "> {skill.icon}</div>
+                                <div className="flex flex-col">
+                                  <h1 className="font-bold tracking-tighter">
+                                    {" "}
+                                    {skill.label}
+                                  </h1>
+                                </div>{" "}
+                              </div>
+                            ))}
+                          </div>{" "}
                         </DialogDescription>
                         <Image
                           src={project.image}
@@ -150,18 +249,17 @@ export default function Projects() {
                         />
                       </DialogHeader>
                       <div className="mt-4">
-                        <h4 className="font-semibold mb-2  text-primary">
-                          Project Details:
-                        </h4>
-                        <p className="mb-2">{project.longDescription}</p>
-                        <h4 className="font-semibold mb-2  text-primary">
-                          Challenges:
-                        </h4>
-                        <p className="mb-2">{project.challenges}</p>
-                        <h4 className="font-semibold mb-2  text-primary">
-                          Outcome:
-                        </h4>
-                        <p className="mb-4">{project.outcome}</p>
+                        <div className="pb-2">
+                          <h4 className="font-semibold  text-primary">
+                            Features
+                          </h4>
+
+                          {project.features.map((feature) => (
+                            <li className="text-sm" key={feature}>
+                              {feature}
+                            </li>
+                          ))}
+                        </div>
                         <div className="flex space-x-4">
                           <Button
                             variant="outline"
@@ -204,15 +302,25 @@ export default function Projects() {
                             {project.description}
                           </CardDescription>
                           <div className="mt-4 flex flex-wrap gap-2">
-                            {project.technologies.map((tech, techIndex) => (
-                              <Badge
-                                key={techIndex}
-                                variant="outline"
-                                className="border-gray-500 text-gray-500 dark:border-gray-400 dark:text-gray-400"
+                            {project.skills.map((skill) => (
+                              <div
+                                key={skill.label}
+                                style={{
+                                  backgroundColor: `rgba(${skill.color}, 0.1)`,
+                                  borderColor: `rgba(${skill.color}, 0.2)`,
+                                }}
+                                className=" border w-8 h-8 items-center  justify-center flex rounded-md"
                               >
-                                {tech}
-                              </Badge>
-                            ))}{" "}
+                                {" "}
+                                <div className="  "> {skill.icon}</div>
+                                <div className="flex flex-col">
+                                  <h1 className="font-bold hidden tracking-tighter">
+                                    {" "}
+                                    {skill.label}
+                                  </h1>
+                                </div>{" "}
+                              </div>
+                            ))}
                           </div>{" "}
                           <Button variant={"outline"} className="mt-4">
                             <ArrowUpRight className="mr-1" size={20} />
@@ -230,6 +338,27 @@ export default function Projects() {
 
                         <DrawerDescription>
                           {project.description}
+                          <div className="my-4 flex flex-wrap gap-2">
+                            {project.skills.map((skill) => (
+                              <div
+                                key={skill.label}
+                                style={{
+                                  backgroundColor: `rgba(${skill.color}, 0.05)`,
+                                  borderColor: `rgba(${skill.color}, 0.3)`,
+                                }}
+                                className=" border p-2 gap-1 items-center  justify-center flex rounded-md"
+                              >
+                                {" "}
+                                <div className="  "> {skill.icon}</div>
+                                <div className="flex flex-col">
+                                  <h1 className="font-bold tracking-tighter">
+                                    {" "}
+                                    {skill.label}
+                                  </h1>
+                                </div>{" "}
+                              </div>
+                            ))}
+                          </div>{" "}
                         </DrawerDescription>
                         <Image
                           src={project.image}
@@ -243,11 +372,17 @@ export default function Projects() {
                         />
                       </DrawerHeader>
                       <div className="p-4">
-                        <h4 className="font-semibold mb-2  text-primary">
-                          Project Details:
-                        </h4>
-                        <p className="mb-2">{project.longDescription}</p>
+                        <div className="pb-2">
+                          <h4 className="font-semibold  text-primary">
+                            Features
+                          </h4>
 
+                          {project.features.map((feature) => (
+                            <li className="text-sm" key={feature}>
+                              {feature}
+                            </li>
+                          ))}
+                        </div>
                         <div className="flex space-x-4">
                           <Button
                             variant="outline"

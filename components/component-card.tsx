@@ -17,7 +17,7 @@ export default function ComponentCard({ component }: ComponentCardProps) {
         href={`/components/${component.slug}`}
       >
         <div className="flex justify-between items-center w-full">
-          <div className="w-1/2">
+          <div className="w-full">
             <div className="text-lg  text-primary font-bold hover:underline">
               {component.metadata.title}
             </div>
