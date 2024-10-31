@@ -27,7 +27,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     blockquote: (props) => (
       <blockquote
         style={{ paddingBottom: 0 }}
-        className="border-l-4 pl-4"
         className="border-l-4 pl-2"
         {...props}
       />
