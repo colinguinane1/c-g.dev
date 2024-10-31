@@ -8,6 +8,7 @@ export type Post = {
     title: string;
     publishDate: string;
     category: string;
+    published: boolean;
     description: string;
     image: string;
   };

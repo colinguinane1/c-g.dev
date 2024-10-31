@@ -47,8 +47,8 @@ export default function Projects() {
       skills: [
         {
           label: "TypeScript",
-          color: "0, 0, 200", // Blue with 20% opacity
-          icon: <SiTypescript size={iconSize} color="blue" />,
+          color: "50, 100, 255", // Blue
+          icon: <SiTypescript size={iconSize} color="rgb(50,200,255)" />,
           description: "JavaScript with type safety.",
         },
         {
@@ -88,8 +88,8 @@ export default function Projects() {
       skills: [
         {
           label: "TypeScript",
-          color: "0, 0, 200", // Blue with 20% opacity
-          icon: <SiTypescript size={iconSize} color="blue" />,
+          color: "50, 100, 255", // Blue
+          icon: <SiTypescript size={iconSize} color="rgb(50,200,255)" />,
           description: "JavaScript with type safety.",
         },
         {

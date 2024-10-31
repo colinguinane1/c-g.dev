@@ -57,8 +57,8 @@ export const backendSkills = [
 export const frontendSkills = [
   {
     label: "TypeScript",
-    color: "0, 0, 255", // Blue
-    icon: <SiTypescript size={iconSize} color="blue" />,
+    color: "50, 100, 255", // Blue
+    icon: <SiTypescript size={iconSize} color="rgb(50,200,255)" />,
     description: "JavaScript with type safety.",
   },
   {
@@ -108,7 +108,7 @@ export default function Skills() {
           initial="hidden"
           animate="visible"
         >
-          <div className="grid grid-cols-2 gap-2 mb-4">
+          <div className="grid grid-cols-2 gap-4 mb-4">
             {frontendSkills.map((skill, index) => (
               <motion.div
                 key={index}
@@ -119,7 +119,7 @@ export default function Skills() {
                 }}
               >
                 <FadeInSection>
-                  <div className="flex items-center gap-2 border bg-card  p-3 rounded-md">
+                  <div className="flex shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] items-center gap-2 border bg-card  p-3 rounded-md">
                     <div
                       style={{
                         backgroundColor: `rgba(${skill.color}, 0.5)`,
@@ -148,7 +148,7 @@ export default function Skills() {
                 }}
               >
                 <FadeInSection>
-                  <div className="flex items-center gap-2 border bg-card  p-3 rounded-md">
+                  <div className="flex shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] items-center gap-2 border bg-card  p-3 rounded-md">
                     <div
                       style={{
                         backgroundColor: `rgba(${skill.color}, 0.5)`,
