@@ -18,8 +18,8 @@ export default async function EnhancedPortfolioComponent() {
       <main className="container mx-auto px-6 py-8">
         <Hero />
         <BentoGrid />
-        <Skills />
         <Projects />
+        <Skills />
         <BlogList posts={publishedPosts} />
         <ComponentList components={components} />
       </main>

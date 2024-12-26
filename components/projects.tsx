@@ -30,16 +30,60 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import { BiLogoPostgresql } from "react-icons/bi";
+import { DiMongodb } from "react-icons/di";
+import { FaNodeJs } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io5";
 import { IoLogoFirebase } from "react-icons/io5";
 import { RiNextjsFill } from "react-icons/ri";
 import { RiSupabaseFill } from "react-icons/ri";
-import { SiTypescript } from "react-icons/si";
+import { SiExpress, SiTypescript } from "react-icons/si";
 
 export default function Projects() {
   const iconSize = 18;
   const isDesktop = useMediaQuery("(min-width: 768px)");
+
   const projects = [
+    {
+      title: "Guessr",
+      image: "/guessr.png",
+      description: "A number guessing game.",
+      skills: [
+        {
+          label: "MongoDB",
+          color: "0, 128, 0", // Green
+          icon: <DiMongodb size={iconSize} color="green" />,
+          description: "NoSQL Database",
+        },
+        {
+          label: "Express",
+          color: "128, 128, 128", // Gray
+          icon: <SiExpress size={iconSize} color="gray" />,
+          description: "Node.js Framework",
+        },
+        {
+          label: "Node.js",
+          color: "0, 128, 0", // Green
+          icon: <FaNodeJs size={iconSize} color="green" />,
+          description: "Server language",
+        },
+        {
+          label: "Next.js",
+          color: "128, 128, 128", // Gray with 20% opacity
+          icon: <RiNextjsFill size={iconSize} color="gray" />,
+          description: "React Framework",
+        },
+      ],
+      features: [
+        "Custom JWT Authentication",
+        "Users can compete on a global leaderboard",
+        "Numbers are regenerated every 12 hours.",
+        "Users can view past numbers and guesses with analytics.",
+        "Users can view their own statistics.",
+        "Users can level up and edit their profile.",
+      ],
+      github: "https://github.com/colinguinane1/guessr-front-end",
+      live: "https://guessr.c-g.dev",
+    },
     {
       title: "Blog Platform",
       image: "/devnotes.png",
