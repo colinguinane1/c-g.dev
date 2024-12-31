@@ -4,6 +4,7 @@ import { getAllPosts } from "@/lib/get-posts";
 
 export default async function Blogs() {
   const posts = await getAllPosts();
+const publishedPosts = posts.filter((post) => post.metadata.published);
 
   return (
     <FadeInSection>
@@ -15,11 +16,11 @@ export default async function Blogs() {
           <div className="">
             <p>I occasionally write about something that interests me.</p>
           </div>
-          <p>{posts.length} posts so far.</p>
+          <p>{publishedPosts.length} posts so far.</p>
 
           <div className="w-full">
             <div className="space-y-4">
-              {posts.map((post) => (
+              {publishedPosts.map((post) => (
                 <BlogCard key={post.slug} post={post} />
               ))}
             </div>
