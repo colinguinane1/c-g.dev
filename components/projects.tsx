@@ -204,6 +204,8 @@ export default async function Projects() {
   //   },
   // ];
   const projects = await getAllProjects();
+
+  const recentProjects = projects.slice(0, 4);
   return (
     <FadeInSection>
       <section>
@@ -216,7 +218,7 @@ export default async function Projects() {
           </Link>
         </div>
 
-        <ProjectCarousel projects={projects} />
+        <ProjectCarousel projects={recentProjects} />
       </section>
     </FadeInSection>
   );

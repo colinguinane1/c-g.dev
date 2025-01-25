@@ -2,6 +2,7 @@ import { Button } from "./ui/button";
 import { Project } from "@/lib/get-projects";
 import { ChevronRight } from "lucide-react";
 import { Link } from "next-view-transitions";
+import Image from "next/image";
 
 interface ProjectCarouselProps {
   projects: Project[];
@@ -9,27 +10,39 @@ interface ProjectCarouselProps {
 
 export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   return (
-    <div className="">
-      <div className="flex overflow-x-auto pb-8  gap-4">
+    <div className="pb-8  no-scrollbar">
+      <ul className="animated-list -mx-6 flex snap-x snap-mandatory scroll-pl-6 grid-cols-2 flex-nowrap gap-9 overflow-x-scroll px-6 md:grid md:overflow-auto no-scrollbar">
         {projects.map((project) => {
           return (
-            <Link
+            <li
+              className="col-span-1 border p-4 rounded-lg bg-card  no-scrollbar  min-w-80 snap-start transition-opacity"
               key={project.slug}
-              href={`/projects/${project.slug}`}
-              className="basis-1/3 relative bg-card w-60 h-60 p-4 rounded-lg border aspect-square"
             >
-              <h1 className="font-bold text-2xl">{project.metadata.title}</h1>
-              <p>{project.metadata.description}</p>
-              <div className="absolute bottom-2 right-0">
-                <Button variant={"ghostNoBg"}>
+              <Link className="space-y-4" href={`/projects/${project.slug}`}>
+                <div className="aspect-video overflow-hidden rounded-md bg-secondary">
                   {" "}
-                  Learn <ChevronRight size={17} />
-                </Button>
-              </div>
-            </Link>
+                  <Image
+                    quality={100}
+                    src={project.metadata.image}
+                    alt={project.metadata.title}
+                    width={50}
+                    height={50}
+                    className="w-full h-full"
+                  />
+                </div>
+                <h1 className="font-bold text-2xl">{project.metadata.title}</h1>
+                <p>{project.metadata.description}</p>
+                <div className="absolute bottom-2 right-0">
+                  <Button variant={"ghostNoBg"}>
+                    {" "}
+                    Learn <ChevronRight size={17} />
+                  </Button>
+                </div>
+              </Link>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 }
