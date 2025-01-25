@@ -14,7 +14,7 @@ export default function NHeader() {
 
   const NavigationData = [
     { name: "Home", href: "/" },
-    { name: "Projects", href: "/#projects" },
+    { name: "Projects", href: "/projects" },
     { name: "Blog", href: "/posts" },
     { name: "UI", href: "/components" },
   ];

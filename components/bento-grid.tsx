@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 
+// shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset]
+
 export const Card = ({
   className,
   children,
@@ -16,7 +18,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "p-8 rounded-xl bg-card border active:scale-[0.99] hover:scale-[1.01] dark:border-[rgba(255,255,255,0.10)] dark:bg-card shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] group",
+        "p-8 rounded-xl bg-card border active:scale-[0.99] hover:scale-[1.01] dark:border-[rgba(255,255,255,0.10)] dark:bg-card  group",
         className
       )}
     >

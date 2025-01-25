@@ -119,7 +119,7 @@ export default function Skills() {
                 }}
               >
                 <FadeInSection>
-                  <div className="flex shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] items-center gap-2 border bg-card  p-3 rounded-md">
+                  <div className="flex items-center gap-2 border bg-card  p-3 rounded-md">
                     <div
                       style={{
                         backgroundColor: `rgba(${skill.color}, 0.5)`,
@@ -148,7 +148,7 @@ export default function Skills() {
                 }}
               >
                 <FadeInSection>
-                  <div className="flex shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] items-center gap-2 border bg-card  p-3 rounded-md">
+                  <div className="flex  items-center gap-2 border bg-card  p-3 rounded-md">
                     <div
                       style={{
                         backgroundColor: `rgba(${skill.color}, 0.5)`,

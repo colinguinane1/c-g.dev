@@ -1,16 +1,15 @@
 import { cn } from "@/lib/utils";
 import * as React from "react";
 
+// shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset]
+
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(
-      "rounded-lg shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] border bg-card text-card-foreground",
-      className
-    )}
+    className={cn("rounded-lg  border bg-card text-card-foreground", className)}
     {...props}
   />
 ));
