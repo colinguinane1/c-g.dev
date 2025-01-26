@@ -32,7 +32,7 @@ export default function RootLayout({
         lang="en"
         className={` ${dm_sans.className} grid place-content-center antialiased`}
       >
-        <body className="max-w-2xl min-w-screen min-w-96 min-h-screen">
+        <body className="max-w-2xl w-screen overflow-x-hidden min-w-96 min-h-screen">
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Header />
             <div className="w-screen md:w-fit min-h-screen md:mt-10">
