@@ -69,14 +69,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
               }}
             />
           )}
-          <div className="">
-            {" "}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black capitalize leading-tight">
-              {post.metadata.title}
-            </h1>
-            <p>{post.metadata.description}</p>
-          </div>
-          <div className=""></div>
           <UIClientMDXContent slug={slug} />
         </article>
       </div>
