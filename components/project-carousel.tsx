@@ -1,6 +1,4 @@
-import { Button } from "./ui/button";
 import { Project } from "@/lib/get-projects";
-import { ChevronRight } from "lucide-react";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 
@@ -10,34 +8,35 @@ interface ProjectCarouselProps {
 
 export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   return (
-    <div className="pb-8  no-scrollbar">
-      <ul className="animated-list -mx-6 flex snap-x snap-mandatory scroll-pl-6 grid-cols-2 flex-nowrap gap-9 overflow-x-scroll px-6 md:grid md:overflow-auto no-scrollbar">
+    <div className="pb-8 relative  no-scrollbar  max-w-2xl ">
+      <div
+        className={`absolute bg-gradient-to-r from-transparent to-background -right-8 h-full w-20 ${
+          projects.length <= 1 ? "hidden" : ""
+        }`}
+      ></div>
+      <ul className="animated-list -mx-6 flex snap-x snap-mandatory scroll-pl-6  gap-9 overflow-x-scroll px-6  md:overflow-auto no-scrollbar">
         {projects.map((project) => {
           return (
             <li
               className="col-span-1 border p-4 rounded-lg bg-card  no-scrollbar  min-w-80 snap-start transition-opacity"
               key={project.slug}
             >
-              <Link className="space-y-4" href={`/projects/${project.slug}`}>
-                <div className="aspect-video overflow-hidden rounded-md bg-secondary">
-                  {" "}
+              <Link className="space-y-2" href={`/projects/${project.slug}`}>
+                <div className="overflow-hidden aspect-video rounded-md bg-secondary">
                   <Image
                     quality={100}
                     src={project.metadata.image}
                     alt={project.metadata.title}
-                    width={50}
-                    height={50}
+                    layout="responsive"
+                    width={600}
+                    height={400}
                     className="w-full h-full"
                   />
                 </div>
-                <h1 className="font-bold text-2xl">{project.metadata.title}</h1>
+                <h1 className="font-bold text-lg text-secondary-foreground">
+                  {project.metadata.title}
+                </h1>
                 <p>{project.metadata.description}</p>
-                <div className="absolute bottom-2 right-0">
-                  <Button variant={"ghostNoBg"}>
-                    {" "}
-                    Learn <ChevronRight size={17} />
-                  </Button>
-                </div>
               </Link>
             </li>
           );

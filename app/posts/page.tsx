@@ -3,7 +3,8 @@ import BlogCard from "@/components/blog-card";
 import { getAllPosts } from "@/lib/get-posts";
 
 export default async function Blogs() {
-  const posts = await getAllPosts();
+  const allPosts = await getAllPosts();
+  const posts = allPosts.filter((post) => post.metadata.published);
 
   return (
     <FadeInSection>
