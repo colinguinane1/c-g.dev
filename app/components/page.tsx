@@ -17,8 +17,9 @@ export default async function Component() {
           </div>
 
           <div className="w-full">
-            {components.map((component) => (
+            {components.map((component, idx) => (
               <ComponentCard
+                idx={idx}
                 key={component.metadata.title}
                 component={component}
               />
