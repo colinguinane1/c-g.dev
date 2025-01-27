@@ -17,7 +17,7 @@ const iconSize = 18;
 export const Skills = [
   {
     label: "PostgreSQL",
-    color: "100, 149, 237", // CornflowerBlue with 20% opacity
+    color: "100, 149, 237",
     icon: <BiLogoPostgresql size={iconSize} color="CornflowerBlue" />,
     description: "Structured Database",
   },
@@ -89,7 +89,7 @@ const StackCard: React.FC<StackCardProps> = ({
       return (
         <div
           key={skill.label}
-          className="flex items-center gap-2 border bg-card relative  p-3 rounded-md"
+          className="flex items-center gap-2 border bg-card relative  p-2 rounded-md"
         >
           <div
             style={{
@@ -98,7 +98,7 @@ const StackCard: React.FC<StackCardProps> = ({
             }}
             className="w-10 h-10 opacity-15 relative border items-center  justify-center flex rounded-md"
           ></div>{" "}
-          <div className="absolute left-[23px] "> {skill.icon}</div>
+          <div className="absolute left-[20px] "> {skill.icon}</div>
           {showLabel && (
             <div className="flex flex-col">
               <h1 className="font-bold tracking-tighter"> {skill.label}</h1>
