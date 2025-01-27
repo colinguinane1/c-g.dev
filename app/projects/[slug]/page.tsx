@@ -1,4 +1,13 @@
 import UIClientMDXContent from "../UI-MDXClient";
+import StackCard from "@/components/stack-card";
+import {
+  BreadcrumbItem,
+  Breadcrumb,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbList,
+} from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Image from "next/image";
 import fs from "node:fs";
@@ -53,8 +62,23 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <div className="px-4 sm:px-6  md:px-8 lg:px-12">
-      <div className="flex justify-center items-center flex-col gap-6">
-        <article className="prose mt-10 flex flex-col gap-4 w-full">
+      <div className="flex justify-center pt-2 items-center flex-col gap-6">
+        <article className="prose flex flex-col gap-4 w-full">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/projects">Projects</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{post.metadata.title}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
           {post.metadata.image && (
             <Image
               src={post.metadata.image ? post.metadata.image : "/gradient.jpg"}
@@ -69,6 +93,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
               }}
             />
           )}
+          <div className="flex flex-wrap gap-2">
+            {post.metadata.stack.map((tech: string) => (
+              <StackCard key={tech} tech={tech} showLabel />
+            ))}
+          </div>
           <UIClientMDXContent slug={slug} />
         </article>
       </div>

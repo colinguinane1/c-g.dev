@@ -1,3 +1,4 @@
+import StackCard from "./stack-card";
 import { Project } from "@/lib/get-projects";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
@@ -14,11 +15,11 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           projects.length <= 1 ? "hidden" : ""
         }`}
       ></div>
-      <ul className="animated-list -mx-6 flex snap-x snap-mandatory scroll-pl-6  gap-9 overflow-x-scroll px-6  md:overflow-auto no-scrollbar">
+      <ul className="animated-list -mx-6 flex snap-x snap-mandatory scroll-pl-6 gap-9 overflow-x-scroll px-6 md:overflow-x-scroll p-4 scrollbar-padding">
         {projects.map((project) => {
           return (
             <li
-              className="col-span-1 border p-4 rounded-lg bg-card  no-scrollbar  min-w-80 snap-start transition-opacity"
+              className="col-span-1 border p-4 rounded-lg bg-card   min-w-80 snap-start transition-opacity"
               key={project.slug}
             >
               <Link className="space-y-2" href={`/projects/${project.slug}`}>
@@ -33,6 +34,18 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                     className="w-full h-full"
                   />
                 </div>
+                {project.metadata.stack && (
+                  <div className="flex flex-wrap gap-2">
+                    {project.metadata.stack.map((tech: string) => (
+                      <StackCard
+                        size="sm"
+                        showLabel={false}
+                        key={tech}
+                        tech={tech}
+                      />
+                    ))}
+                  </div>
+                )}
                 <h1 className="font-bold text-lg text-secondary-foreground">
                   {project.metadata.title}
                 </h1>

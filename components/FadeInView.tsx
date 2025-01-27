@@ -24,8 +24,8 @@ export const FadeInSection = ({ children }: { children: React.ReactNode }) => {
       initial="hidden"
       transition={{ duration: 0.5 }} // Adjust duration for the fade-in effect
       variants={{
-        visible: { opacity: 1, y: 0 }, // Final state (fully visible)
-        hidden: { opacity: 0, y: 20 }, // Initial state (hidden with slight vertical offset)
+        visible: { opacity: 1, y: 0, filter: "blur(0px)" }, // Final state (fully visible)
+        hidden: { opacity: 0, y: 20, filter: "blur(16px)" }, // Initial state (hidden with slight vertical offset)
       }}
     >
       {children}

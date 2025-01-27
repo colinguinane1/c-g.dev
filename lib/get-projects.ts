@@ -10,6 +10,7 @@ export type Project = {
     published: boolean;
     description: string;
     image: string;
+    stack: string[];
   };
 };
 
