@@ -1,33 +1,38 @@
-import { Tabs, TabsContent, TabsTrigger } from "../ui/tabs";
-import { TabsList } from "@radix-ui/react-tabs";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { Tabs, TabsContent, TabsTrigger, TabsList } from "../ui/tabs";
+import Code from "./custom-code";
 
-export default function Viewport({
+export default async function Viewport({
   children,
   codeSnippet,
 }: {
   children: React.ReactNode;
   codeSnippet: string;
 }) {
-  return (
-    <Tabs defaultValue="preview">
-      <TabsList className="">
-        <TabsTrigger value="preview">Preview</TabsTrigger>
-        <TabsTrigger value="code">Code</TabsTrigger>
-      </TabsList>
-      <TabsContent value="preview">
-        <div className="bg-card grid rounded-md place-content-center py-20 border">
-          {children}
-        </div>
-      </TabsContent>
-      <TabsContent value="code">
-        <div className="bg-card grid rounded-md place-content-center py-20 border">
-          <SyntaxHighlighter language="javascript" style={docco}>
-            {codeSnippet}
-          </SyntaxHighlighter>
-        </div>
-      </TabsContent>
-    </Tabs>
-  );
+  if (codeSnippet) {
+    return (
+      <Tabs defaultValue="preview">
+        <TabsList className="">
+          <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger>
+        </TabsList>
+        <TabsContent value="preview">
+          <div className="bg-card grid h-40 rounded-md place-content-center border">
+            {children}
+          </div>
+        </TabsContent>
+        <TabsContent value="code">
+          <div>
+            {/* Render the processed code */}
+            <Code>{codeSnippet}</Code>
+          </div>
+        </TabsContent>
+      </Tabs>
+    );
+  } else {
+    return (
+      <div className="bg-card grid h-40 rounded-md place-content-center border">
+        {children}
+      </div>
+    );
+  }
 }

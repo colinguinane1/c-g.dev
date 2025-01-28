@@ -20,7 +20,7 @@ const Code = (props: any) => {
 
   return (
     <div>
-      <div className="relative rounded-md bg-card border h-fit text-white">
+      <div className="relative rounded-md bg-card border max-h-80  overflow-auto ">
         <div className="flex absolute right-2 top-[5px] justify-between items-center">
           <button
             type="button"
@@ -41,8 +41,10 @@ const Code = (props: any) => {
             props.className || ""
           } border-none h-fit p-4 text-xs overflow-auto`}
         >
-          {/* Render the code without applying inline code styles */}
-          <code className="whitespace-pre">{props.children}</code>
+          {/* Ensure language class is applied to the <code> block */}
+          <code className={`whitespace-pre ${props.className || ""}`}>
+            {props.children}
+          </code>
         </pre>
       </div>
     </div>
