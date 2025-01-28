@@ -75,12 +75,14 @@ interface StackCardProps {
   tech: string;
   key: string;
   showLabel?: boolean;
+  showDescription?: boolean;
   size?: "sm" | "md";
 }
 
 const StackCard: React.FC<StackCardProps> = ({
   tech,
   showLabel = false,
+  showDescription = false,
   size = "md",
 }) => {
   const skill = Skills.find((skill) => skill.label === tech);
@@ -102,7 +104,9 @@ const StackCard: React.FC<StackCardProps> = ({
           {showLabel && (
             <div className="flex flex-col">
               <h1 className="font-bold tracking-tighter"> {skill.label}</h1>
-              <p className="hidden md:block">{skill.description}</p>
+              {showDescription && (
+                <p className="md:block">{skill.description}</p>
+              )}
             </div>
           )}
         </div>

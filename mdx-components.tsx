@@ -3,12 +3,14 @@ import Code from "./components/mdx/custom-code";
 import FileName from "./components/mdx/filename";
 import Viewport from "./components/mdx/viewport";
 import ResponsiveModal from "./components/modal-example";
+import StackCard from "./components/stack-card";
 import { ExternalLink } from "lucide-react";
 import type { MDXComponents } from "mdx/types";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ResponsiveModal: (props) => <ResponsiveModal {...props} />,
+    StackCard: (props) => <StackCard {...props} />,
     ...components,
     Alert: CustomAlert,
     FileName: (props) => <FileName {...props} />,
