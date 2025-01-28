@@ -4,6 +4,7 @@ import FileName from "./components/mdx/filename";
 import Viewport from "./components/mdx/viewport";
 import ResponsiveModal from "./components/modal-example";
 import StackCard from "./components/stack-card";
+import StackCardExample from "./components/stack-card-example";
 import { ExternalLink } from "lucide-react";
 import type { MDXComponents } from "mdx/types";
 
@@ -11,6 +12,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ResponsiveModal: (props) => <ResponsiveModal {...props} />,
     StackCard: (props) => <StackCard {...props} />,
+    StackCardExample: (props) => <StackCardExample {...props} />,
     ...components,
     Alert: CustomAlert,
     FileName: (props) => <FileName {...props} />,

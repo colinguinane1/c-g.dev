@@ -12,6 +12,27 @@ export const metadata = {
   <StackCard tech={"Next.js"} showLabel showDescription />
 </Viewport>
 
+I created this component for my portfolio to display the technology stack of my projects. It displays the technology name, logo, and description. The component is flexible and can be used in any project to display a technology stack.
 
-<Alert>This can be used as  a **client or server** component</Alert>
+I decided to use props instead of children, you can use an array of strings to display multiple technologies.
+
+<Viewport codeSnippet={`import StackCard from "./stack-card";
+
+export default function StackCardExample() {
+  const stack = ["TypeScript", "Firebase", "Next.js"];
+  return (
+    <div className="flex flex-wrap gap-4">
+      {stack.map((tech: string) => (
+        <StackCard key={tech} tech={tech} showLabel />
+      ))}
+    </div>
+  );
+}
+`}><StackCardExample/></Viewport>
+
+---
+
+You can add more technologies by adding to the Skills array in **stack-card.tsx**
+
+
 

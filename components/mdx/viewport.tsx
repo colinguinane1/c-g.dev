@@ -21,10 +21,10 @@ export default async function Viewport({
           </div>
         </TabsContent>
         <TabsContent value="code">
-          <div>
-            {/* Render the processed code */}
-            <Code>{codeSnippet}</Code>
-          </div>
+          {/* Render the processed code */}
+          <Code>
+            <div className="h-40">{codeSnippet}</div>
+          </Code>
         </TabsContent>
       </Tabs>
     );
