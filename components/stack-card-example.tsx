@@ -10,7 +10,3 @@ export default function StackCardExample() {
     </div>
   );
 }
-
-function EmptyCardExample() {
-  return <StackCard key="Empty" tech="Empty" />;
-}
