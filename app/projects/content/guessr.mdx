@@ -6,9 +6,10 @@ export const metadata = {
     "A fun number guessing game with a global leaderboard and user statistics. Challenge yourself and compete globally!",
   category: "Game",
   image: "/guessr.png",
+  stack: ["TypeScript", "MongoDB", "Express", "Node.js", "Next.js"],
 };
 
-# Guessr
+import MdxLayout from "@/components/mdx/layout.tsx";
 
 A fun number guessing game with a global leaderboard and user statistics. Challenge yourself and compete globally!
 
@@ -21,15 +22,15 @@ A fun number guessing game with a global leaderboard and user statistics. Challe
 - Users can view their own statistics
 - Users can level up and edit their profile
 
-## Skills
-
-- **TypeScript**: JavaScript with type safety.
-- **MongoDB**: NoSQL Database.
-- **Express**: Node.js Framework.
-- **Node.js**: Server language.
-- **Next.js**: React Framework.
-
 ## Links
 
 - [GitHub Repository](https://github.com/colinguinane1/guessr-front-end)
 - [Live Demo](https://guessr.c-g.dev)
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+
+
+

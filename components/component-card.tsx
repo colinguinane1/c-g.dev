@@ -6,9 +6,10 @@ import { Link } from "next-view-transitions";
 
 interface ComponentCardProps {
   component: Component;
+  idx: number;
 }
 
-export default function ComponentCard({ component }: ComponentCardProps) {
+export default function ComponentCard({ component, idx }: ComponentCardProps) {
   return (
     <FadeInSection>
       <Link
@@ -18,8 +19,13 @@ export default function ComponentCard({ component }: ComponentCardProps) {
       >
         <div className="flex justify-between items-center w-full">
           <div className="w-full">
-            <div className="text-lg  text-primary font-bold hover:underline">
-              {component.metadata.title}
+            <div className="text-lg flex items-center gap-2  text-primary font-bold hover:underline">
+              <h1>{component.metadata.title}</h1>
+              {idx === 0 && (
+                <span className="text-green-500 border px-1 rounded-md bg-green-500/10 border-green-500/20">
+                  New
+                </span>
+              )}
             </div>
           </div>
 

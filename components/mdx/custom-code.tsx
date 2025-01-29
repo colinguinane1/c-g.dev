@@ -20,11 +20,12 @@ const Code = (props: any) => {
 
   return (
     <div>
-      <div className="relative rounded-md bg-card border h-fit text-white">
-        <div className="flex absolute right-2 top-[5px] justify-between items-center">
+      <div className="relative rounded-md bg-card border max-h-80  overflow-auto ">
+        <div className="flex sticky right-[5px] top-[5px] justify-between items-center">
+          <div></div>
           <button
             type="button"
-            className="text-gray-300 bg-transparent border rounded-md backdrop-blur-md p-2 hover:text-input"
+            className="text-gray-300 bg-transparent z-10 mr-2 border rounded-md backdrop-blur-md p-2 hover:text-input"
             onClick={handleCopy}
           >
             {copied ? (
@@ -34,15 +35,15 @@ const Code = (props: any) => {
             )}
           </button>
         </div>
-        {/* Styled pre block for code snippets */}
         <pre
           ref={codeRef}
           className={`${
             props.className || ""
-          } border-none h-fit p-4 text-xs overflow-auto`}
+          } border-none h-fit -mt-10 p-4 text-xs overflow-auto`}
         >
-          {/* Render the code without applying inline code styles */}
-          <code className="whitespace-pre">{props.children}</code>
+          <code className={`whitespace-pre ${props.className || ""}`}>
+            {props.children}
+          </code>
         </pre>
       </div>
     </div>

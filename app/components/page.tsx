@@ -16,9 +16,10 @@ export default async function Component() {
             <p>Some custom reusable components built with TailwindCSS</p>
           </div>
 
-          <div className="w-full">
-            {components.map((component) => (
+          <div className="w-full flex flex-col gap-4">
+            {components.map((component, idx) => (
               <ComponentCard
+                idx={idx}
                 key={component.metadata.title}
                 component={component}
               />

@@ -6,9 +6,10 @@ export const metadata = {
     "A blog platform where developers can create, edit, and share posts. It includes rich Markdown support and community features.",
   category: "Web Application",
   image: "/devnotes.png",
+  stack: ["TypeScript", "PostgreSQL", "Supabase", "Next.js"],
 };
 
-# Blog Platform
+import MdxLayout from "@/components/mdx/layout.tsx";
 
 A blog platform where developers can create, edit, and share posts. It includes rich Markdown support and community features.
 
@@ -21,14 +22,15 @@ A blog platform where developers can create, edit, and share posts. It includes 
 - Users can search for posts
 - Rich Markdown Support
 
-## Skills
-
-- **TypeScript**: JavaScript with type safety.
-- **PostgreSQL**: Structured Database.
-- **Supabase**: Backend Service.
-- **Next.js**: React Framework.
-
 ## Links
 
 - [GitHub Repository](https://github.com/colinguinane1/devnotes.me)
 - [Live Demo](https://devnotes.me)
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+
+
+

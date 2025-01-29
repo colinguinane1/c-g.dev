@@ -21,8 +21,12 @@ export default function ComponentList({
           </Link>
         </div>
         <div className="grid gap-2">
-          {components.map((component) => (
-            <ComponentCard component={component} key={component.slug} />
+          {components.map((component, idx) => (
+            <ComponentCard
+              idx={idx}
+              component={component}
+              key={component.slug}
+            />
           ))}
         </div>
       </section>

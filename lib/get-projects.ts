@@ -10,12 +10,13 @@ export type Project = {
     published: boolean;
     description: string;
     image: string;
+    stack: string[];
   };
 };
 
 // Helper function to get all posts
 export async function getAllProjects(): Promise<Project[]> {
-  const dir = path.join(process.cwd(), "content", "projects");
+  const dir = path.join(process.cwd(), "app", "projects", "content");
   const files = fs.readdirSync(dir);
 
   const posts = files
@@ -23,7 +24,7 @@ export async function getAllProjects(): Promise<Project[]> {
     .map((filename) => {
       // Import the metadata from the MDX files
       // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { metadata } = require(`@/content/projects/${filename}`);
+      const { metadata } = require(`@/app/projects/content/${filename}`);
       return {
         slug: filename.replace(".mdx", ""),
         metadata: metadata || { title: "Untitled", publishDate: "1970-01-01" },

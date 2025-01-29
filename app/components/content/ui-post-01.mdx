@@ -7,7 +7,28 @@ export const metadata = {
   category: "Styling",
 };
 
-<Viewport><ResponsiveModal/></Viewport>
+import MdxLayout from "@/components/mdx/layout.tsx";
+
+<Viewport codeSnippet={`   <ModalRoot>
+      <ModalTrigger>
+        <Button variant={"outline"} className="w-fit">
+          Open
+        </Button>
+      </ModalTrigger>
+      <ModalContent>
+        <ModalHeader>
+          <ModalTitle>Modal Title</ModalTitle>
+          <ModalDescription>Modal Description</ModalDescription>
+        </ModalHeader>
+        <ModalFooter>
+          <ModalClose>
+            <Button className="w-full" variant={"outline"}>
+              Close
+            </Button>
+          </ModalClose>
+        </ModalFooter>
+      </ModalContent>
+    </ModalRoot>`}><ResponsiveModal/></Viewport>
 
 <Alert>This is a **client** component</Alert>
 
@@ -210,4 +231,10 @@ export default function ResponsiveModal() {
 }
 ```
 </FileName>
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+
 

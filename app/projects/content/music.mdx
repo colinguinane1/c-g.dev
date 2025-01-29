@@ -6,9 +6,10 @@ export const metadata = {
     "A personal music portfolio showcasing the music I compose as a hobby. Listen to my compositions directly from the site.",
   category: "Music",
   image: "/music-app.png",
+  stack: ["JavaScript", "Firebase", "Next.js"],
 };
 
-# Music Portfolio
+import MdxLayout from "@/components/mdx/layout.tsx";
 
 A personal music portfolio showcasing the music I compose as a hobby. Listen to my compositions directly from the site.
 
@@ -17,13 +18,15 @@ A personal music portfolio showcasing the music I compose as a hobby. Listen to 
 - Users can browse music
 - Users can play music
 
-## Skills
-
-- **JavaScript**: Programming Language.
-- **Firebase**: Backend Service.
-- **Next.js**: React Framework.
-
 ## Links
 
 - [GitHub Repository](https://github.com/colinguinane1/MusicPortfolio)
 - [Live Demo](https://music.colinguinane.com)
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+
+
+

@@ -6,9 +6,10 @@ export const metadata = {
     "Browse a menu, and add items to cart.",
   category: "Web Application",
   image: "/fastfood.png",
+  stack: ["TypeScript", "Firebase", "Next.js"],
 };
 
-# Fast Food Ordering App
+import MdxLayout from "@/components/mdx/layout.tsx";
 
 Order food from your favorite restaurants with ease. Browse menus, add items to your cart, and place your orders.
 
@@ -18,13 +19,16 @@ Order food from your favorite restaurants with ease. Browse menus, add items to 
 - Users can add items to cart
 - Users can place an order
 
-## Skills
-
-- **TypeScript**: JavaScript with type safety.
-- **Firebase**: Backend Service.
-- **Next.js**: React Framework.
-
 ## Links
 
 - [GitHub Repository](https://github.com/colinguinane1/fast-food-app)
 - [Live Demo](https://food.colinguinane.com)
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+
+
+
+

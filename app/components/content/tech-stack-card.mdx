@@ -1,0 +1,76 @@
+export const metadata = {
+  title: "Tech Stack Card",
+  publishDate: "January 26 2025",
+  description:
+    "A card that displays a technology stack with logos and descriptions.",
+  category: "Styling",
+  published: true,
+};
+
+import MdxLayout from "@/components/mdx/layout.tsx";
+
+ <Tabs defaultValue="preview">
+        <TabsList className="">
+          <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger>
+        </TabsList>
+        <TabsContent value="preview">
+         <Viewport >
+  <StackCard tech={"Next.js"} showLabel showDescription />
+</Viewport>
+        </TabsContent>
+        <TabsContent value="code">
+         ```tsx
+          <StackCard tech={"Next.js"} showLabel showDescription />
+         ```
+        </TabsContent>
+      </Tabs>
+
+
+I created this component for my portfolio to display the technology stack of my projects. It displays the technology name, logo, and description. The component is flexible and can be used in any project to display a technology stack.
+
+I decided to use props instead of children, you can use an array of strings to display multiple technologies.
+
+ <Tabs defaultValue="preview">
+        <TabsList className="">
+          <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger>
+        </TabsList>
+        <TabsContent value="preview">
+    <Viewport><StackCardExample/></Viewport>
+        </TabsContent>
+        <TabsContent value="code">
+         ```tsx
+ import StackCard from "./stack-card";
+ 
+export default function StackCardExample() {
+  
+  const stack = ["TypeScript", "Firebase", "Next.js"];
+  
+  return (
+    <div className="flex flex-wrap gap-4">
+      {stack.map((tech: string) => (
+        <StackCard key={tech} tech={tech} showLabel />
+      ))}
+    </div>
+  );
+}
+
+         ```
+        </TabsContent>
+      </Tabs>
+
+
+
+---
+
+You can add more technologies by adding to the Skills array in **stack-card.tsx**
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+
+
+
+
