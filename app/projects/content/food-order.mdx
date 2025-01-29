@@ -9,6 +9,8 @@ export const metadata = {
   stack: ["TypeScript", "Firebase", "Next.js"],
 };
 
+import MdxLayout from "@/components/mdx/layout.tsx";
+
 # Fast Food Ordering App
 
 Order food from your favorite restaurants with ease. Browse menus, add items to your cart, and place your orders.
@@ -29,3 +31,12 @@ Order food from your favorite restaurants with ease. Browse menus, add items to 
 
 - [GitHub Repository](https://github.com/colinguinane1/fast-food-app)
 - [Live Demo](https://food.colinguinane.com)
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+
+
+
+

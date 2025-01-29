@@ -9,6 +9,8 @@ export const metadata = {
   stack: ["JavaScript", "Firebase", "Next.js"],
 };
 
+import MdxLayout from "@/components/mdx/layout.tsx";
+
 # Music Portfolio
 
 A personal music portfolio showcasing the music I compose as a hobby. Listen to my compositions directly from the site.
@@ -28,3 +30,11 @@ A personal music portfolio showcasing the music I compose as a hobby. Listen to 
 
 - [GitHub Repository](https://github.com/colinguinane1/MusicPortfolio)
 - [Live Demo](https://music.colinguinane.com)
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+
+
+

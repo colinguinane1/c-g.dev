@@ -9,6 +9,8 @@ export const metadata = {
   stack: ["TypeScript", "MongoDB", "Express", "Node.js", "Next.js"],
 };
 
+import MdxLayout from "@/components/mdx/layout.tsx";
+
 # Guessr
 
 A fun number guessing game with a global leaderboard and user statistics. Challenge yourself and compete globally!
@@ -34,3 +36,11 @@ A fun number guessing game with a global leaderboard and user statistics. Challe
 
 - [GitHub Repository](https://github.com/colinguinane1/guessr-front-end)
 - [Live Demo](https://guessr.c-g.dev)
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+
+
+

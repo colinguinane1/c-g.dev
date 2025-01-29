@@ -9,6 +9,8 @@ export const metadata = {
   stack: ["TypeScript", "MongoDB", "Express", "Node.js", "Next.js"],
 };
 
+import MdxLayout from "@/components/mdx/layout.tsx";
+
 # Mongate
 
 A MERN Stack template for building web applications with user authentication, profile customization, and other essential features.
@@ -33,3 +35,12 @@ A MERN Stack template for building web applications with user authentication, pr
 
 - [GitHub Repository](https://github.com/colinguinane1/mongate-front-end)
 - [Live Demo](https://mongate.vercel.app)
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+
+
+
+
