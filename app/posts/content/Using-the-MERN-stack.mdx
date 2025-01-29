@@ -9,7 +9,7 @@ export const metadata = {
   image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmiro.medium.com%2Fmax%2F1400%2F1*k0SazfSJ-tPSBbt2WDYIyw.png&f=1&nofb=1&ipt=9083ca1320506c67dceb5c47f001e0f354cd68abeacee6afe88710cab144084f&ipo=images"
 };
 
-# Introduction to the MERN Stack
+import MdxLayout from "@/components/mdx/layout.tsx";
 
 The **MERN stack** is a popular JavaScript-based technology stack used to build modern web applications. It is an acronym for four key technologies:
 
@@ -92,3 +92,9 @@ Node.js is a runtime environment that allows JavaScript to run on the server. It
 The MERN stack is a powerful choice for building modern web applications. Its unified language, open-source nature, and scalable components make it an attractive option for developers and startups.
 
 Start your MERN stack journey today by exploring tutorials and building a simple project!
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+

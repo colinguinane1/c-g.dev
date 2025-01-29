@@ -14,7 +14,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
         className={`pointer-events-none fixed bg-gradient-to-r from-transparent to-background h-full w-[60%] ml-8 z-0`}
       ></div> */}
       <ul className="animated-list -mx-6 z-10 flex snap-x snap-mandatory scroll-pl-6 gap-9 overflow-x-scroll px-6 md:overflow-x-scroll p-4 scrollbar-padding">
-        {projects.map((project) => {
+        {projects.map((project, idx) => {
           return (
             <li
               className="col-span-1 border p-4 rounded-lg bg-card   min-w-80 snap-start transition-opacity"
@@ -30,6 +30,9 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                     width={600}
                     height={400}
                     className="w-full h-full"
+                    style={{
+                      objectPosition: "top",
+                    }}
                   />
                 </div>
                 {project.metadata.stack && (
@@ -44,8 +47,13 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                     ))}
                   </div>
                 )}
-                <h1 className="font-bold text-lg text-secondary-foreground">
+                <h1 className="font-bold flex items-center gap-2 text-lg text-secondary-foreground">
                   {project.metadata.title}
+                  {idx === 0 && (
+                    <span className="text-green-500 border px-1 rounded-md bg-green-500/10 border-green-500/20">
+                      New
+                    </span>
+                  )}
                 </h1>
                 <p>{project.metadata.description}</p>
               </Link>

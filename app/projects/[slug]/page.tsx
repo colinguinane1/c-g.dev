@@ -1,3 +1,4 @@
+import StackCard from "@/components/stack-card";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -95,13 +96,21 @@ export default async function DocsPage(props: {
                     filter: "brightness(0.9)",
                     aspectRatio: "16/9",
                     objectFit: "cover",
+                    objectPosition: "top",
                   }}
                 />
               )}
             </div>
-            <h1 className="text-3xl font-extrabold text-primary">
+            <h1 className="text-3xl py-4 font-extrabold text-primary">
               {selectedDoc.metadata.title}
             </h1>{" "}
+            {selectedDoc.metadata.stack && (
+              <div className="flex flex-wrap gap-2">
+                {selectedDoc.metadata.stack.map((tech: string) => (
+                  <StackCard showLabel key={tech} tech={tech} />
+                ))}
+              </div>
+            )}
           </div>
           <DocComponent />{" "}
           <div className="flex justify-between mt-8">
