@@ -105,7 +105,7 @@ export default async function DocsPage(props: {
                         <Link
                           key={prevDoc.slug}
                           className="w-fit "
-                          href={`/docs/${prevDoc.slug}`}
+                          href={`/components/${prevDoc.slug}`}
                         >
                           <div className="flex flex-col border p-2 rounded-lg w-full items-center justify-end">
                             <span>{prevDoc.metadata.title}</span>
@@ -120,7 +120,7 @@ export default async function DocsPage(props: {
                       <Link
                         key={nextDoc.slug}
                         className="w-fit"
-                        href={`/docs/${nextDoc.slug}`}
+                        href={`/components/${nextDoc.slug}`}
                       >
                         <div className="flex flex-col  border p-2 rounded-lg w-full items-center justify-end">
                           <span>{nextDoc.metadata.title}</span>
