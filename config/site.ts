@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "c-g.dev",
   url: "https://c-g.dev",
-  ogImage: "https://mongate.vercel.app/icon.png ",
+  ogImage: "https://c-g.dev/icon.png ",
   description:
     "Edmonton-based Software Engineer, specializing in building web applications with React and Next.js.",
   links: {
