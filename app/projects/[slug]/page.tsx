@@ -84,14 +84,20 @@ export default async function DocsPage(props: {
           <div className="p-4 flex  flex-col">
             {" "}
             <div className="aspect-video rounded-md w-full bg-secondary ">
-              <Image
-                src={selectedDoc.metadata.image}
-                alt={selectedDoc.metadata.title}
-                layout="responsive"
-                width={100}
-                height={100}
-                className="h-20"
-              />
+              {metadata.image && (
+                <Image
+                  src={metadata.image ? metadata.image : "/gradient.jpg"}
+                  width={800}
+                  height={450}
+                  alt="Blog Post Image"
+                  className="h-full w-full rounded-md transition-all group-hover:scale-[1.01]"
+                  style={{
+                    filter: "brightness(0.9)",
+                    aspectRatio: "16/9",
+                    objectFit: "cover",
+                  }}
+                />
+              )}
             </div>
             <h1 className="text-3xl font-extrabold text-primary">
               {selectedDoc.metadata.title}
@@ -113,7 +119,7 @@ export default async function DocsPage(props: {
                         <Link
                           key={prevDoc.slug}
                           className="w-fit "
-                          href={`/docs/${prevDoc.slug}`}
+                          href={`/projects/${prevDoc.slug}`}
                         >
                           <div className="flex flex-col border p-2 rounded-lg w-full items-center justify-end">
                             <span>{prevDoc.metadata.title}</span>
@@ -128,7 +134,7 @@ export default async function DocsPage(props: {
                       <Link
                         key={nextDoc.slug}
                         className="w-fit"
-                        href={`/docs/${nextDoc.slug}`}
+                        href={`/projects/${nextDoc.slug}`}
                       >
                         <div className="flex flex-col  border p-2 rounded-lg w-full items-center justify-end">
                           <span>{nextDoc.metadata.title}</span>

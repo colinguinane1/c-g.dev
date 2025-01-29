@@ -9,13 +9,11 @@ interface ProjectCarouselProps {
 
 export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   return (
-    <div className="pb-8 relative  no-scrollbar  max-w-2xl ">
-      <div
-        className={`absolute bg-gradient-to-r from-transparent to-background -right-8 h-full w-20 ${
-          projects.length <= 1 ? "hidden" : ""
-        }`}
-      ></div>
-      <ul className="animated-list -mx-6 flex snap-x snap-mandatory scroll-pl-6 gap-9 overflow-x-scroll px-6 md:overflow-x-scroll p-4 scrollbar-padding">
+    <div className="pb-8 no-scrollbar  max-w-2xl ">
+      {/* <div  -- couldnt get this to work right
+        className={`pointer-events-none fixed bg-gradient-to-r from-transparent to-background h-full w-[60%] ml-8 z-0`}
+      ></div> */}
+      <ul className="animated-list -mx-6 z-10 flex snap-x snap-mandatory scroll-pl-6 gap-9 overflow-x-scroll px-6 md:overflow-x-scroll p-4 scrollbar-padding">
         {projects.map((project) => {
           return (
             <li
