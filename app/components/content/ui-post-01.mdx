@@ -59,7 +59,7 @@ npx shadcn@latest add drawer dialog
 
 You will need to create a hook to detect the screen size. Create a file called **media-query.tsx** in the **lib** directory and add the following code:
 
-<FileName name="media-query.tsx">
+
 ```tsx showLineNumbers
 "use client";
 import * as React from "react";
@@ -82,11 +82,11 @@ export function useMediaQuery(query: string) {
   return value;
 }
 ```
-</FileName>
+
 ---
 
 Create a file called **modal.tsx** in the **components/ui** directory and add the following code:
-<FileName name="modal.tsx">
+
 ```tsx showLineNumbers
 // components/ui/modal.tsx
 "use client";
@@ -188,10 +188,10 @@ export const ModalClose = ({ children }: { children: React.ReactNode }) => {
   }
 };
 ```
-</FileName>
+
 
 Once you have created this component you can use it in your application like so:
-<FileName name='example.tsx'>
+
 ```tsx showLineNumbers
 import {
   ModalRoot,
@@ -230,7 +230,7 @@ export default function ResponsiveModal() {
   );
 }
 ```
-</FileName>
+
 
 export default function MDXPage({ children }) {
 return <MdxLayout>{children}</MdxLayout>

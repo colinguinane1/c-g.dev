@@ -43,7 +43,7 @@ export default async function DocsPage(props: {
     <section className="mt-2 md:mt-0 flex flex-col items-center">
       <div className="flex md:flex-row w-full flex-col max-w-6xl">
         <div className="w-fit flex-col  border-r p-4 items-start gap-4 hidden md:flex">
-          <h1>Documentation</h1>
+          <h1>Components</h1>
           {docs.map((doc) => (
             <Button key={doc.slug} variant={"ghost"} asChild>
               <Link
@@ -51,7 +51,7 @@ export default async function DocsPage(props: {
                   doc.slug === slug &&
                   "bg-primary/10 border-l-4 text-primary border-primary/20"
                 } hover:bg-primary/10 w-full text-start flex items-start  transition-all`}
-                href={`/docs/${doc.slug}`}
+                href={`/components/${doc.slug}`}
               >
                 <div>
                   <p className="font-semibold capitalize">
