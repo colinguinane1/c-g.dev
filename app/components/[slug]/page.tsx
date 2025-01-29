@@ -1,68 +1,69 @@
-import UIClientMDXContent from "../UI-MDXClient";
 import {
-  BreadcrumbItem,
   Breadcrumb,
+  BreadcrumbItem,
   BreadcrumbLink,
+  BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbList,
 } from "@/components/ui/breadcrumb";
-import type { Metadata } from "next";
-import Image from "next/image";
-import fs from "node:fs";
-import path from "node:path";
-import React from "react";
+import { Button } from "@/components/ui/button";
+import { getAllComponents } from "@/lib/get-components";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
-type Props = {
-  params: { slug: string };
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await getPost(params);
-  return {
-    title: post.metadata.title,
-    description: post.metadata.description,
-  };
-}
-
-async function getPost({ slug }: { slug: string }) {
-  try {
-    const mdxPath = path.join("content", "ui", `${slug}.mdx`);
-    if (!fs.existsSync(mdxPath)) {
-      throw new Error(`MDX file for slug ${slug} does not exist`);
-    }
-
-    const { metadata } = await import(`@/content/ui/${slug}.mdx`);
-
-    return {
-      slug,
-      metadata,
-    };
-  } catch (error) {
-    console.error("Error fetching post:", error);
-    throw new Error(`Unable to fetch the post for slug: ${slug}`);
-  }
-}
-
+// Assuming getDocs() is an async function that returns the list of docs
 export async function generateStaticParams() {
-  const files = fs.readdirSync(path.join("content", "ui"));
-  const params = files.map((filename) => ({
-    slug: filename.replace(".mdx", ""),
+  const docs = await getAllComponents(); // Await the result if getDocs is async
+  return docs.map((doc) => ({
+    slug: doc.slug,
   }));
-
-  return params;
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function DocsPage(props: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await props.params; // Await the params here
 
-  const post = await getPost(params);
-  // Dynamically import the MDX file based on the slug
+  const docs = await getAllComponents(); // Fetch docs on the server
+
+  const selectedDoc = docs.find((doc) => doc.slug === slug);
+
+  if (!selectedDoc) {
+    notFound();
+  }
+
+  const { metadata, default: DocComponent } = await import(
+    `../../components/content/${slug}.mdx`
+  ).catch(() => {
+    notFound(); // If import fails, show 404
+  });
 
   return (
-    <div className="px-4 sm:px-6  md:px-8 lg:px-12">
-      <div className="flex justify-center items-center flex-col gap-6">
-        <article className="prose mt-2 flex flex-col gap-4 w-full">
+    <section className="mt-2 md:mt-0 flex flex-col items-center">
+      <div className="flex md:flex-row w-full flex-col max-w-6xl">
+        <div className="w-fit flex-col  border-r p-4 items-start gap-4 hidden md:flex">
+          <h1>Documentation</h1>
+          {docs.map((doc) => (
+            <Button key={doc.slug} variant={"ghost"} asChild>
+              <Link
+                className={`${
+                  doc.slug === slug &&
+                  "bg-primary/10 border-l-4 text-primary border-primary/20"
+                } hover:bg-primary/10 w-full text-start flex items-start  transition-all`}
+                href={`/docs/${doc.slug}`}
+              >
+                <div>
+                  <p className="font-semibold capitalize">
+                    {doc.metadata.title}
+                  </p>
+                </div>
+              </Link>
+            </Button>
+          ))}
+        </div>
+        <div className="px-4 md:hidden flex items-center gap-4 w-full">
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -74,34 +75,83 @@ export default async function Page({ params }: { params: { slug: string } }) {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage>{post.metadata.title}</BreadcrumbPage>
+                <BreadcrumbPage>{metadata.title}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-          {post.metadata.image && (
-            <Image
-              src={post.metadata.image ? post.metadata.image : "/gradient.jpg"}
-              width={800}
-              height={450}
-              alt="Blog Post Image"
-              className="rounded-lg pb-4 h-full w-full transition-all group-hover:scale-[1.01]"
-              style={{}}
-            />
-          )}
-          <div className="">
-            {" "}
-            <p className="font-semibold text-sm  sm:text-base md:text-lg">
-              <span className="pr-1">{post.metadata.publishDate}</span>
+        </div>
+        <div className="">
+          <div className="p-4 flex  flex-col">
+            <h1 className="text-3xl font-extrabold text-primary">
+              {selectedDoc.metadata.title}
+            </h1>{" "}
+            <p className="text-sm text-gray-500 mt-2">
+              <span className="font-medium">Last edit:</span>{" "}
+              {selectedDoc.metadata.publishDate}
             </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black capitalize leading-tight">
-              {post.metadata.title}
-            </h1>
-            <p>{post.metadata.description}</p>
           </div>
-          <div className=""></div>
-          <UIClientMDXContent slug={slug} />
-        </article>
+          <DocComponent />{" "}
+          <div className="flex justify-between mt-8">
+            {docs.map((doc, index) => {
+              if (doc.slug === slug) {
+                const prevDoc = docs[index - 1];
+                const nextDoc = docs[index + 1];
+                return (
+                  <div
+                    key={doc.slug}
+                    className="flex p-4 justify-between w-full"
+                  >
+                    <div>
+                      {prevDoc && (
+                        <Link
+                          key={prevDoc.slug}
+                          className="w-fit "
+                          href={`/docs/${prevDoc.slug}`}
+                        >
+                          <div className="flex flex-col border p-2 rounded-lg w-full items-center justify-end">
+                            <span>{prevDoc.metadata.title}</span>
+                            <span className="ml-2 text-primary flex items-center ">
+                              Prev <ChevronLeft />
+                            </span>
+                          </div>
+                        </Link>
+                      )}
+                    </div>
+                    {nextDoc && (
+                      <Link
+                        key={nextDoc.slug}
+                        className="w-fit"
+                        href={`/docs/${nextDoc.slug}`}
+                      >
+                        <div className="flex flex-col  border p-2 rounded-lg w-full items-center justify-end">
+                          <span>{nextDoc.metadata.title}</span>
+                          <span className="ml-2 flex text-primary items-center">
+                            Next <ChevronRight />
+                          </span>
+                        </div>
+                      </Link>
+                    )}
+                  </div>
+                );
+              }
+            })}
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
+}
+
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await props.params; // Await the params here
+  const { metadata } = await import(
+    `../../components/content/${slug}.mdx`
+  ).catch(() => {
+    notFound(); // If import fails, show 404
+  });
+  return {
+    title: metadata.title,
+  };
 }

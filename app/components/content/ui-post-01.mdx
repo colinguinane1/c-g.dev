@@ -7,6 +7,8 @@ export const metadata = {
   category: "Styling",
 };
 
+import MdxLayout from "@/components/mdx/layout.tsx";
+
 <Viewport codeSnippet={`   <ModalRoot>
       <ModalTrigger>
         <Button variant={"outline"} className="w-fit">
@@ -229,4 +231,10 @@ export default function ResponsiveModal() {
 }
 ```
 </FileName>
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+
 

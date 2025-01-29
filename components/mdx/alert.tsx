@@ -7,7 +7,7 @@ export default function CustomAlert({
   children: React.ReactNode;
 }) {
   return (
-    <Alert className="flex items-center gap-4">
+    <Alert className="flex items-center mt-4 gap-4">
       <InfoIcon />
       <p>{children}</p>
     </Alert>

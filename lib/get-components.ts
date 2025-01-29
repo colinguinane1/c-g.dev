@@ -14,7 +14,7 @@ export type Component = {
 
 // Helper function to get all posts
 export async function getAllComponents(): Promise<Component[]> {
-  const dir = path.join(process.cwd(), "content", "ui");
+  const dir = path.join(process.cwd(), "app", "components", "content");
   const files = fs.readdirSync(dir);
 
   const uiBlog = files
@@ -22,7 +22,7 @@ export async function getAllComponents(): Promise<Component[]> {
     .map((filename) => {
       // Import the metadata from the MDX files
       // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { metadata } = require(`@/content/ui/${filename}`);
+      const { metadata } = require(`@/app/components/content/${filename}`);
       return {
         slug: filename.replace(".mdx", ""),
         metadata: metadata || { title: "Untitled", publishDate: "1970-01-01" },

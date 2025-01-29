@@ -7,6 +7,8 @@ export const metadata = {
   published: true,
 };
 
+import MdxLayout from "@/components/mdx/layout.tsx";
+
  <Tabs defaultValue="preview">
         <TabsList className="">
           <TabsTrigger value="preview">Preview</TabsTrigger>
@@ -39,10 +41,12 @@ I decided to use props instead of children, you can use an array of strings to d
         </TabsContent>
         <TabsContent value="code">
          ```tsx
-         
-          import StackCard from "./stack-card";
+ import StackCard from "./stack-card";
+ 
 export default function StackCardExample() {
+  
   const stack = ["TypeScript", "Firebase", "Next.js"];
+  
   return (
     <div className="flex flex-wrap gap-4">
       {stack.map((tech: string) => (
@@ -61,6 +65,12 @@ export default function StackCardExample() {
 ---
 
 You can add more technologies by adding to the Skills array in **stack-card.tsx**
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+
 
 
 
