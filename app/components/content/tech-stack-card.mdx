@@ -40,7 +40,7 @@ I decided to use props instead of children, you can use an array of strings to d
     <Viewport><StackCardExample/></Viewport>
         </TabsContent>
         <TabsContent value="code">
-         ```tsx
+         ```tsx showLineNumbers
  import StackCard from "./stack-card";
  
 export default function StackCardExample() {
@@ -48,10 +48,10 @@ export default function StackCardExample() {
   const stack = ["TypeScript", "Firebase", "Next.js"];
   
   return (
-    <div className="flex flex-wrap gap-4">
-      {stack.map((tech: string) => (
-        <StackCard key={tech} tech={tech} showLabel />
-      ))}
+         <div className="flex flex-wrap gap-4">
+            {stack.map((tech: string) => (
+               <StackCard key={tech} tech={tech} showLabel />
+            ))}
     </div>
   );
 }

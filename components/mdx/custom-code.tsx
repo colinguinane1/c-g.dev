@@ -20,7 +20,7 @@ const Code = (props: any) => {
 
   return (
     <div>
-      <div className="relative rounded-md bg-card border max-h-80  overflow-auto ">
+      <div className="relative rounded-md bg-card border max-h-[300px]  overflow-auto ">
         <div className="flex sticky right-[5px] top-[5px] justify-between items-center">
           <div></div>
           <button
@@ -39,7 +39,7 @@ const Code = (props: any) => {
           ref={codeRef}
           className={`${
             props.className || ""
-          } border-none h-fit -mt-10 p-4 text-xs overflow-auto`}
+          } border-none h-fit -mt-10 p-4 text-sm  overflow-auto`}
         >
           <code className={`whitespace-pre ${props.className || ""}`}>
             {props.children}
