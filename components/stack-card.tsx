@@ -5,7 +5,7 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 import { BiLogoPostgresql } from "react-icons/bi";
-import { DiMongodb } from "react-icons/di";
+import { DiMongodb, DiReact } from "react-icons/di";
 import { FaNodeJs } from "react-icons/fa";
 import { IoLogoJavascript, IoLogoFirebase } from "react-icons/io5";
 import { RiNextjsFill } from "react-icons/ri";
@@ -68,6 +68,12 @@ export const Skills = [
     color: "128, 128, 128", // Gray with 20% opacity
     icon: <RiNextjsFill size={iconSize} color={"gray"} />,
     description: "React Framework",
+  },
+  {
+    label: "React",
+    color: "97, 218, 251", // Blue with 20% opacity
+    icon: <DiReact size={iconSize} color="skyblue" />,
+    description: "Frontend Framework",
   },
 ];
 
