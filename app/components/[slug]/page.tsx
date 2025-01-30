@@ -6,7 +6,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
 import { getAllComponents } from "@/lib/get-components";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
