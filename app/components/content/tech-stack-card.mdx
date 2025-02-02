@@ -9,27 +9,13 @@ export const metadata = {
 
 import MdxLayout from "@/components/mdx/layout.tsx";
 
- <Tabs defaultValue="preview">
-        <TabsList className="">
-          <TabsTrigger value="preview">Preview</TabsTrigger>
-          <TabsTrigger value="code">Code</TabsTrigger>
-        </TabsList>
-        <TabsContent value="preview">
          <Viewport >
   <StackCard tech={"React"} showLabel showDescription />
 </Viewport>
-        </TabsContent>
-        <TabsContent value="code">
-         ```tsx
-          <StackCard tech={"Next.js"} showLabel showDescription />
-         ```
-        </TabsContent>
-      </Tabs>
-
 
 I created this component for my portfolio to display the technology stack of my projects. It displays the technology name, logo, and description. The component is flexible and can be used in any project to display a technology stack.
 
-I decided to use props instead of children, you can use an array of strings to display multiple technologies.
+I wanted to be able to define the technology stack in one place and have it automatically displayed in my portfolio. This component allows that by passing an array of technologies to the component.
 
  <Tabs defaultValue="preview">
         <TabsList className="">
@@ -62,9 +48,27 @@ export default function StackCardExample() {
 
 
 
----
+There is also a fallback if the technology is not recognized.
+
+         <Viewport >
+  <StackCard tech={"Nuxt"} showLabel showDescription />
+</Viewport>
 
 You can add more technologies by adding to the Skills array in **stack-card.tsx**
+Heres how you can add your own technology to the card:
+
+```tsx showLineNumbers
+// stack-card.tsx
+// Example of adding a technology
+export const Skills = [
+  {
+    label: "Angular", // The name of the technology
+    color: "100, 149, 237", // The color of the technology in hsl
+    icon: <FaAngular size={iconSize} color="CornflowerBlue" />, // Icon
+    description: "Structured Database", // Description of the technology
+  },
+  ...]
+```
 
 export default function MDXPage({ children }) {
 return <MdxLayout>{children}</MdxLayout>

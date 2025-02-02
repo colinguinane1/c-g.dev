@@ -4,9 +4,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
+import { cn } from "@/lib/utils";
+import { Database } from "lucide-react";
 import { BiLogoPostgresql } from "react-icons/bi";
-import { DiMongodb, DiReact } from "react-icons/di";
-import { FaNodeJs } from "react-icons/fa";
+import { DiMongodb } from "react-icons/di";
+import { FaAngular, FaNodeJs, FaReact } from "react-icons/fa";
 import { IoLogoJavascript, IoLogoFirebase } from "react-icons/io5";
 import { RiNextjsFill } from "react-icons/ri";
 import { RiSupabaseFill } from "react-icons/ri";
@@ -71,15 +73,22 @@ export const Skills = [
   },
   {
     label: "React",
-    color: "97, 218, 251", // Blue with 20% opacity
-    icon: <DiReact size={iconSize} color="skyblue" />,
-    description: "Frontend Framework",
+    color: "0, 128, 128", // Teal
+    icon: <FaReact size={iconSize} color="teal" />,
+    description: "JavaScript Library",
+  },
+  {
+    label: "Angular",
+    color: "221, 27, 27", // Red
+    icon: <FaAngular size={iconSize} color="red" />,
+    description: "Web Application Framework",
   },
 ];
 
 interface StackCardProps {
   tech: string;
   key: string;
+  className?: string;
   showLabel?: boolean;
   showDescription?: boolean;
   size?: "sm" | "md";
@@ -88,6 +97,7 @@ interface StackCardProps {
 const StackCard: React.FC<StackCardProps> = ({
   tech,
   showLabel = false,
+  className,
   showDescription = false,
   size = "md",
 }) => {
@@ -97,7 +107,9 @@ const StackCard: React.FC<StackCardProps> = ({
       return (
         <div
           key={skill.label}
-          className="flex items-center gap-2 border bg-card relative  p-2 rounded-md"
+          className={cn(
+            `flex items-center gap-2 border bg-card relative  p-2 rounded-md`
+          )}
         >
           <div
             style={{
@@ -108,10 +120,10 @@ const StackCard: React.FC<StackCardProps> = ({
           ></div>{" "}
           <div className="absolute left-[20px] "> {skill.icon}</div>
           {showLabel && (
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-0">
               <h1 className="font-bold tracking-tighter"> {skill.label}</h1>
               {showDescription && (
-                <p className="md:block">{skill.description}</p>
+                <p className="md:block -mt-[2px]">{skill.description}</p>
               )}
             </div>
           )}
@@ -148,13 +160,20 @@ const StackCard: React.FC<StackCardProps> = ({
     }
   } else {
     return (
-      <div className="border w-8 h-8 items-center justify-center flex rounded-md">
-        <div>X</div>
-        <div className="flex flex-col">
-          <h1 className="font-bold hidden tracking-tighter">
-            Couldnt find skill
-          </h1>
+      <div
+        className={cn(
+          `flex items-center gap-2 border bg-card relative  p-2 rounded-md`
+        )}
+      >
+        <div className="w-10 h-10 bg-gray-200 border-gray-500 opacity-15 relative border items-center  justify-center flex rounded-md"></div>{" "}
+        <div className="absolute left-[20px] ">
+          <Database size={iconSize} />
         </div>
+        {showLabel && (
+          <div className="flex flex-col">
+            <h1 className="font-bold tracking-tighter"> {tech}</h1>
+          </div>
+        )}
       </div>
     );
   }
