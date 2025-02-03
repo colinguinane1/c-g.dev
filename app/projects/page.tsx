@@ -1,7 +1,6 @@
 import FadeInSection from "@/components/FadeInView";
 import StackCard from "@/components/stack-card";
 import { getAllProjects } from "@/lib/get-projects";
-import { ChevronRight } from "lucide-react";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 
