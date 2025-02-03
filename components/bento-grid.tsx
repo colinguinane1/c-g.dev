@@ -115,7 +115,7 @@ export default function BentoGrid() {
           </Card>
         </Link>
         <Link
-          href="https://devnotes.me"
+          href="https://mongate.vercel.app/"
           className="col-span-3 flex items-center justify-center"
           target="_blank"
         >
@@ -123,6 +123,7 @@ export default function BentoGrid() {
           <Card className="col-span-3 flex w-full items-center justify-center">
             {" "}
             <CardDescription className="flex w-full items-center justify-center gap-1">
+              <div className="w-2 h-2 rounded-xl  animate-pulse bg-green-500"></div>
               Latest project <ExternalLink size={15} />
             </CardDescription>
           </Card>{" "}
