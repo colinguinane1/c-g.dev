@@ -22,12 +22,42 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Alert: CustomAlert,
     FileName: (props) => <FileName {...props} />,
     Viewport: (props) => <Viewport {...props} />,
-    h1: (props) => <h1 className="text-4xl py-4 font-black " {...props} />,
-    h2: (props) => <h2 className="text-3xl py-4 font-bold" {...props} />,
-    h3: (props) => <h3 className="text-2xl py-4 font-semibold" {...props} />,
-    h4: (props) => <h4 className="text-xl py-4 font-medium" {...props} />,
-    h5: (props) => <h5 className="text-lg py-4 font-normal" {...props} />,
-    h6: (props) => <h6 className="text-base py-4  font-light" {...props} />,
+    h1: (props) => (
+      <h1
+        className="text-4xl py-4 font-black text-secondary-foreground "
+        {...props}
+      />
+    ),
+    h2: (props) => (
+      <h2
+        className="text-3xl py-4 font-bold text-secondary-foreground"
+        {...props}
+      />
+    ),
+    h3: (props) => (
+      <h3
+        className="text-2xl py-4 font-semibold text-secondary-foreground"
+        {...props}
+      />
+    ),
+    h4: (props) => (
+      <h4
+        className="text-xl py-4 font-medium text-secondary-foreground"
+        {...props}
+      />
+    ),
+    h5: (props) => (
+      <h5
+        className="text-lg py-4 font-normal text-secondary-foreground"
+        {...props}
+      />
+    ),
+    h6: (props) => (
+      <h6
+        className="text-base py-4  font-light text-secondary-foreground"
+        {...props}
+      />
+    ),
     p: (props) => <p className="mb-b py-4" {...props} />,
     li: (props) => <li className=" py-2" {...props} />,
     ul: (props) => <ul className="list-disc pl-6" {...props} />,

@@ -5,18 +5,20 @@ import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cross as Hamburger } from "hamburger-react";
 import { Link } from "next-view-transitions";
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 
 export default function NHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [navHeight, setNavHeight] = useState(0);
+  const [currentPath, setCurrentPath] = useState("Home");
   const navRef = useRef<HTMLDivElement | null>(null);
 
   const NavigationData = [
     { name: "Home", href: "/" },
     { name: "Projects", href: "/projects" },
-    { name: "Blog", href: "/posts" },
-    { name: "UI", href: "/components" },
+    { name: "Posts", href: "/posts" },
+    { name: "Components", href: "/components" },
   ];
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export default function NHeader() {
       <motion.header
         initial={{ y: -100 }}
         animate={{
-          height: isOpen ? `${navHeight + 54}px` : "64px",
+          height: isOpen ? `${navHeight + 60}px` : "64px",
           y: 0, // 64px is the closed header height
         }}
         transition={{
@@ -47,11 +49,18 @@ export default function NHeader() {
             <Link href="/" className="font-bold p-1 rounded-md">
               c-g.dev
             </Link>
+            {/* <p>{currentPath}</p> */}
           </div>{" "}
           <div className=" hidden md:flex  items-center gap-6">
             <ModeToggle />
             {NavigationData.map((nav) => (
-              <Link className="font-bold" key={nav.name} href={nav.href}>
+              <Link
+                onClick={() => setCurrentPath(nav.name)}
+                className={`${currentPath === nav.name && "bg-card rounded-md"}
+                } font-bold p-2`}
+                key={nav.name}
+                href={nav.href}
+              >
                 {nav.name}
               </Link>
             ))}
@@ -87,7 +96,11 @@ export default function NHeader() {
             >
               {NavigationData.map((nav) => (
                 <Link
-                  className="text-3xl hover:text-primary font-extrabold tracking-tight"
+                  onClick={() => setCurrentPath(nav.name)}
+                  className={`${
+                    currentPath === nav.name && "bg-card rounded-md"
+                  }
+                } font-bold p-2 text-3xl`}
                   key={nav.name}
                   href={nav.href}
                 >
