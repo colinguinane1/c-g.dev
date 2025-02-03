@@ -40,7 +40,7 @@ export default async function DocsPage(props: {
 
   return (
     <section className="mt-2 flex flex-col items-center">
-      <div className="flex flex-col w-screen md:w-fit  max-w-6xl">
+      <div className="flex flex-col w-screen md:w-fit  max-w-2xl">
         <div className="px-4 flex items-center gap-4 w-full">
           <Breadcrumb>
             <BreadcrumbList>
