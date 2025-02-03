@@ -20,7 +20,7 @@ const Code = (props: any) => {
 
   return (
     <div>
-      <div className="relative rounded-md bg-card border max-h-[300px]  overflow-auto ">
+      <div className="relative rounded-md mb-4 bg-card border max-h-[300px]  overflow-auto ">
         <div className="flex sticky right-[5px] top-[5px] justify-between items-center">
           <div></div>
           <button
