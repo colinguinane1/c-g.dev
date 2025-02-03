@@ -1,0 +1,31 @@
+{
+  "name": "stack-card",
+  "type": "registry:ui",
+  "registryDependencies": [
+    "tooltip"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "devDependencies": [],
+  "tailwind": {
+    "config": {
+      "theme": {
+        "extend": {
+          "colors": {}
+        }
+      }
+    }
+  },
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "stack-card.tsx",
+      "content": "import {\n  Tooltip,\n  TooltipContent,\n  TooltipProvider,\n  TooltipTrigger,\n} from \"@/components/ui/tooltip\";\nimport { cn } from \"@/lib/utils\";\nimport { Database } from \"lucide-react\";\nimport { BiLogoPostgresql } from \"react-icons/bi\";\nimport { DiMongodb } from \"react-icons/di\";\nimport { FaAngular, FaNodeJs, FaReact } from \"react-icons/fa\";\nimport { IoLogoJavascript, IoLogoFirebase } from \"react-icons/io5\";\nimport { RiNextjsFill } from \"react-icons/ri\";\nimport { RiSupabaseFill } from \"react-icons/ri\";\nimport { SiTypescript, SiExpress } from \"react-icons/si\";\n\nconst iconSize = 18;\n\nexport const Skills = [\n  {\n    label: \"PostgreSQL\",\n    color: \"100, 149, 237\",\n    icon: <BiLogoPostgresql size={iconSize} color=\"CornflowerBlue\" />,\n    description: \"Structured Database\",\n  },\n  {\n    label: \"Supabase\",\n    color: \"0, 255, 0\",\n    icon: <RiSupabaseFill size={iconSize} color=\"Chartreuse\" />,\n    description: \"Backend Service\",\n  },\n  {\n    label: \"TypeScript\",\n    color: \"50, 100, 255\", // Blue\n    icon: <SiTypescript size={iconSize} color=\"rgb(50,200,255)\" />,\n    description: \"JavaScript with type safety.\",\n  },\n  {\n    label: \"MongoDB\",\n    color: \"0, 128, 0\", // Green\n    icon: <DiMongodb size={iconSize} color=\"green\" />,\n    description: \"NoSQL Database\",\n  },\n  {\n    label: \"Express\",\n    color: \"128, 128, 128\", // Gray\n    icon: <SiExpress size={iconSize} color=\"gray\" />,\n    description: \"Node.js Framework\",\n  },\n  {\n    label: \"Node.js\",\n    color: \"0, 128, 0\", // Green\n    icon: <FaNodeJs size={iconSize} color=\"green\" />,\n    description: \"Server language\",\n  },\n  {\n    label: \"JavaScript\",\n    color: \"245, 167, 39\", // Yellow with 20% opacity\n    icon: <IoLogoJavascript size={iconSize} color=\"orange\" />,\n    description: \"Programming Language\",\n  },\n  {\n    label: \"Firebase\",\n    color: \"255, 0, 0\", // Red with 20% opacity\n    icon: <IoLogoFirebase size={iconSize} color=\"red\" />,\n    description: \"Backend Service\",\n  },\n  {\n    label: \"Next.js\",\n    color: \"128, 128, 128\", // Gray with 20% opacity\n    icon: <RiNextjsFill size={iconSize} color={\"gray\"} />,\n    description: \"React Framework\",\n  },\n  {\n    label: \"React\",\n    color: \"0, 128, 128\", // Teal\n    icon: <FaReact size={iconSize} color=\"teal\" />,\n    description: \"JavaScript Library\",\n  },\n  {\n    label: \"Angular\",\n    color: \"221, 27, 27\", // Red\n    icon: <FaAngular size={iconSize} color=\"red\" />,\n    description: \"Web Application Framework\",\n  },\n];\n\ninterface StackCardProps {\n  tech: string;\n  key: string;\n  className?: string;\n  showLabel?: boolean;\n  showDescription?: boolean;\n  size?: \"sm\" | \"md\";\n}\n\nconst StackCard: React.FC<StackCardProps> = ({\n  tech,\n  showLabel = false,\n  className,\n  showDescription = false,\n  size = \"md\",\n}) => {\n  const skill = Skills.find((skill) => skill.label === tech);\n  if (skill) {\n    if (size === \"md\") {\n      return (\n        <div\n          key={skill.label}\n          className={cn(\n            `flex items-center gap-2 border bg-card relative  p-2 rounded-md`,\n            className\n          )}\n        >\n          <div\n            style={{\n              backgroundColor: `rgba(${skill.color}, 0.5)`,\n              borderColor: `rgba(${skill.color})`,\n            }}\n            className=\"w-10 h-10 opacity-15 relative border items-center  justify-center flex rounded-md\"\n          ></div>{\" \"}\n          <div className=\"absolute left-[20px] \"> {skill.icon}</div>\n          {showLabel && (\n            <div className=\"flex flex-col gap-0\">\n              <h1 className=\"font-bold tracking-tighter\"> {skill.label}</h1>\n              {showDescription && (\n                <p className=\"md:block -mt-[2px]\">{skill.description}</p>\n              )}\n            </div>\n          )}\n        </div>\n      );\n    } else {\n      return (\n        <TooltipProvider key={skill.label}>\n          <Tooltip>\n            <TooltipTrigger>\n              <div\n                style={{\n                  backgroundColor: `rgba(${skill.color}, 0.05)`,\n                  borderColor: `rgba(${skill.color}, 0.3)`,\n                }}\n                className=\" border p-2 gap-1 items-center  justify-center flex rounded-md\"\n              >\n                {\" \"}\n                <div className=\"  \"> {skill.icon}</div>\n                {showLabel && (\n                  <div className=\"flex flex-col\">\n                    <h1 className=\"font-bold tracking-tighter\">\n                      {\" \"}\n                      {skill.label}\n                    </h1>\n                  </div>\n                )}\n              </div>{\" \"}\n            </TooltipTrigger>\n            <TooltipContent>{skill.label}</TooltipContent>\n          </Tooltip>\n        </TooltipProvider>\n      );\n    }\n  } else {\n    return (\n      <div\n        className={cn(\n          `flex items-center gap-2 border bg-card relative  p-2 rounded-md`\n        )}\n      >\n        <div className=\"w-10 h-10 bg-gray-200 border-gray-500 opacity-15 relative border items-center  justify-center flex rounded-md\"></div>{\" \"}\n        <div className=\"absolute left-[20px] \">\n          <Database size={iconSize} />\n        </div>\n        {showLabel && (\n          <div className=\"flex flex-col\">\n            <h1 className=\"font-bold tracking-tighter\"> {tech}</h1>\n          </div>\n        )}\n      </div>\n    );\n  }\n};\n\nexport default StackCard;\n",
+      "type": "registry:ui"
+    }
+  ]
+}

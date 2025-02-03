@@ -8,6 +8,11 @@ const options = {
     light: "one-light",
   },
   keepBackground: false,
+  highlight: {
+    // Example: Highlight lines 2 and 4 in the code blocks
+    // This can be dynamically applied if your MDX files include this pattern
+    "2, 4": { className: "highlighted-line" },
+  },
   
 };
  

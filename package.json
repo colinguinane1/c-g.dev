@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "build:registry": "npx bun ./scripts/build.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -59,6 +60,7 @@
     "eslint-config-next": "^14.2.15",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
+    "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   }
 }
