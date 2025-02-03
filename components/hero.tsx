@@ -20,7 +20,7 @@ export default function Hero() {
           />{" "}
           <div className="flex flex-col items-start h-full mb-6">
             <motion.h1
-              className="text-2xl font-bold"
+              className="text-2xl text-secondary-foreground font-bold"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}

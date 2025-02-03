@@ -55,7 +55,10 @@ export default function NHeader() {
             {NavigationData.map((nav) => (
               <Link
                 onClick={() => setCurrentPath(nav.name)}
-                className={`${currentPath === nav.name && "bg-card rounded-md"}
+                className={`${
+                  currentPath === nav.name &&
+                  "bg-card rounded-md text-secondary-foreground"
+                }
                 } font-bold p-2`}
                 key={nav.name}
                 href={nav.href}
@@ -97,7 +100,8 @@ export default function NHeader() {
                 <Link
                   onClick={() => setCurrentPath(nav.name)}
                   className={`${
-                    currentPath === nav.name && "bg-card rounded-md"
+                    currentPath === nav.name &&
+                    "bg-card text-secondary-foreground rounded-md"
                   }
                 } font-bold p-2 text-3xl`}
                   key={nav.name}
