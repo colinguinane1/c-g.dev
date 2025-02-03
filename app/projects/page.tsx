@@ -24,7 +24,7 @@ export default async function Component() {
           <div className="w-full flex gap-4 flex-col">
             {projects.map((project, idx) => (
               <li
-                className="col-span-1 border px-4 pb-4 rounded-lg bg-card   min-w-80 snap-start transition-opacity"
+                className="col-span-1 border p-4 rounded-lg bg-card list-none   min-w-80 snap-start transition-opacity"
                 key={project.slug}
               >
                 <Link className="space-y-2" href={`/projects/${project.slug}`}>
