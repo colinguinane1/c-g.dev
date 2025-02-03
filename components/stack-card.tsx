@@ -108,7 +108,8 @@ const StackCard: React.FC<StackCardProps> = ({
         <div
           key={skill.label}
           className={cn(
-            `flex items-center gap-2 border bg-card relative  p-2 rounded-md`
+            `flex items-center gap-2 border bg-card relative  p-2 rounded-md`,
+            className
           )}
         >
           <div
