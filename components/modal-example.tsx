@@ -7,7 +7,7 @@ import {
   ModalHeader,
   ModalTitle,
   ModalClose,
-} from "./drawer-dialog";
+} from "./modal";
 import { Button } from "./ui/button";
 
 export default function ResponsiveModal() {

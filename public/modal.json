@@ -1,0 +1,32 @@
+{
+  "name": "modal",
+  "type": "registry:ui",
+  "registryDependencies": [
+    "drawer",
+    "dialog"
+  ],
+  "dependencies": [
+    ""
+  ],
+  "devDependencies": [],
+  "tailwind": {
+    "config": {
+      "theme": {
+        "extend": {
+          "colors": {}
+        }
+      }
+    }
+  },
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "modal.tsx",
+      "content": "\"use client\";\n\nimport {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n  DialogClose,\n} from \"@/components/ui/dialog\";\nimport {\n  Drawer,\n  DrawerContent,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerTitle,\n  DrawerTrigger,\n  DrawerClose,\n} from \"@/components/ui/drawer\";\nimport { useMediaQuery } from \"@/lib/media-query\";\nimport { cn } from \"@/lib/utils\";\n\nconst ModalRoot = ({ children }: { children: React.ReactNode }) => {\n  const isDesktop = useMediaQuery(\"(min-width: 768px)\");\n  if (isDesktop) {\n    return <Dialog>{children}</Dialog>;\n  } else {\n    return <Drawer>{children}</Drawer>;\n  }\n};\n\nconst ModalTrigger = ({\n  children,\n  className,\n}: {\n  children: React.ReactNode;\n  className?: string;\n}) => {\n  const isdesktop = useMediaQuery(\"(min-width: 768px)\");\n  if (isdesktop) {\n    return (\n      <DialogTrigger className={cn(`w-fit`, className)}>\n        {children}\n      </DialogTrigger>\n    );\n  } else {\n    return (\n      <DrawerTrigger className={cn(`w-fit`, className)}>\n        {children}\n      </DrawerTrigger>\n    );\n  }\n};\n\nconst ModalContent = ({\n  children,\n  className,\n}: {\n  children: React.ReactNode;\n  className?: string;\n}) => {\n  const isdesktop = useMediaQuery(\"(min-width: 768px)\");\n  if (isdesktop) {\n    return (\n      <DialogContent className={cn(\"text-left\", className)}>\n        {children}\n      </DialogContent>\n    );\n  } else {\n    return <DrawerContent className={cn(className)}>{children}</DrawerContent>;\n  }\n};\n\nconst ModalHeader = ({\n  children,\n  className,\n}: {\n  children: React.ReactNode;\n  className?: string;\n}) => {\n  const isdesktop = useMediaQuery(\"(min-width: 768px)\");\n  if (isdesktop) {\n    return (\n      <DialogHeader className={cn(\"text-left\", className)}>\n        {children}\n      </DialogHeader>\n    );\n  } else {\n    return (\n      <DrawerHeader className={cn(\"text-left\", className)}>\n        {children}\n      </DrawerHeader>\n    );\n  }\n};\n\nconst ModalFooter = ({\n  children,\n  className,\n}: {\n  children: React.ReactNode;\n  className?: string;\n}) => {\n  const isdesktop = useMediaQuery(\"(min-width: 768px)\");\n  if (isdesktop) {\n    return (\n      <DialogFooter className={cn(\"text-left\", className)}>\n        {children}\n      </DialogFooter>\n    );\n  } else {\n    return <DrawerFooter className={cn(className)}>{children}</DrawerFooter>;\n  }\n};\n\nconst ModalTitle = ({\n  children,\n  className,\n}: {\n  children: React.ReactNode;\n  className?: string;\n}) => {\n  const isdesktop = useMediaQuery(\"(min-width: 768px)\");\n  if (isdesktop) {\n    return <DialogTitle className={cn(className)}>{children}</DialogTitle>;\n  } else {\n    return <DrawerTitle className={cn(className)}>{children}</DrawerTitle>;\n  }\n};\n\nconst ModalDescription = ({\n  children,\n  className,\n}: {\n  children: React.ReactNode;\n  className?: string;\n}) => {\n  const isdesktop = useMediaQuery(\"(min-width: 768px)\");\n  if (isdesktop) {\n    return (\n      <DialogDescription className={cn(className)}>\n        {children}\n      </DialogDescription>\n    );\n  } else {\n    return (\n      <DrawerDescription className={cn(className)}>\n        {children}\n      </DrawerDescription>\n    );\n  }\n};\n\nconst ModalClose = ({\n  children,\n  className,\n}: {\n  children: React.ReactNode;\n  className?: string;\n}) => {\n  const isdesktop = useMediaQuery(\"(min-width: 768px)\");\n  if (isdesktop) {\n    return (\n      <DialogClose className={cn(\"text-right\", className)}>\n        {children}\n      </DialogClose>\n    );\n  } else {\n    return (\n      <DrawerClose className={cn(\"pb-4\", className)}>{children}</DrawerClose>\n    );\n  }\n};\n\nexport {\n  ModalRoot,\n  ModalTrigger,\n  ModalContent,\n  ModalHeader,\n  ModalFooter,\n  ModalTitle,\n  ModalDescription,\n  ModalClose,\n};\n",
+      "type": "registry:ui"
+    }
+  ]
+}
