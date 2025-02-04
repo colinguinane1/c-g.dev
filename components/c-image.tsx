@@ -10,6 +10,8 @@ interface CImageProps {
   height?: number;
   layout?: string;
   className?: string;
+  style?: object;
+  delay?: number;
 }
 
 const CImage: React.FC<CImageProps> = ({
@@ -19,12 +21,22 @@ const CImage: React.FC<CImageProps> = ({
   layout = "intrinsic",
   width = 500,
   height = 500,
+  delay = 0,
+  style = {}
+
 }) => {
   const [loaded, setLoaded] = useState(false);
+
+  const imageReady = () => {
+    setTimeout(() => {
+      setLoaded(true);
+    }, delay);
+  };
+
   return (
     <>
       {!loaded && (
-        <div className="flex justify-center w-full h-full items-center">
+        <div className="flex justify-center aspect-video w-full h-full items-center">
           <div className="bg-card/90 animate-pulse rounded h-full w-full" />
         </div>
       )}
@@ -36,11 +48,8 @@ const CImage: React.FC<CImageProps> = ({
         unoptimized={true}
         width={width}
         height={height}
-        onLoadingComplete={() => setLoaded(true)}
-        style={{
-          objectPosition: "top",
-          display: loaded ? "block" : "none",
-        }}
+        onLoadingComplete={imageReady}
+        style={{ ...style, display: loaded ? 'block' : 'none' }}
       />
     </>
   );
