@@ -33,6 +33,7 @@ const CImage: React.FC<CImageProps> = ({
         alt={alt}
         layout={layout}
         className={className}
+        unoptimized={true}
         width={width}
         height={height}
         onLoadingComplete={() => setLoaded(true)}

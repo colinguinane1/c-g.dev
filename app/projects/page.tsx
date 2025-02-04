@@ -2,9 +2,7 @@ import FadeInSection from "@/components/FadeInView";
 import CImage from "@/components/c-image";
 import StackCard from "@/components/stack-card";
 import { getAllProjects } from "@/lib/get-projects";
-import { ChevronRight } from "lucide-react";
 import { Link } from "next-view-transitions";
-import Image from "next/image";
 
 export default async function Component() {
   const projects = await getAllProjects();
