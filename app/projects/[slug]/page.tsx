@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import { getAllProjects } from "@/lib/get-projects";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
