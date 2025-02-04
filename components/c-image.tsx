@@ -8,6 +8,7 @@ interface CImageProps {
   alt: string;
   width?: number;
   height?: number;
+  layout?: string;
   className?: string;
   style?: object;
   delay?: number;
@@ -17,10 +18,12 @@ const CImage: React.FC<CImageProps> = ({
   src,
   alt = "image",
   className,
+  layout = "intrinsic",
   width = 500,
   height = 500,
   delay = 0,
-  style = {},
+  style = {}
+
 }) => {
   const [loaded, setLoaded] = useState(false);
 
@@ -31,22 +34,24 @@ const CImage: React.FC<CImageProps> = ({
   };
 
   return (
-    <div className="relative w-full h-full">
+    <>
       {!loaded && (
-        <div className="absolute inset-0 flex justify-center items-center bg-card/90 animate-pulse rounded">
-          <div className="h-full w-full" />
+        <div className="flex justify-center aspect-video w-full h-full items-center">
+          <div className="bg-card/90 animate-pulse rounded h-full w-full" />
         </div>
       )}
       <Image
         src={src}
         alt={alt}
-        className={`${className} ${loaded ? "block" : "hidden"}`}
+        layout={layout}
+        className={className}
+        unoptimized={true}
         width={width}
         height={height}
         onLoad={imageReady}
-        style={style}
+        style={{ ...style, display: loaded ? 'block' : 'none' }}
       />
-    </div>
+    </>
   );
 };
 
