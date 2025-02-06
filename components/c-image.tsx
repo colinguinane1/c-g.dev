@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface CImageProps {
   src: string;
@@ -23,20 +23,22 @@ const CImage: React.FC<CImageProps> = ({
   height = 500,
   delay = 0,
   style = {}
-
 }) => {
   const [loaded, setLoaded] = useState(false);
 
-  const imageReady = () => {
-    setTimeout(() => {
+  // Use useEffect to handle delay and set loaded state
+  useEffect(() => {
+    const timer = setTimeout(() => {
       setLoaded(true);
     }, delay);
-  };
+
+    return () => clearTimeout(timer); // Clear the timeout on component unmount
+  }, [delay]);
 
   return (
     <>
       {!loaded && (
-        <div className="flex justify-center aspect-video w-full h-full items-center">
+        <div className={`flex justify-center aspect-video w-full h-full items-center`}>
           <div className="bg-card/90 animate-pulse rounded h-full w-full" />
         </div>
       )}
@@ -48,8 +50,8 @@ const CImage: React.FC<CImageProps> = ({
         unoptimized={true}
         width={width}
         height={height}
-        onLoad={imageReady}
-        style={{ ...style, display: loaded ? 'block' : 'none' }}
+        onLoadingComplete={() => setLoaded(true)}
+        style={{ ...style, display: loaded ? "block" : "none" }}
       />
     </>
   );
