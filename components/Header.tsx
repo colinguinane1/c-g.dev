@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cross as Hamburger } from "hamburger-react";
 import { Link } from "next-view-transitions";
-// import { usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 
 export default function NHeader() {
@@ -14,20 +14,7 @@ export default function NHeader() {
   const [currentPath, setCurrentPath] = useState("Home");
   const navRef = useRef<HTMLDivElement | null>(null);
 
-  // const path = usePathname();
-
-  // if (path.includes("/projects")) {
-  //   setCurrentPath("Projects");
-  // }
-  // if (path.includes("/posts")) {
-  //   setCurrentPath("Posts");
-  // }
-  // if (path.includes("/components")) {
-  //   setCurrentPath("Components");
-  // }
-  // if (path === "/") {
-  //   setCurrentPath("Home");
-  // }
+  const pathname = `/${usePathname().split("/")[1]}`;
 
   const NavigationData = [
     { name: "Home", href: "/" },
@@ -72,7 +59,7 @@ export default function NHeader() {
               <Link
                 onClick={() => setCurrentPath(nav.name)}
                 className={`${
-                  currentPath === nav.name &&
+                  pathname === nav.href &&
                   "bg-card rounded-md text-secondary-foreground"
                 }
                 } font-bold p-2`}
@@ -116,7 +103,7 @@ export default function NHeader() {
                 <Link
                   onClick={() => setCurrentPath(nav.name)}
                   className={`${
-                    currentPath === nav.name &&
+                    pathname === nav.href &&
                     "bg-card text-secondary-foreground rounded-md"
                   }
                 } font-bold p-2 text-3xl`}
