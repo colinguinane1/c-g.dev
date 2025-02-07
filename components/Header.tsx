@@ -11,7 +11,6 @@ import { useState, useEffect, useRef } from "react";
 export default function NHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [navHeight, setNavHeight] = useState(0);
-  const [currentPath, setCurrentPath] = useState("Home");
   const navRef = useRef<HTMLDivElement | null>(null);
 
   const pathname = `/${usePathname().split("/")[1]}`;
@@ -57,7 +56,6 @@ export default function NHeader() {
             <ModeToggle />
             {NavigationData.map((nav) => (
               <Link
-                onClick={() => setCurrentPath(nav.name)}
                 className={`${
                   pathname === nav.href &&
                   "bg-card rounded-md text-secondary-foreground"
@@ -101,7 +99,6 @@ export default function NHeader() {
             >
               {NavigationData.map((nav) => (
                 <Link
-                  onClick={() => setCurrentPath(nav.name)}
                   className={`${
                     pathname === nav.href &&
                     "bg-card text-secondary-foreground rounded-md"
