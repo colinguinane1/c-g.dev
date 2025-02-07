@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cross as Hamburger } from "hamburger-react";
 import { Link } from "next-view-transitions";
+// import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 
 export default function NHeader() {
@@ -12,6 +13,21 @@ export default function NHeader() {
   const [navHeight, setNavHeight] = useState(0);
   const [currentPath, setCurrentPath] = useState("Home");
   const navRef = useRef<HTMLDivElement | null>(null);
+
+  // const path = usePathname();
+
+  // if (path.includes("/projects")) {
+  //   setCurrentPath("Projects");
+  // }
+  // if (path.includes("/posts")) {
+  //   setCurrentPath("Posts");
+  // }
+  // if (path.includes("/components")) {
+  //   setCurrentPath("Components");
+  // }
+  // if (path === "/") {
+  //   setCurrentPath("Home");
+  // }
 
   const NavigationData = [
     { name: "Home", href: "/" },

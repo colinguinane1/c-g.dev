@@ -1,5 +1,6 @@
 "use client";
 
+import Skeleton from "@mui/material/Skeleton";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
@@ -22,24 +23,30 @@ const CImage: React.FC<CImageProps> = ({
   width = 500,
   height = 500,
   delay = 0,
-  style = {}
+  style = {},
 }) => {
   const [loaded, setLoaded] = useState(false);
 
-  // Use useEffect to handle delay and set loaded state
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoaded(true);
     }, delay);
 
-    return () => clearTimeout(timer); // Clear the timeout on component unmount
+    return () => clearTimeout(timer);
   }, [delay]);
 
   return (
     <>
       {!loaded && (
-        <div className={`flex justify-center aspect-video w-full h-full items-center`}>
-          <div className="bg-card/90 animate-pulse rounded h-full w-full" />
+        <div
+          className={`flex justify-center aspect-video w-full h-full items-center`}
+        >
+          <Skeleton
+            animation="wave"
+            variant="rectangular"
+            className="w-full h-full"
+            sx={{ bgcolor: "black.900" }}
+          />
         </div>
       )}
       <Image
@@ -47,7 +54,6 @@ const CImage: React.FC<CImageProps> = ({
         alt={alt}
         layout={layout}
         className={className}
-        unoptimized={true}
         width={width}
         height={height}
         onLoadingComplete={() => setLoaded(true)}
