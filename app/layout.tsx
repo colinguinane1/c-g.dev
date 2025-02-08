@@ -7,6 +7,7 @@ import { siteConfig } from "@/config/site";
 import { Analytics } from "@vercel/analytics/react";
 import { ViewTransitions } from "next-view-transitions";
 import { DM_Sans } from "next/font/google";
+import { Toaster } from "sonner";
 
 // If loading a variable font, you don't need to specify the font weight
 const dm_sans = DM_Sans({ subsets: ["latin"] });
@@ -69,6 +70,7 @@ export default function RootLayout({
       >
         <body className="max-w-2xl min-w-screen min-w-96 min-h-screen overflow-x-hidden">
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <Toaster richColors position="bottom-center" />
             <Header />
             <div className="w-screen md:w-fit min-h-screen md:mt-16">
               {children}

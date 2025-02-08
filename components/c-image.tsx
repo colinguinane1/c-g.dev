@@ -1,11 +1,12 @@
 "use client";
 
 import { Button } from "./ui/button";
-import { ModalRoot, ModalContent, ModalTrigger } from "./ui/modal";
+import { ModalRoot, ModalContent, ModalTrigger, ModalClose } from "./ui/modal";
 import { Clipboard, Download } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
+import { toast } from "sonner";
 
 interface CImageProps {
   src: string;
@@ -40,6 +41,11 @@ const CImage: React.FC<CImageProps> = ({
     }
   };
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(src);
+    toast.success("Link Copied to Clipboard");
+  };
+
   return (
     <div className="relative w-full h-full">
       {!loaded && (
@@ -64,23 +70,32 @@ const CImage: React.FC<CImageProps> = ({
         }`}
       />
       {loaded && (
-        <div className={`absolute bottom-0 right-0`}>
+        <div className={`absolute bottom-2 right-2`}>
           <ModalRoot>
             <ModalTrigger>
-              <Button variant={"ghostNoBg"}>
-                <BsThreeDots />
+              <Button variant={"ghost"} size={"icon"}>
+                <BsThreeDots size={20} />
               </Button>
             </ModalTrigger>
-            <ModalContent className=" h-fit md:w-fit  pb-4">
-              <div className="flex items-start flex-col gap-2">
-                <Button variant={"ghost"}>
-                  <Download size={15} />
-                  Download Image
-                </Button>
-                <Button variant={"ghost"}>
-                  <Clipboard size={15} />
-                  Copy Link
-                </Button>
+            <ModalContent className=" h-fit md:w-fit px-4  pb-2">
+              <div className="flex items-start flex-col ">
+                <ModalClose>
+                  <a download={src} href={src}>
+                    <Button
+                      onClick={() => toast.success("Download Started")}
+                      variant={"ghost"}
+                    >
+                      <Download size={15} />
+                      Download Image
+                    </Button>
+                  </a>
+                </ModalClose>
+                <ModalClose>
+                  <Button onClick={handleCopy} variant={"ghost"}>
+                    <Clipboard size={15} />
+                    Copy Link
+                  </Button>
+                </ModalClose>
               </div>
             </ModalContent>
           </ModalRoot>
