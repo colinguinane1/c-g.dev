@@ -69,14 +69,22 @@ export default function RootLayout({
         className={` ${dm_sans.className} grid place-content-center antialiased`}
       >
         <body className="max-w-2xl min-w-screen min-w-96 min-h-screen overflow-x-hidden">
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Toaster richColors position="bottom-center" />
-            <Header />
-            <div className="w-screen md:w-fit min-h-screen md:mt-16">
-              {children}
+          <div vaul-drawer-wrapper="">
+            <div className="bg-background">
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+              >
+                <Toaster richColors position="bottom-center" />
+                <Header />
+                <div className="w-screen md:w-fit min-h-screen md:mt-16">
+                  {children}
+                </div>
+                <Footer />
+              </ThemeProvider>
             </div>
-            <Footer />
-          </ThemeProvider>
+          </div>
         </body>
       </html>
       <Analytics />

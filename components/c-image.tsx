@@ -77,7 +77,7 @@ const CImage: React.FC<CImageProps> = ({
                 <BsThreeDots size={20} />
               </Button>
             </ModalTrigger>
-            <ModalContent className=" h-fit md:w-fit px-4  pb-2">
+            <ModalContent className=" h-fit md:w-fit p-2  ">
               <div className="flex items-start flex-col ">
                 <ModalClose>
                   <a download={src} href={src}>
