@@ -10,7 +10,7 @@ import { toast } from "sonner";
 
 interface CImageProps {
   src: string;
-  alt: string;
+  alt?: string;
   width?: number;
   layout?: "fill" | "responsive" | "fixed" | "intrinsic";
   height?: number;
@@ -50,7 +50,7 @@ const CImage: React.FC<CImageProps> = ({
     <div className="relative w-full h-full">
       {!loaded && (
         <div
-          className={`absolute inset-0 flex justify-center items-center animate-pulse transition-opacity bg-card ${
+          className={`absolute inset-0 shadow-2xl bg-card flex justify-center items-center animate-pulse transition-opacity bg-card ${
             loaded ? "opacity-0" : "opacity-100"
           }`}
         ></div>
@@ -65,7 +65,7 @@ const CImage: React.FC<CImageProps> = ({
         onLoadingComplete={handleLoad}
         // onLoadingComplete={() => setLoaded(true)}
         style={{ ...style, opacity: loaded ? 1 : 0 }}
-        className={`${className} transition-opacity duration-500 ${
+        className={`${className} rounded-lg transition-opacity duration-500 ${
           loaded ? "opacity-100" : "opacity-0"
         }`}
       />
@@ -77,12 +77,13 @@ const CImage: React.FC<CImageProps> = ({
                 <BsThreeDots size={20} />
               </Button>
             </ModalTrigger>
-            <ModalContent className=" h-fit md:w-fit p-2  ">
+            <ModalContent className=" h-fit md:w-fit p-2 overflow-y-none  ">
               <div className="flex items-start flex-col ">
                 <ModalClose>
                   <a download={src} href={src}>
                     <Button
                       onClick={() => toast.success("Download Started")}
+                      className="w-full"
                       variant={"ghost"}
                     >
                       <Download size={15} />
@@ -91,7 +92,7 @@ const CImage: React.FC<CImageProps> = ({
                   </a>
                 </ModalClose>
                 <ModalClose>
-                  <Button onClick={handleCopy} variant={"ghost"}>
+                  <Button onClick={handleCopy} className="w-full" variant={"ghost"}>
                     <Clipboard size={15} />
                     Copy Link
                   </Button>

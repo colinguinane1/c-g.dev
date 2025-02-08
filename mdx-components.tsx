@@ -8,9 +8,13 @@ import StackCardExample from "./components/stack-card-example";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { ExternalLink } from "lucide-react";
 import type { MDXComponents } from "mdx/types";
+import CImage from "./components/c-image";
+import ImageExample from "./components/c-image-example";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
+    ImageExample: (props) => <ImageExample {...props}/>,
+    CImage: (props) => <CImage{...props}/>,
     ResponsiveModal: (props) => <ResponsiveModal {...props} />,
     Tabs: (props) => <Tabs {...props} />,
     TabsList: (props) => <TabsList {...props} />,

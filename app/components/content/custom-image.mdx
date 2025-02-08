@@ -1,0 +1,228 @@
+export const metadata = {
+  title: "Custom Image",
+  publishDate: "Febuary 2nd 2025",
+  description:
+    "A image component with loading skeleton and dropdown menu.",
+  published: true,
+};
+
+import MdxLayout from "@/components/mdx/layout.tsx";
+
+<Tabs defaultValue="preview">
+<TabsList>  <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger></TabsList>
+          <TabsContent value="preview">
+                <Viewport >
+  <ImageExample/>
+</Viewport>    </TabsContent> <TabsContent value="code">
+   ```tsx showLineNumbers  
+   import CImage from "./c-image";
+
+const ImageExample = () => {
+    return (
+        <CImage width={300} height={300} delay={2000} src="/example.jpg" />
+    )
+}
+
+export default ImageExample
+```
+ </TabsContent></Tabs>
+
+
+
+I created this to show a loading skeleton while an image loads instead of abruptly popping in.
+
+## Installation
+
+<Tabs defaultValue="cli">
+        <TabsList className="">
+          <TabsTrigger value="cli">CLI</TabsTrigger>
+          <TabsTrigger value="manual">Manual</TabsTrigger>
+        </TabsList>
+        <TabsContent value="cli">
+     ```bash
+     npx shadcn@latest add "https://c-g.dev/c-image.json"
+     ```
+        </TabsContent>
+        <TabsContent value="manual">
+        Create a file called **c-image.tsx** in the **components/ui** directory and add the following code:
+        ```tsx showLineNumbers  
+"use client";
+
+import { Button } from "./ui/button";
+import { ModalRoot, ModalContent, ModalTrigger, ModalClose } from "./ui/modal";
+import { Clipboard, Download } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
+import { BsThreeDots } from "react-icons/bs";
+import { toast } from "sonner";
+
+interface CImageProps {
+  src: string;
+  alt?: string;
+  width?: number;
+  layout?: "fill" | "responsive" | "fixed" | "intrinsic";
+  height?: number;
+  className?: string;
+  style?: object;
+  delay?: number;
+}
+
+const CImage: React.FC<CImageProps> = ({
+  src,
+  alt = "image",
+  className,
+  layout,
+  width = 500,
+  height = 500,
+  delay,
+  style = {},
+}) => {
+  const [loaded, setLoaded] = useState(false);
+
+  const handleLoad = () => {
+    if (delay) {
+      setTimeout(() => {
+        setLoaded(true);
+      }, delay);
+    } else {
+      setLoaded(true);
+    }
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(src);
+    toast.success("Link Copied to Clipboard");
+  };
+
+  return (
+    <div className="relative w-full h-full">
+      {!loaded && (
+        <div
+          className={`absolute inset-0 shadow-2xl bg-card flex justify-center items-center animate-pulse transition-opacity bg-card ${
+            loaded ? "opacity-0" : "opacity-100"
+          }`}
+        ></div>
+      )}
+
+      <Image
+        src={src}
+        alt={alt}
+        layout={layout}
+        width={width}
+        height={height}
+        onLoadingComplete={handleLoad}
+        // onLoadingComplete={() => setLoaded(true)}
+        style={{ ...style, opacity: loaded ? 1 : 0 }}
+        className={`${className} rounded-lg transition-opacity duration-500 ${
+          loaded ? "opacity-100" : "opacity-0"
+        }`}
+      />
+      {loaded && (
+        <div className={`absolute bottom-2 right-2`}>
+          <ModalRoot>
+            <ModalTrigger>
+              <Button variant={"ghost"} size={"icon"}>
+                <BsThreeDots size={20} />
+              </Button>
+            </ModalTrigger>
+            <ModalContent className=" h-fit md:w-fit p-2 overflow-y-none  ">
+              <div className="flex items-start flex-col ">
+                <ModalClose>
+                  <a download={src} href={src}>
+                    <Button
+                      onClick={() => toast.success("Download Started")}
+                      variant={"ghost"}
+                    >
+                      <Download size={15} />
+                      Download Image
+                    </Button>
+                  </a>
+                </ModalClose>
+                <ModalClose>
+                  <Button onClick={handleCopy} variant={"ghost"}>
+                    <Clipboard size={15} />
+                    Copy Link
+                  </Button>
+                </ModalClose>
+              </div>
+            </ModalContent>
+          </ModalRoot>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default CImage;
+
+
+      ```
+        </TabsContent>
+      </Tabs>
+
+## Usage
+
+Unlike a traditional component, i decide to use an array of strings passed as props to render the pre-defined technologies. So that you can render many cards with one line of code.
+
+ <Tabs defaultValue="preview">
+        <TabsList className="">
+          <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger>
+        </TabsList>
+        <TabsContent value="preview">
+    <Viewport><StackCardExample/></Viewport>
+        </TabsContent>
+        <TabsContent value="code">
+         ```tsx showLineNumbers
+ import StackCard from "./stack-card";
+ 
+export default function StackCardExample() {
+  
+  const stack = ["TypeScript", "Firebase", "Next.js"];
+  
+  return (
+         <div className="flex flex-wrap gap-4">
+            {stack.map((tech: string) => (
+               <StackCard key={tech} tech={tech} showLabel />
+            ))}
+    </div>
+  );
+}
+
+         ```
+        </TabsContent>
+      </Tabs>
+
+
+
+There is also a fallback if the technology is not recognized.
+
+         <Viewport >
+  <StackCard tech={"Nuxt"} showLabel showDescription />
+</Viewport>
+
+You can add more technologies by adding to the Skills array in **stack-card.tsx**
+Heres how you can add your own technology to the card:
+
+```tsx showLineNumbers
+// stack-card.tsx
+// Example of adding a technology
+export const Skills = [
+  {
+    label: "Angular", // The name of the technology
+    color: "100, 149, 237", // The color of the technology in hsl
+    icon: <FaAngular size={iconSize} color="CornflowerBlue" />, // Icon
+    description: "Structured Database", // Description of the technology
+  },
+  ...]
+```
+
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+
+
+

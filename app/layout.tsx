@@ -66,9 +66,9 @@ export default function RootLayout({
     <ViewTransitions>
       <html
         lang="en"
-        className={` ${dm_sans.className} grid place-content-center antialiased`}
+        className={` ${dm_sans.className} grid bg-background place-content-center antialiased`}
       >
-        <body className="max-w-2xl min-w-screen min-w-96 min-h-screen overflow-x-hidden">
+        <body className="max-w-2xl min-w-screen bg-background min-w-96 min-h-screen overflow-x-hidden">
           <div vaul-drawer-wrapper="">
             <div className="bg-background">
               <ThemeProvider
