@@ -69,7 +69,7 @@ export default async function DocsPage(props: {
                   src={metadata.image ? metadata.image : "/gradient.jpg"}
                   width={800}
                   height={450}
-                  delay={1000}
+                  delay={2000}
                   alt="Blog Post Image"
                   className="h-full w-full rounded-md transition-all group-hover:scale-[1.01]"
                   style={{

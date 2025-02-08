@@ -1,15 +1,14 @@
 "use client";
 
-import Skeleton from "@mui/material/Skeleton";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface CImageProps {
   src: string;
   alt: string;
   width?: number;
+  layout?: "fill" | "responsive" | "fixed" | "intrinsic";
   height?: number;
-  layout?: string;
   className?: string;
   style?: object;
   delay?: number;
@@ -19,45 +18,53 @@ const CImage: React.FC<CImageProps> = ({
   src,
   alt = "image",
   className,
-  layout = "intrinsic",
+  layout,
   width = 500,
   height = 500,
-  delay = 0,
+  delay,
   style = {},
 }) => {
   const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoaded(true);
-    }, delay);
+  // useEffect(() => {
+  //   const img = new window.Image();
+  //   img.src = src;
+  //   img.onload = () => {
+  //     setLoaded(true);
+  //   };
+  // }, [src]);
 
-    return () => clearTimeout(timer);
-  }, [delay]);
+  const handleLoad = () => {
+    if (delay) {
+      setTimeout(() => {
+        setLoaded(true);
+      }, delay);
+    }
+    setLoaded(true);
+  };
 
   return (
     <>
       {!loaded && (
         <div
-          className={`flex justify-center aspect-video w-full h-full items-center`}
+          className={`flex absolute aspect-video justify-center items-center transition-opacity duration-500 ${
+            loaded ? "opacity-0" : "opacity-100"
+          }`}
         >
-          <Skeleton
-            animation="wave"
-            variant="rectangular"
-            className="w-full h-full"
-            sx={{ bgcolor: "black.900" }}
-          />
+          <div className="animate-pulse bg-card w-full h-full relative"></div>
         </div>
       )}
       <Image
         src={src}
         alt={alt}
         layout={layout}
-        className={className}
         width={width}
         height={height}
-        onLoadingComplete={() => setLoaded(true)}
-        style={{ ...style, display: loaded ? "block" : "none" }}
+        onLoadingComplete={handleLoad}
+        style={{ ...style, opacity: loaded ? 1 : 0 }}
+        className={`${className} transition-opacity duration-500 ${
+          loaded ? "opacity-100" : "opacity-0"
+        }`}
       />
     </>
   );
