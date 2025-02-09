@@ -16,11 +16,11 @@ import MdxLayout from "@/components/mdx/layout.tsx";
   <ImageExample/>
 </Viewport>    </TabsContent> <TabsContent value="code">
    ```tsx showLineNumbers  
-   import CImage from "./c-image";
+import CImage from "./c-image";
 
 const ImageExample = () => {
     return (
-        <CImage width={300} height={300} delay={2000} src="/example.jpg" />
+        <CImage dropdown width={300} height={300} delay={2500}  src="/example.jpg" />
     )
 }
 
@@ -48,7 +48,6 @@ I created this to show a loading skeleton while an image loads instead of abrupt
         Create a file called **c-image.tsx** in the **components/ui** directory and add the following code:
         ```tsx showLineNumbers  
 "use client";
-
 import { Button } from "./ui/button";
 import { ModalRoot, ModalContent, ModalTrigger, ModalClose } from "./ui/modal";
 import { Clipboard, Download } from "lucide-react";
@@ -59,6 +58,8 @@ import { toast } from "sonner";
 
 interface CImageProps {
   src: string;
+  skeleton?: boolean
+  dropdown?: boolean,
   alt?: string;
   width?: number;
   layout?: "fill" | "responsive" | "fixed" | "intrinsic";
@@ -71,6 +72,8 @@ interface CImageProps {
 const CImage: React.FC<CImageProps> = ({
   src,
   alt = "image",
+  skeleton = true,
+  dropdown = false,
   className,
   layout,
   width = 500,
@@ -78,7 +81,7 @@ const CImage: React.FC<CImageProps> = ({
   delay,
   style = {},
 }) => {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(skeleton ? false : true);
 
   const handleLoad = () => {
     if (delay) {
@@ -96,10 +99,10 @@ const CImage: React.FC<CImageProps> = ({
   };
 
   return (
-    <div className="relative w-full h-full">
-      {!loaded && (
+    <div className="relative ">
+      {!loaded && skeleton && (
         <div
-          className={`absolute inset-0 shadow-2xl bg-card flex justify-center items-center animate-pulse transition-opacity bg-card ${
+          className={`absolute inset-0 shadow-2xl  flex justify-center items-center animate-pulse transition-opacity bg-card ${
             loaded ? "opacity-0" : "opacity-100"
           }`}
         ></div>
@@ -112,13 +115,12 @@ const CImage: React.FC<CImageProps> = ({
         width={width}
         height={height}
         onLoadingComplete={handleLoad}
-        // onLoadingComplete={() => setLoaded(true)}
-        style={{ ...style, opacity: loaded ? 1 : 0 }}
+        style={style}
         className={`${className} rounded-lg transition-opacity duration-500 ${
-          loaded ? "opacity-100" : "opacity-0"
+          loaded && skeleton ? "opacity-100" : "opacity-0"
         }`}
       />
-      {loaded && (
+      {loaded && dropdown && (
         <div className={`absolute bottom-2 right-2`}>
           <ModalRoot>
             <ModalTrigger>
@@ -132,6 +134,7 @@ const CImage: React.FC<CImageProps> = ({
                   <a download={src} href={src}>
                     <Button
                       onClick={() => toast.success("Download Started")}
+                      className="w-full"
                       variant={"ghost"}
                     >
                       <Download size={15} />
@@ -140,7 +143,7 @@ const CImage: React.FC<CImageProps> = ({
                   </a>
                 </ModalClose>
                 <ModalClose>
-                  <Button onClick={handleCopy} variant={"ghost"}>
+                  <Button onClick={handleCopy} className="w-full" variant={"ghost"}>
                     <Clipboard size={15} />
                     Copy Link
                   </Button>
@@ -155,8 +158,6 @@ const CImage: React.FC<CImageProps> = ({
 };
 
 export default CImage;
-
-
       ```
         </TabsContent>
       </Tabs>
