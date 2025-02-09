@@ -3,7 +3,7 @@
 import { ModeToggle } from "./theme-buton";
 import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { Cross as Hamburger } from "hamburger-react";
+import { Squeeze as Hamburger } from "hamburger-react";
 import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
@@ -31,16 +31,17 @@ export default function NHeader() {
   return (
     <nav className="">
       <motion.header
-        initial={{ y: -100 }}
+         initial={{ y: -100, filter: "blur(10px)" }}
         animate={{
           height: isOpen ? `${navHeight + 60}px` : "64px",
           y: 0, // 64px is the closed header height
+        filter: "blur(0px)"
         }}
         transition={{
           duration: 0.8,
           ease: [0.16, 1, 0.3, 1],
         }}
-        exit={{ y: 0 }}
+        exit={{ y: 0,    filter: "blur(10px)",  }}
         className={`flex w-full  md:absolute  md:top-0 left-0     items-center ${
           isOpen && "border-b bg-background/50 backdrop-blur-lg"
         }  flex-col px-4 py-1  overflow-hidden z-20`} // Prevent content overflow
@@ -52,20 +53,20 @@ export default function NHeader() {
             </Link>
             {/* <p>{currentPath}</p> */}
           </div>{" "}
-          <div className=" hidden md:flex  items-center gap-6">
+          <div className=" hidden md:flex  items-center gap-2">
             <ModeToggle />
             {NavigationData.map((nav) => (
+              <>
               <Link
-                className={`${
-                  pathname === nav.href &&
-                  "bg-card rounded-md text-secondary-foreground"
-                }
-                } font-bold p-2`}
+                className={`${pathname === nav.href && "bg-card rounded-lg font-bold "} p-2 hover:bg-card rounded-lg transition-all `}
+              
                 key={nav.name}
                 href={nav.href}
               >
                 {nav.name}
               </Link>
+              <div className="bg-card rounded-md text-secondary-foreground">
+                </div></>
             ))}
           </div>
           <div className="md:hidden flex gap-2 items-center justify-center">
@@ -95,15 +96,11 @@ export default function NHeader() {
                 duration: 0.4,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="flex flex-col gap-4 pb-4 items-center justify-center"
+              className="flex flex-col gap-2 items-center justify-center"
             >
               {NavigationData.map((nav) => (
                 <Link
-                  className={`${
-                    pathname === nav.href &&
-                    "bg-card text-secondary-foreground rounded-md"
-                  }
-                } font-bold p-2 text-3xl`}
+                className={`${pathname === nav.href && "bg-card  rounded-lg font-bold "} p-2 text-center w-40 text-xl rounded-lg hover:bg-card transition-all `}
                   key={nav.name}
                   href={nav.href}
                 >

@@ -66,9 +66,9 @@ export default function RootLayout({
     <ViewTransitions>
       <html
         lang="en"
-        className={` ${dm_sans.className} grid bg-background place-content-center antialiased`}
+        className={` ${dm_sans.className} grid bg-background  place-content-center antialiased`}
       >
-        <body className="max-w-2xl min-w-screen bg-background min-w-96 min-h-screen overflow-x-hidden">
+        <body className="max-w-2xl w-screen  bg-background ">
           <div vaul-drawer-wrapper="">
             <div className="bg-background">
               <ThemeProvider
@@ -78,7 +78,7 @@ export default function RootLayout({
               >
                 <Toaster richColors position="bottom-center" />
                 <Header />
-                <div className="w-screen md:w-fit min-h-screen md:mt-16">
+                <div className="md:mt-16 min-h-screen">
                   {children}
                 </div>
                 <Footer />
