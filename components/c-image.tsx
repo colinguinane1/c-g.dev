@@ -10,6 +10,8 @@ import { toast } from "sonner";
 
 interface CImageProps {
   src: string;
+  skeleton?: boolean
+  dropdown?: boolean,
   alt?: string;
   width?: number;
   layout?: "fill" | "responsive" | "fixed" | "intrinsic";
@@ -22,6 +24,8 @@ interface CImageProps {
 const CImage: React.FC<CImageProps> = ({
   src,
   alt = "image",
+  skeleton = true,
+  dropdown = false,
   className,
   layout,
   width = 500,
@@ -29,7 +33,7 @@ const CImage: React.FC<CImageProps> = ({
   delay,
   style = {},
 }) => {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(skeleton ? false : true);
 
   const handleLoad = () => {
     if (delay) {
@@ -47,10 +51,10 @@ const CImage: React.FC<CImageProps> = ({
   };
 
   return (
-    <div className="relative w-full h-full">
-      {!loaded && (
+    <div className="relative ">
+      {!loaded && skeleton && (
         <div
-          className={`absolute inset-0 shadow-2xl bg-card flex justify-center items-center animate-pulse transition-opacity bg-card ${
+          className={`absolute inset-0 shadow-2xl  flex justify-center items-center animate-pulse transition-opacity bg-card ${
             loaded ? "opacity-0" : "opacity-100"
           }`}
         ></div>
@@ -63,13 +67,12 @@ const CImage: React.FC<CImageProps> = ({
         width={width}
         height={height}
         onLoadingComplete={handleLoad}
-        // onLoadingComplete={() => setLoaded(true)}
-        style={{ ...style, opacity: loaded ? 1 : 0 }}
+        style={style}
         className={`${className} rounded-lg transition-opacity duration-500 ${
-          loaded ? "opacity-100" : "opacity-0"
+          loaded && skeleton ? "opacity-100" : "opacity-0"
         }`}
       />
-      {loaded && (
+      {loaded && dropdown && (
         <div className={`absolute bottom-2 right-2`}>
           <ModalRoot>
             <ModalTrigger>

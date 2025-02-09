@@ -21,9 +21,7 @@ export default function ComponentList({
             See More <ChevronRight size={15} />
           </Link>
         </div>{" "}
-        <p className="border bg-green-500/10 rounded-md w-fit px-3 mb-4">
-          + Added shadcn CLI support.
-        </p>
+       
         <div className="grid gap-2">
           {components.map((component, idx) => (
             <ComponentCard
