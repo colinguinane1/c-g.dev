@@ -11,6 +11,8 @@ import { toast } from "sonner";
 
 interface CImageProps {
   src: string;
+  pause?: boolean;
+  children?: React.ReactNode;
   skeleton?: boolean;
   cache?: boolean;
   dropdown?: boolean;
@@ -25,8 +27,10 @@ interface CImageProps {
 }
 
 const CImage: React.FC<CImageProps> = ({
+  children,
   src,
   alt = "image",
+  pause = false,
   cache = true,
   skeleton = true,
   loadingIndicator = false,
@@ -43,7 +47,7 @@ const CImage: React.FC<CImageProps> = ({
   useEffect(() => {
     const img = new window.Image();
     img.src = src;
-    if (img.complete && cache) {
+    if (img.complete && cache && !pause) {
       setLoaded(true);
     }
   }, []);
@@ -77,10 +81,12 @@ const CImage: React.FC<CImageProps> = ({
         height={height}
         quality={100}
         onLoadingComplete={() => {
-          if (delay) {
+          if (delay && !pause) {
             setTimeout(() => setLoaded(true), delay);
           } else {
-            setLoaded(true);
+            if (!pause) {
+              setLoaded(true);
+            }
           }
         }}
         style={style}
@@ -88,7 +94,9 @@ const CImage: React.FC<CImageProps> = ({
           loaded ? "opacity-100" : "opacity-0"
         }`}
       />
-
+      {children && loaded && (
+        <div className="absolute bottom-2 left-2 p-2 ">{children}</div>
+      )}
       {loaded && dropdown && (
         <div className="absolute bottom-2 right-2">
           <ModalRoot>

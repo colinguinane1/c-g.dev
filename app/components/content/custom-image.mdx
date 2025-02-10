@@ -12,7 +12,7 @@ import MdxLayout from "@/components/mdx/layout.tsx";
 <TabsList>  <TabsTrigger value="preview">Preview</TabsTrigger>
           <TabsTrigger value="code">Code</TabsTrigger></TabsList>
           <TabsContent value="preview">
-                <Viewport >
+                <Viewport reloadButton >
   <ImageExample/>
 </Viewport>    </TabsContent> <TabsContent value="code">
    ```tsx showLineNumbers  
@@ -32,9 +32,11 @@ export default ImageExample
 
 I created this to show a loading skeleton while an image loads instead of abruptly popping in, it also includes a dropdown menu, and the image will still cache normally.
 
+It is build ontop of `next/image` so it is best used in a **Next.js** project.
+
 ## Installation
 
-<Alert><AlertTitle>Warning</AlertTitle><AlertDescription>You should have my other component, [modal](/components/ui-0) installed before installing this component.</AlertDescription></Alert>
+<Alert variant="warning"><AlertTitle>Warning</AlertTitle><AlertDescription>You should have my other component, [modal](/components/ui-0) installed before installing this component.</AlertDescription></Alert>
 
 <Tabs defaultValue="cli">
         <TabsList className="">
@@ -166,7 +168,14 @@ export default CImage;
 
 ## Usage
 
-```tsx  
+<Tabs defaultValue="preview">
+<TabsList>  <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger></TabsList>
+          <TabsContent value="preview">
+                <Viewport reloadButton >
+   <CImage dropdown width={300} height={300} loadingIndicator pause  src="/example.jpg" />
+</Viewport>    </TabsContent> <TabsContent value="code">
+   ```tsx showLineNumbers  
 import CImage from "./c-image";
 
 const ImageExample = () => {
@@ -177,6 +186,7 @@ const ImageExample = () => {
 
 export default ImageExample
 ```
+ </TabsContent></Tabs>
 
 ## Props
 
