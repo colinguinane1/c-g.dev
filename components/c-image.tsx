@@ -12,6 +12,7 @@ import { toast } from "sonner";
 interface CImageProps {
   src: string;
   pause?: boolean;
+  hide?: boolean;
   children?: React.ReactNode;
   skeleton?: boolean;
   cache?: boolean;
@@ -30,6 +31,7 @@ const CImage: React.FC<CImageProps> = ({
   children,
   src,
   alt = "image",
+  hide,
   pause = false,
   cache = true,
   skeleton = true,
@@ -43,6 +45,7 @@ const CImage: React.FC<CImageProps> = ({
   style = {},
 }) => {
   const [loaded, setLoaded] = useState(skeleton ? false : true);
+  const [imageHidden, setImageHidden] = useState(hide ? true : false);
 
   useEffect(() => {
     const img = new window.Image();
@@ -72,7 +75,15 @@ const CImage: React.FC<CImageProps> = ({
           )}
         </div>
       )}
-
+      {loaded && imageHidden && (
+        <div
+          className={`backdrop-blur-3xl grid place-content-center absolute w-full h-full rounded-lg z-10 overflow-hidden transition-opacity duration-500 ${
+            imageHidden ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Button onClick={() => setImageHidden(false)}>Unhide</Button>
+        </div>
+      )}
       <Image
         src={src}
         alt={alt}
@@ -90,15 +101,16 @@ const CImage: React.FC<CImageProps> = ({
           }
         }}
         style={style}
-        className={`${className} rounded-lg transition-opacity duration-500 ${
+        className={`${className} rounded-lg z-0  transition-opacity duration-500 ${
           loaded ? "opacity-100" : "opacity-0"
         }`}
       />
+
       {children && loaded && (
         <div className="absolute bottom-2 left-2 p-2 ">{children}</div>
       )}
       {loaded && dropdown && (
-        <div className="absolute bottom-2 right-2">
+        <div className="absolute bottom-2  right-2">
           <ModalRoot>
             <ModalTrigger>
               <Button variant="ghost" size="icon">
