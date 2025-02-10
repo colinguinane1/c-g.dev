@@ -1,20 +1,20 @@
-import CustomAlert from "./components/mdx/alert";
+import CImage from "./components/c-image";
+import ImageExample from "./components/c-image-example";
 import Code from "./components/mdx/custom-code";
 import FileName from "./components/mdx/filename";
 import Viewport from "./components/mdx/viewport";
 import ResponsiveModal from "./components/modal-example";
 import StackCard from "./components/stack-card";
 import StackCardExample from "./components/stack-card-example";
+import { Alert, AlertDescription, AlertTitle } from "./components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
-import { ExternalLink } from "lucide-react";
 import type { MDXComponents } from "mdx/types";
-import CImage from "./components/c-image";
-import ImageExample from "./components/c-image-example";
+import { GoArrowUpRight } from "react-icons/go";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    ImageExample: (props) => <ImageExample {...props}/>,
-    CImage: (props) => <CImage{...props}/>,
+    ImageExample: (props) => <ImageExample {...props} />,
+    CImage: (props) => <CImage {...props} />,
     ResponsiveModal: (props) => <ResponsiveModal {...props} />,
     Tabs: (props) => <Tabs {...props} />,
     TabsList: (props) => <TabsList {...props} />,
@@ -23,7 +23,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     StackCard: (props) => <StackCard {...props} />,
     StackCardExample: (props) => <StackCardExample {...props} />,
     ...components,
-    Alert: CustomAlert,
+    Alert: (props) => <Alert {...props} />,
+    AlertTitle: (props) => <AlertTitle {...props} />,
+    AlertDescription: (props) => <AlertDescription {...props} />,
     FileName: (props) => <FileName {...props} />,
     Viewport: (props) => <Viewport {...props} />,
     h1: (props) => (
@@ -62,6 +64,18 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {...props}
       />
     ),
+    table: (props) => (
+      <table
+        className="w-full border rounded-lg overflow-hidden text-left text-sm"
+        {...props}
+      />
+    ),
+    thead: (props) => <thead className=" font-semibold" {...props} />,
+    th: (props) => <th className="border bg-card  p-4 " {...props} />,
+    td: (props) => <td className="border  p-6 " {...props} />,
+    tbody: (props) => (
+      <tbody className="divide-y  divide-gray-200" {...props} />
+    ),
     p: (props) => <p className="mb-b py-4" {...props} />,
     li: (props) => <li className=" py-2" {...props} />,
     ul: (props) => <ul className="list-disc pl-6" {...props} />,
@@ -76,9 +90,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     pre: (props) => <Code {...props} />,
     a: (props) => (
-      <span className="inline-flex items-center gap-1 text-blue-500">
+      <span className="inline-flex items-center text-blue-500">
         <a target="__blank" className="" {...props} />
-        <ExternalLink size={12} />
+        <GoArrowUpRight size={12} />
       </span>
     ),
   };

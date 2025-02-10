@@ -34,7 +34,6 @@ export default async function Component() {
                       layout="responsive"
                       width={600}
                       height={400}
-                      delay={1000}
                       className="w-full h-full"
                     />
                   </div>

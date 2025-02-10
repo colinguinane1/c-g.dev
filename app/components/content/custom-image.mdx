@@ -30,9 +30,11 @@ export default ImageExample
 
 
 
-I created this to show a loading skeleton while an image loads instead of abruptly popping in.
+I created this to show a loading skeleton while an image loads instead of abruptly popping in, it also includes a dropdown menu, and the image will still cache normally.
 
 ## Installation
+
+<Alert><AlertTitle>Warning</AlertTitle><AlertDescription>You should have my other component, [modal](/components/ui-0) installed before installing this component.</AlertDescription></Alert>
 
 <Tabs defaultValue="cli">
         <TabsList className="">
@@ -164,60 +166,39 @@ export default CImage;
 
 ## Usage
 
-Unlike a traditional component, i decide to use an array of strings passed as props to render the pre-defined technologies. So that you can render many cards with one line of code.
+```tsx  
+import CImage from "./c-image";
 
- <Tabs defaultValue="preview">
-        <TabsList className="">
-          <TabsTrigger value="preview">Preview</TabsTrigger>
-          <TabsTrigger value="code">Code</TabsTrigger>
-        </TabsList>
-        <TabsContent value="preview">
-    <Viewport><StackCardExample/></Viewport>
-        </TabsContent>
-        <TabsContent value="code">
-         ```tsx showLineNumbers
- import StackCard from "./stack-card";
- 
-export default function StackCardExample() {
-  
-  const stack = ["TypeScript", "Firebase", "Next.js"];
-  
-  return (
-         <div className="flex flex-wrap gap-4">
-            {stack.map((tech: string) => (
-               <StackCard key={tech} tech={tech} showLabel />
-            ))}
-    </div>
-  );
+const ImageExample = () => {
+    return (
+        <CImage dropdown width={300} height={300} delay={2500}  src="/example.jpg" />
+    )
 }
 
-         ```
-        </TabsContent>
-      </Tabs>
-
-
-
-There is also a fallback if the technology is not recognized.
-
-         <Viewport >
-  <StackCard tech={"Nuxt"} showLabel showDescription />
-</Viewport>
-
-You can add more technologies by adding to the Skills array in **stack-card.tsx**
-Heres how you can add your own technology to the card:
-
-```tsx showLineNumbers
-// stack-card.tsx
-// Example of adding a technology
-export const Skills = [
-  {
-    label: "Angular", // The name of the technology
-    color: "100, 149, 237", // The color of the technology in hsl
-    icon: <FaAngular size={iconSize} color="CornflowerBlue" />, // Icon
-    description: "Structured Database", // Description of the technology
-  },
-  ...]
+export default ImageExample
 ```
+
+## Props
+
+
+| Name      | Type    | Default   | Description                       |
+|-----------|---------|-----------|-----------------------------------|
+| `src`     | `string`|           | The image source                  |
+| `alt`     | `string`| `image`   | The image alt text                |
+| `skeleton`| `boolean`| `true`    | Show a loading skeleton           |
+| `dropdown`| `boolean`| `false`   | Show a dropdown menu              |
+| `width`   | `number` | `500`     | The image width                   |
+| `height`  | `number` | `500`     | The image height                  |
+| `layout`  | `string` | `responsive`| The image layout                |
+| `loadingIndicator`  | `boolean` | `false`| Show a loading indicator ontop of the skeleton                |
+| `cache`   | `boolean`| `true`    | Cache the image                   |
+| `className`| `string`|           | The image class                   |
+| `style`   | `object` |           | The image style                   |
+| `delay`   | `number` |           | The delay before the image loads  |
+
+
+
+
 
 
 export default function MDXPage({ children }) {

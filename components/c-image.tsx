@@ -1,16 +1,20 @@
 "use client";
+
 import { Button } from "./ui/button";
 import { ModalRoot, ModalContent, ModalTrigger, ModalClose } from "./ui/modal";
 import { Clipboard, Download } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
+import { Oval } from "react-loader-spinner";
 import { toast } from "sonner";
 
 interface CImageProps {
   src: string;
   skeleton?: boolean;
+  cache?: boolean;
   dropdown?: boolean;
+  loadingIndicator?: boolean;
   alt?: string;
   width?: number;
   layout?: "fill" | "responsive" | "fixed" | "intrinsic";
@@ -23,7 +27,9 @@ interface CImageProps {
 const CImage: React.FC<CImageProps> = ({
   src,
   alt = "image",
+  cache = true,
   skeleton = true,
+  loadingIndicator = false,
   dropdown = false,
   className,
   layout,
@@ -32,44 +38,51 @@ const CImage: React.FC<CImageProps> = ({
   delay,
   style = {},
 }) => {
-  const imgRef = useRef<HTMLImageElement | null>(null);
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(skeleton ? false : true);
 
   useEffect(() => {
-    if (imgRef.current?.complete) {
+    const img = new window.Image();
+    img.src = src;
+    if (img.complete && cache) {
       setLoaded(true);
     }
   }, []);
 
-  const handleLoad = () => {
-    if (delay) {
-      setTimeout(() => {
-        setLoaded(true);
-      }, delay);
-    } else {
-      setLoaded(true);
-    }
-  };
-
   const handleCopy = () => {
-    navigator.clipboard.writeText(src);
+    navigator.clipboard.writeText(`https://c-g.dev${src}`);
     toast.success("Link Copied to Clipboard");
   };
 
   return (
     <div className="relative">
       {!loaded && skeleton && (
-        <div className="absolute inset-0 shadow-2xl flex justify-center items-center animate-pulse transition-opacity bg-card" />
+        <div className="absolute inset-0 rounded-lg transition-all shadow-2xl flex justify-center items-center animate-pulse bg-card shimmer">
+          {loadingIndicator && (
+            <Oval
+              visible={true}
+              height="20"
+              width="20"
+              color="gray"
+              secondaryColor="black"
+            />
+          )}
+        </div>
       )}
 
       <Image
-        ref={imgRef}
         src={src}
         alt={alt}
         layout={layout}
         width={width}
         height={height}
-        onLoad={handleLoad}
+        quality={100}
+        onLoadingComplete={() => {
+          if (delay) {
+            setTimeout(() => setLoaded(true), delay);
+          } else {
+            setLoaded(true);
+          }
+        }}
         style={style}
         className={`${className} rounded-lg transition-opacity duration-500 ${
           loaded ? "opacity-100" : "opacity-0"
@@ -98,8 +111,12 @@ const CImage: React.FC<CImageProps> = ({
                     </Button>
                   </a>
                 </ModalClose>
-                <ModalClose>
-                  <Button onClick={handleCopy} className="w-full" variant="ghost">
+                <ModalClose className="md:w-full">
+                  <Button
+                    onClick={handleCopy}
+                    className="w-full"
+                    variant="ghost"
+                  >
                     <Clipboard size={15} />
                     Copy Link
                   </Button>
@@ -114,4 +131,3 @@ const CImage: React.FC<CImageProps> = ({
 };
 
 export default CImage;
-
