@@ -81,7 +81,9 @@ const CImage: React.FC<CImageProps> = ({
             imageHidden ? "opacity-100" : "opacity-0"
           }`}
         >
-          <Button onClick={() => setImageHidden(false)}>Unhide</Button>
+          <Button variant={"ghost"} onClick={() => setImageHidden(false)}>
+            Unhide
+          </Button>
         </div>
       )}
       <Image
