@@ -64,12 +64,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {...props}
       />
     ),
-    table: (props) => (
-      <table
-        className="w-full border rounded-lg overflow-hidden text-left text-sm"
-        {...props}
-      />
-    ),
+  table: (props) => (
+  <div className="w-full overflow-x-auto">
+    <table
+      className="w-full min-w-max border rounded-lg overflow-hidden text-left text-sm"
+      {...props}
+    />
+  </div>
+),
     thead: (props) => <thead className=" font-semibold" {...props} />,
     th: (props) => <th className="border bg-card  p-2 " {...props} />,
     td: (props) => <td className="border  p-2 " {...props} />,
