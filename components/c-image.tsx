@@ -1,17 +1,16 @@
 "use client";
-
 import { Button } from "./ui/button";
 import { ModalRoot, ModalContent, ModalTrigger, ModalClose } from "./ui/modal";
 import { Clipboard, Download } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { toast } from "sonner";
 
 interface CImageProps {
   src: string;
-  skeleton?: boolean
-  dropdown?: boolean,
+  skeleton?: boolean;
+  dropdown?: boolean;
   alt?: string;
   width?: number;
   layout?: "fill" | "responsive" | "fixed" | "intrinsic";
@@ -33,7 +32,14 @@ const CImage: React.FC<CImageProps> = ({
   delay,
   style = {},
 }) => {
-  const [loaded, setLoaded] = useState(skeleton ? false : true);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    if (imgRef.current?.complete) {
+      setLoaded(true);
+    }
+  }, []);
 
   const handleLoad = () => {
     if (delay) {
@@ -51,43 +57,41 @@ const CImage: React.FC<CImageProps> = ({
   };
 
   return (
-    <div className="relative ">
+    <div className="relative">
       {!loaded && skeleton && (
-        <div
-          className={`absolute inset-0 shadow-2xl  flex justify-center items-center animate-pulse transition-opacity bg-card ${
-            loaded ? "opacity-0" : "opacity-100"
-          }`}
-        ></div>
+        <div className="absolute inset-0 shadow-2xl flex justify-center items-center animate-pulse transition-opacity bg-card" />
       )}
 
       <Image
+        ref={imgRef}
         src={src}
         alt={alt}
         layout={layout}
         width={width}
         height={height}
-        onLoadingComplete={handleLoad}
+        onLoad={handleLoad}
         style={style}
         className={`${className} rounded-lg transition-opacity duration-500 ${
-          loaded && skeleton ? "opacity-100" : "opacity-0"
+          loaded ? "opacity-100" : "opacity-0"
         }`}
       />
+
       {loaded && dropdown && (
-        <div className={`absolute bottom-2 right-2`}>
+        <div className="absolute bottom-2 right-2">
           <ModalRoot>
             <ModalTrigger>
-              <Button variant={"ghost"} size={"icon"}>
+              <Button variant="ghost" size="icon">
                 <BsThreeDots size={20} />
               </Button>
             </ModalTrigger>
-            <ModalContent className=" h-fit md:w-fit p-2 overflow-y-none  ">
-              <div className="flex items-start flex-col ">
+            <ModalContent className="h-fit md:w-fit p-2 overflow-y-none">
+              <div className="flex items-start flex-col">
                 <ModalClose>
                   <a download={src} href={src}>
                     <Button
                       onClick={() => toast.success("Download Started")}
                       className="w-full"
-                      variant={"ghost"}
+                      variant="ghost"
                     >
                       <Download size={15} />
                       Download Image
@@ -95,7 +99,7 @@ const CImage: React.FC<CImageProps> = ({
                   </a>
                 </ModalClose>
                 <ModalClose>
-                  <Button onClick={handleCopy} className="w-full" variant={"ghost"}>
+                  <Button onClick={handleCopy} className="w-full" variant="ghost">
                     <Clipboard size={15} />
                     Copy Link
                   </Button>
@@ -110,3 +114,4 @@ const CImage: React.FC<CImageProps> = ({
 };
 
 export default CImage;
+
