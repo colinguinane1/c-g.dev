@@ -71,8 +71,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
     thead: (props) => <thead className=" font-semibold" {...props} />,
-    th: (props) => <th className="border bg-card  p-4 " {...props} />,
-    td: (props) => <td className="border  p-6 " {...props} />,
+    th: (props) => <th className="border bg-card  p-2 " {...props} />,
+    td: (props) => <td className="border  p-2 " {...props} />,
     tbody: (props) => (
       <tbody className="divide-y  divide-gray-200" {...props} />
     ),
