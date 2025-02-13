@@ -8,6 +8,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { ViewTransitions } from "next-view-transitions";
 import { DM_Sans } from "next/font/google";
 import { Toaster } from "sonner";
+import { Theme } from "@radix-ui/themes";
+import "@radix-ui/themes/styles.css";
 
 // If loading a variable font, you don't need to specify the font weight
 const dm_sans = DM_Sans({ subsets: ["latin"] });
@@ -69,6 +71,7 @@ export default function RootLayout({
         className={` ${dm_sans.className} grid bg-background  place-content-center antialiased`}
       >
         <body className="max-w-2xl w-screen  bg-background ">
+          <Theme>
           <div vaul-drawer-wrapper="">
             <div className="bg-background">
               <ThemeProvider
@@ -84,7 +87,7 @@ export default function RootLayout({
                 <Footer />
               </ThemeProvider>
             </div>
-          </div>
+          </div></Theme>
         </body>
       </html>
       <Analytics />

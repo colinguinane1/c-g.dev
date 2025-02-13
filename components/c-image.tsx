@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { Oval } from "react-loader-spinner";
 import { toast } from "sonner";
+import { Spinner } from "@radix-ui/themes"
 
 interface CImageProps {
   src: string;
@@ -65,13 +66,8 @@ const CImage: React.FC<CImageProps> = ({
       {!loaded && skeleton && (
         <div className="absolute inset-0 rounded-lg transition-all shadow-2xl flex justify-center items-center animate-pulse bg-card shimmer">
           {loadingIndicator && (
-            <Oval
-              visible={true}
-              height="20"
-              width="20"
-              color="gray"
-              secondaryColor="black"
-            />
+            <div className="z-20"> <Spinner/></div>
+         
           )}
         </div>
       )}
