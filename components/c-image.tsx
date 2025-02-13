@@ -6,7 +6,6 @@ import { Clipboard, Download } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
-import { Oval } from "react-loader-spinner";
 import { toast } from "sonner";
 import { Spinner } from "@radix-ui/themes"
 
