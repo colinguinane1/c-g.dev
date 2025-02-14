@@ -1,3 +1,4 @@
+import CImage from "@/components/c-image";
 import StackCard from "@/components/stack-card";
 import {
   Breadcrumb,
@@ -9,7 +10,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import { getAllProjects } from "@/lib/get-projects";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -65,7 +65,7 @@ export default async function DocsPage(props: {
             {" "}
             <div className="aspect-video rounded-md w-full bg-secondary ">
               {metadata.image && (
-                <Image
+                <CImage
                   src={metadata.image ? metadata.image : "/gradient.jpg"}
                   width={800}
                   height={450}

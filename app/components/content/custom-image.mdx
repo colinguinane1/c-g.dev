@@ -1,0 +1,563 @@
+export const metadata = {
+  title: "Custom Image",
+  publishDate: "Febuary 2nd 2025",
+  description:
+    "A image component with loading skeleton and dropdown menu.",
+  published: true,
+};
+
+import MdxLayout from "@/components/mdx/layout.tsx";
+
+<Tabs defaultValue="preview">
+<TabsList>  <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger></TabsList>
+          <TabsContent value="preview">
+                <Viewport reloadButton >
+  <ImageExample previewProp={"dropdown"}/>
+</Viewport>    </TabsContent> <TabsContent value="code">
+   ```tsx showLineNumbers  
+import CImage from "./c-image";
+
+const ImageExample = () => {
+    return (
+        <CImage dropdown width={300} height={300} delay={2500}  src="/example.jpg" />
+    )
+}
+
+export default ImageExample
+```
+ </TabsContent></Tabs>
+
+
+
+I created this to show a loading skeleton while an image loads instead of abruptly popping in, it also includes a dropdown menu, and the image will still cache normally.
+
+It is build ontop of `next/image` so it is best used in a **Next.js** project.
+
+## Installation
+
+<Tabs defaultValue="cli">
+        <TabsList className="">
+          <TabsTrigger value="cli">CLI</TabsTrigger>
+          <TabsTrigger value="manual">Manual</TabsTrigger>
+        </TabsList>
+        <TabsContent value="cli">
+     ```bash
+     npx shadcn@latest add "https://c-g.dev/c-image.json"
+     ```
+        </TabsContent>
+        <TabsContent value="manual">
+        Create a file called **c-image.tsx** in the **components/ui** directory and add the following code:
+        ```tsx showLineNumbers  
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { Clipboard, Download } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { BsThreeDots } from "react-icons/bs";
+import { toast } from "sonner";
+import { Spinner } from "@radix-ui/themes"
+import { Dialog, DialogClose, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+
+interface CImageProps {
+  src: string;
+  pause?: boolean;
+  hide?: boolean;
+  children?: React.ReactNode;
+  skeleton?: boolean;
+  cache?: boolean;
+  dropdown?: boolean;
+  loadingIndicator?: boolean;
+  alt?: string;
+  width?: number;
+  layout?: "fill" | "responsive" | "fixed" | "intrinsic";
+  height?: number;
+  className?: string;
+  style?: object;
+  delay?: number;
+}
+
+const CImage: React.FC<CImageProps> = ({
+  children,
+  src,
+  alt = "image",
+  hide,
+  pause = false,
+  cache = true,
+  skeleton = true,
+  loadingIndicator = false,
+  dropdown = false,
+  className,
+  layout,
+  width = 500,
+  height = 500,
+  delay,
+  style = {},
+}) => {
+  const [loaded, setLoaded] = useState(skeleton ? false : true);
+  const [imageHidden, setImageHidden] = useState(hide ? true : false);
+
+  useEffect(() => {
+    const img = new window.Image();
+    img.src = src;
+    if (img.complete && cache && !pause) {
+      setLoaded(true);
+    }
+  }, []);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(`https://c-g.dev${src}`);
+    toast.success("Link Copied to Clipboard");
+  };
+
+  return (
+    <div className="relative">
+      {!loaded && skeleton && (
+        <div className="absolute inset-0 rounded-lg transition-all shadow-2xl flex justify-center items-center animate-pulse bg-card shimmer">
+          {loadingIndicator && (
+            <div className="z-20"> <Spinner/></div>
+         
+          )}
+        </div>
+      )}
+      {loaded && imageHidden && (
+        <div
+          className={`backdrop-blur-3xl grid place-content-center absolute w-full h-full rounded-lg z-10 overflow-hidden transition-opacity duration-500 ${
+            imageHidden ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Button variant={"ghost"} onClick={() => setImageHidden(false)}>
+            Unhide
+          </Button>
+        </div>
+      )}
+      <Image
+        src={src}
+        alt={alt}
+        layout={layout}
+        width={width}
+        height={height}
+        quality={100}
+        onLoadingComplete={() => {
+          if (delay && !pause) {
+            setTimeout(() => setLoaded(true), delay);
+          } else {
+            if (!pause) {
+              setLoaded(true);
+            }
+          }
+        }}
+        style={style}
+        className={`${className} rounded-lg z-0  transition-opacity duration-500 ${
+          loaded ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
+      {children && loaded && (
+        <div className="absolute bottom-2 left-2 p-2 ">{children}</div>
+      )}
+      {loaded && dropdown && (
+        <div className="absolute bottom-2  right-2">
+
+          <div className="hidden md:block"><Dialog><DialogTrigger> <Button variant="ghost" size="icon">
+                <BsThreeDots size={20} />
+              </Button></DialogTrigger><DialogContent className="w-fit">  <div className="flex items-start w-fit flex-col">
+                <DialogClose>
+                  <a download={src} href={src}>
+                    <Button
+                      onClick={() => toast.success("Download Started")}
+                      className="w-full"
+                      variant="ghost"
+                    >
+                      <Download size={15} />
+                      Download Image
+                    </Button>
+                  </a>
+                </DialogClose>
+                <DialogClose className="">
+                  <Button
+                    onClick={handleCopy}
+                    className="w-full"
+                    variant="ghost"
+                  >
+                    <Clipboard size={15} />
+                    Copy Link
+                  </Button>
+                </DialogClose>
+              </div></DialogContent></Dialog></div>
+              <div className="md:hidden"><Drawer><DrawerTrigger><Button variant="ghost" size="icon">
+                <BsThreeDots size={20} />
+              </Button></DrawerTrigger><DrawerContent className="h-fit pb-4 ">
+                <div className="flex items-start flex-col px-4 pt-4 gap-2">  <DrawerClose>
+                  <a download={src} href={src}>
+                    <Button
+                      onClick={() => toast.success("Download Started")}
+                      className="w-full"
+                      variant="ghost"
+                    >
+                      <Download size={15} />
+                      Download Image
+                    </Button>
+                  </a>
+                </DrawerClose>
+                <DrawerClose className="">
+                  <Button
+                    onClick={handleCopy}
+                    className="w-full"
+                    variant="ghost"
+                  >
+                    <Clipboard size={15} />
+                    Copy Link
+                  </Button>
+                </DrawerClose></div> </DrawerContent></Drawer></div>
+      
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default CImage;
+
+      ```
+        </TabsContent>
+      </Tabs>
+
+## Props
+
+### loadingIndicator
+
+This adds a loading indidcator ontop of the skeleton.
+
+<Tabs defaultValue="preview">
+<TabsList>  <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger></TabsList>
+          <TabsContent value="preview">
+                <Viewport reloadButton >
+   <ImageSpinnerExample />
+</Viewport>    </TabsContent> <TabsContent value="code">
+   ```tsx showLineNumbers  
+"use client";
+
+import CImage from "../c-image";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@radix-ui/react-label";
+import { useState } from "react";
+
+const ImageSpinnerExample = ({}: {}) => {
+  const [loadingIndicator, setLoadingIndicator] = useState(false);
+
+  return (
+    <div className="mt-4">
+      <CImage
+        loadingIndicator={loadingIndicator}
+        pause
+        width={300}
+        height={300}
+        delay={2000}
+        src="/example.jpg"
+      ></CImage>
+
+      <div className="flex items-center justify-center pt-4 space-x-2">
+        <Switch
+          id={"loading"}
+          checked={loadingIndicator}
+          onCheckedChange={() => setLoadingIndicator(!loadingIndicator)}
+        />
+        <Label htmlFor={"loading"}>Loading Indicator</Label>
+      </div>
+    </div>
+  );
+};
+
+export default ImageSpinnerExample;
+
+```
+ </TabsContent></Tabs>
+
+ ### hide
+
+ This hides the image behind a blur.
+
+ <Tabs defaultValue="preview">
+<TabsList>  <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger></TabsList>
+          <TabsContent value="preview">
+                <Viewport reloadButton >
+   <CImage  hide width={300} height={300} loadingIndicator src="/example.jpg" />
+</Viewport>    </TabsContent> <TabsContent value="code">
+   ```tsx showLineNumbers  
+import CImage from "./c-image";
+
+const ImageExample = () => {
+    return (
+        <CImage hide dropdown width={300} height={300} delay={2500}  src="/example.jpg" />
+    )
+}
+
+export default ImageExample
+```
+ </TabsContent></Tabs>
+
+  ### skeleton
+
+ Wether to show a loading skeleton or not.
+
+ <Tabs defaultValue="preview">
+<TabsList>  <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger></TabsList>
+          <TabsContent value="preview">
+                <Viewport>
+  <ImageSkeletonExample/>
+</Viewport>    </TabsContent> <TabsContent value="code">
+   ```tsx showLineNumbers  
+"use client";
+
+import CImage from "../c-image";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@radix-ui/react-label";
+import { useState } from "react";
+
+const ImageSkeletonExample = ({}: {}) => {
+  const [propState, setPropState] = useState(true);
+  const [key, setKey] = useState(0);
+
+  return (
+    <div key={key} className="mt-4">
+      <CImage
+        skeleton={propState}
+        pause
+        width={300}
+        height={300}
+        delay={2000}
+        src="/example.jpg"
+      ></CImage>
+
+      <div className="flex items-center justify-center pt-4 space-x-2">
+        <Switch
+          id={"loading"}
+          checked={propState}
+          onCheckedChange={() => {
+            setPropState(!propState);
+            setKey(key + 1);
+          }}
+        />
+        <Label htmlFor={"loading"}>Skeleton</Label>
+      </div>
+    </div>
+  );
+};
+
+export default ImageSkeletonExample;
+
+```
+ </TabsContent></Tabs>
+
+   ### cache
+
+ Wether to cache the image or always load it.
+
+ <Tabs defaultValue="preview">
+<TabsList>  <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger></TabsList>
+          <TabsContent value="preview">
+                <Viewport reloadButton >
+   <ImageCacheExample />
+</Viewport>    </TabsContent> <TabsContent value="code">
+   ```tsx showLineNumbers  
+"use client";
+
+import CImage from "../c-image";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@radix-ui/react-label";
+import { useState } from "react";
+
+const ImageCacheExample = ({}: {}) => {
+  const [propState, setPropState] = useState(true);
+  const [key, setKey] = useState(0);
+
+  return (
+    <div key={key} className="mt-4">
+      <CImage
+        cache={propState}
+        width={300}
+        height={300}
+        delay={2000}
+        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F6985001%2Fpexels-photo-6985001.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D3%26h%3D750%26w%3D1260&f=1&nofb=1&ipt=8fa86b9c20df02ec9b860821dd6e23b1670f0a292ac298534df094cfc73843c7&ipo=image"
+      ></CImage>
+
+      <div className="flex items-center justify-center pt-4 space-x-2">
+        <Switch
+          id={"loading"}
+          checked={propState}
+          onCheckedChange={() => {
+            setPropState(!propState);
+            setKey(key + 1);
+          }}
+        />
+        <Label htmlFor={"loading"}>Cache</Label>
+      </div>
+    </div>
+  );
+};
+
+export default ImageCacheExample;
+
+```
+ </TabsContent></Tabs>
+
+    ### dropdown
+
+  Wether to show a dropdown menu or not.
+
+ <Tabs defaultValue="preview">
+<TabsList>  <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger></TabsList>
+          <TabsContent value="preview">
+                <Viewport reloadButton >
+   <ImageDropdownExample/>
+</Viewport>    </TabsContent> <TabsContent value="code">
+   ```tsx showLineNumbers  
+"use client";
+
+import CImage from "../c-image";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@radix-ui/react-label";
+import { useState } from "react";
+
+const ImageDropdownExample = ({}: {}) => {
+  const [propState, setPropState] = useState(true);
+  const [key, setKey] = useState(0);
+
+  return (
+    <div className="mt-4">
+      <CImage
+        dropdown={propState}
+        width={300}
+        height={300}
+        delay={2000}
+        src="/example.jpg"
+      ></CImage>
+
+      <div className="flex items-center justify-center pt-4 space-x-2">
+        <Switch
+          id={"loading"}
+          checked={propState}
+          onCheckedChange={() => {
+            setPropState(!propState);
+            setKey(key + 1);
+          }}
+        />
+        <Label htmlFor={"loading"}>Dropdown</Label>
+      </div>
+    </div>
+  );
+};
+
+export default ImageDropdownExample;
+
+```
+ </TabsContent></Tabs>
+
+     ### children
+
+ The intended purpose of children is to place a title on the image.
+
+ <Tabs defaultValue="preview">
+<TabsList>  <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger></TabsList>
+          <TabsContent value="preview">
+                <Viewport reloadButton >
+  <ImageChildrenExample/>
+</Viewport>    </TabsContent> <TabsContent value="code">
+   ```tsx showLineNumbers  
+"use client";
+
+import CImage from "../c-image";
+import { Avatar } from "../ui/avatar";
+import { Switch } from "@/components/ui/switch";
+import { AvatarImage } from "@radix-ui/react-avatar";
+import { Label } from "@radix-ui/react-label";
+import { useState } from "react";
+import { GoArrowUpRight } from "react-icons/go";
+
+const ImageChildrenExample = ({}: {}) => {
+  const [propState, setPropState] = useState(true);
+  const [key, setKey] = useState(0);
+
+  return (
+    <div className="mt-4">
+      <CImage
+        dropdown={propState}
+        width={300}
+        height={300}
+        delay={2000}
+        src="/example.jpg"
+      >
+        {propState && (
+          <div className="flex items-center  gap-2">
+            <Avatar className="w-6 h-6">
+              <AvatarImage className="" src="/portrait.JPG"></AvatarImage>
+            </Avatar>
+            <p>Colin Guinane</p>
+            <GoArrowUpRight className="-ml-" size={18} />
+          </div>
+        )}
+      </CImage>
+
+      <div className="flex items-center justify-center pt-4 space-x-2">
+        <Switch
+          id={"loading"}
+          checked={propState}
+          onCheckedChange={() => {
+            setPropState(!propState);
+            setKey(key + 1);
+          }}
+        />
+        <Label htmlFor={"loading"}>Children</Label>
+      </div>
+    </div>
+  );
+};
+
+export default ImageChildrenExample;
+
+```
+ </TabsContent></Tabs>
+
+ ---
+
+ ## Component API
+
+| Name      | Type    | Default   | Description                       |
+|-----------|---------|-----------|-----------------------------------|
+| `src`     | `string`|           | The image source                  |
+| `alt`     | `string`| `image`   | The image alt text                |
+| `skeleton`| `boolean`| `true`    | Show a loading skeleton           |
+| `pause`   | `boolean`| `false`   | Pause the skeleton, mainly for demonstration purposes               |
+| `dropdown`| `boolean`| `false`   | Show a dropdown menu              |
+| `width`   | `number` | `500`     | The image width                   |
+| `hide`    | `boolean`| `false`   | Hide the image                    |
+| `children`| `string`|           | The image title                   |
+| `height`  | `number` | `500`     | The image height                  |
+| `layout`  | `string` | `responsive`| The image layout                |
+| `loadingIndicator`  | `boolean` | `false`| Show a loading indicator ontop of the skeleton                |
+| `cache`   | `boolean`| `true`    | Cache the image                   |
+| `className`| `string`|           | The image class                   |
+| `style`   | `object` |           | The image style                   |
+| `delay`   | `number` |           | The delay before the image loads  |
+
+
+
+
+
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
+
+
+

@@ -4,9 +4,12 @@ import Header from "../components/Header";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/config/site";
+import { Theme } from "@radix-ui/themes";
 import { Analytics } from "@vercel/analytics/react";
 import { ViewTransitions } from "next-view-transitions";
 import { DM_Sans } from "next/font/google";
+import { Toaster } from "sonner";
+import "@radix-ui/themes/styles.css";
 
 // If loading a variable font, you don't need to specify the font weight
 const dm_sans = DM_Sans({ subsets: ["latin"] });
@@ -65,16 +68,25 @@ export default function RootLayout({
     <ViewTransitions>
       <html
         lang="en"
-        className={` ${dm_sans.className} grid place-content-center antialiased`}
+        className={` ${dm_sans.className} grid bg-background  place-content-center antialiased`}
       >
-        <body className="max-w-2xl min-w-screen min-w-96 min-h-screen overflow-x-hidden">
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Header />
-            <div className="w-screen md:w-fit min-h-screen md:mt-16">
-              {children}
+        <body className="max-w-2xl w-screen  bg-background ">
+          <Theme>
+            <div vaul-drawer-wrapper="">
+              <div className={` ${dm_sans.className} bg-background`}>
+                <ThemeProvider
+                  attribute="class"
+                  defaultTheme="system"
+                  enableSystem
+                >
+                  <Toaster richColors position="bottom-center" />
+                  <Header />
+                  <div className="md:mt-16 min-h-screen">{children}</div>
+                  <Footer />
+                </ThemeProvider>
+              </div>
             </div>
-            <Footer />
-          </ThemeProvider>
+          </Theme>
         </body>
       </html>
       <Analytics />

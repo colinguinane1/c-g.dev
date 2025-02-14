@@ -14,15 +14,15 @@ export default async function EnhancedPortfolioComponent() {
   const publishedPosts = posts.filter((post) => post.metadata.published);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <main className="container mx-auto px-6 py-8">
+    <div className=" grid  place-content-center ">
+      <div className="w-screen p-4 max-w-2xl">
         <Hero />
         <BentoGrid />
         <Projects />
         <Skills />
         <BlogList posts={publishedPosts} />
         <ComponentList components={components} />
-      </main>
+  </div>
     </div>
   );
 }

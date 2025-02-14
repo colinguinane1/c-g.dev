@@ -1,8 +1,8 @@
 import FadeInSection from "@/components/FadeInView";
+import CImage from "@/components/c-image";
 import StackCard from "@/components/stack-card";
 import { getAllProjects } from "@/lib/get-projects";
 import { Link } from "next-view-transitions";
-import Image from "next/image";
 
 export default async function Component() {
   const projects = await getAllProjects();
@@ -28,17 +28,13 @@ export default async function Component() {
               >
                 <Link className="space-y-2" href={`/projects/${project.slug}`}>
                   <div className="overflow-hidden aspect-video rounded-md bg-secondary">
-                    <Image
-                      quality={100}
+                    <CImage
                       src={project.metadata.image}
                       alt={project.metadata.title}
                       layout="responsive"
                       width={600}
                       height={400}
                       className="w-full h-full"
-                      style={{
-                        objectPosition: "top",
-                      }}
                     />
                   </div>
                   {project.metadata.stack && (
