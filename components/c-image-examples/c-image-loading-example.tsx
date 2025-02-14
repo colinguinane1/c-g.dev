@@ -5,7 +5,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@radix-ui/react-label";
 import { useState } from "react";
 
-const ImageSpinnerExample = ({}: {}) => {
+const ImageSpinnerExample = () => {
   const [loadingIndicator, setLoadingIndicator] = useState(true);
 
   return (

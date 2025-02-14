@@ -8,7 +8,7 @@ import { Label } from "@radix-ui/react-label";
 import { useState } from "react";
 import { GoArrowUpRight } from "react-icons/go";
 
-const ImageChildrenExample = ({}: {}) => {
+const ImageChildrenExample = () => {
   const [propState, setPropState] = useState(true);
   const [key, setKey] = useState(0);
 

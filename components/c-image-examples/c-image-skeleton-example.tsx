@@ -5,7 +5,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@radix-ui/react-label";
 import { useState } from "react";
 
-const ImageSkeletonExample = ({}: {}) => {
+const ImageSkeletonExample = () => {
   const [propState, setPropState] = useState(true);
   const [key, setKey] = useState(0);
 
