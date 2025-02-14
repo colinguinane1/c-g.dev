@@ -4,11 +4,11 @@ import Header from "../components/Header";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/config/site";
+import { Theme } from "@radix-ui/themes";
 import { Analytics } from "@vercel/analytics/react";
 import { ViewTransitions } from "next-view-transitions";
 import { DM_Sans } from "next/font/google";
 import { Toaster } from "sonner";
-import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 
 // If loading a variable font, you don't need to specify the font weight
@@ -72,22 +72,21 @@ export default function RootLayout({
       >
         <body className="max-w-2xl w-screen  bg-background ">
           <Theme>
-          <div vaul-drawer-wrapper="">
-            <div className="bg-background">
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="system"
-                enableSystem
-              >
-                <Toaster richColors position="bottom-center" />
-                <Header />
-                <div className="md:mt-16 min-h-screen">
-                  {children}
-                </div>
-                <Footer />
-              </ThemeProvider>
+            <div vaul-drawer-wrapper="">
+              <div className={` ${dm_sans.className} bg-background`}>
+                <ThemeProvider
+                  attribute="class"
+                  defaultTheme="system"
+                  enableSystem
+                >
+                  <Toaster richColors position="bottom-center" />
+                  <Header />
+                  <div className="md:mt-16 min-h-screen">{children}</div>
+                  <Footer />
+                </ThemeProvider>
+              </div>
             </div>
-          </div></Theme>
+          </Theme>
         </body>
       </html>
       <Analytics />
