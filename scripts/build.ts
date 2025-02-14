@@ -38,11 +38,11 @@ type ComponentDefinition = Partial<
 // Define the components and their dependencies that should be registered
 const components: ComponentDefinition[] = [
   {
-    name: "modal",
-    path: path.join(__dirname, "../registry/ui/modal.tsx"),
+    name: "c-image",
+    path: path.join(__dirname, "../registry/ui/c-image.tsx"),
 
-    registryDependencies: ["drawer", "dialog"],
-    dependencies: ["lucide-react"],
+    registryDependencies: ["button", "dialog", "drawer"],
+    dependencies: ["lucide-react", "@radix-ui/themes", "sonner", "react-icons/bs"],
     cssVars: {
       light: {},
       dark: {},

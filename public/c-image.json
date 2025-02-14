@@ -1,0 +1,36 @@
+{
+  "name": "c-image",
+  "type": "registry:ui",
+  "registryDependencies": [
+    "button",
+    "dialog",
+    "drawer"
+  ],
+  "dependencies": [
+    "lucide-react",
+    "@radix-ui/themes",
+    "sonner",
+    "react-icons/bs"
+  ],
+  "devDependencies": [],
+  "tailwind": {
+    "config": {
+      "theme": {
+        "extend": {
+          "colors": {}
+        }
+      }
+    }
+  },
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "c-image.tsx",
+      "content": "",
+      "type": "registry:ui"
+    }
+  ]
+}
