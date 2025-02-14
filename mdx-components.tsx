@@ -1,5 +1,10 @@
 import CImage from "./components/c-image";
 import ImageExample from "./components/c-image-example";
+import ImageCacheExample from "./components/c-image-examples/c-image-cache-example";
+import ImageChildrenExample from "./components/c-image-examples/c-image-children-example";
+import ImageDropdownExample from "./components/c-image-examples/c-image-dropdown-example";
+import ImageSpinnerExample from "./components/c-image-examples/c-image-loading-example";
+import ImageSkeletonExample from "./components/c-image-examples/c-image-skeleton-example";
 import Code from "./components/mdx/custom-code";
 import FileName from "./components/mdx/filename";
 import Viewport from "./components/mdx/viewport";
@@ -14,6 +19,11 @@ import { GoArrowUpRight } from "react-icons/go";
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ImageExample: (props) => <ImageExample {...props} />,
+    ImageSpinnerExample: (props) => <ImageSpinnerExample {...props} />,
+    ImageSkeletonExample: (props) => <ImageSkeletonExample {...props} />,
+    ImageCacheExample: (props) => <ImageCacheExample {...props} />,
+    ImageDropdownExample: (props) => <ImageDropdownExample {...props} />,
+    ImageChildrenExample: (props) => <ImageChildrenExample {...props} />,
     CImage: (props) => <CImage {...props} />,
     ResponsiveModal: (props) => <ResponsiveModal {...props} />,
     Tabs: (props) => <Tabs {...props} />,

@@ -177,18 +177,44 @@ This adds a loading indidcator ontop of the skeleton.
           <TabsTrigger value="code">Code</TabsTrigger></TabsList>
           <TabsContent value="preview">
                 <Viewport reloadButton >
-   <CImage width={300} height={300} loadingIndicator pause  src="/example.jpg" />
+   <ImageSpinnerExample />
 </Viewport>    </TabsContent> <TabsContent value="code">
    ```tsx showLineNumbers  
-import CImage from "./c-image";
+"use client";
 
-const ImageExample = () => {
-    return (
-        <CImage loadingIndicator width={300} height={300} delay={2500}  src="/example.jpg" />
-    )
-}
+import CImage from "../c-image";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@radix-ui/react-label";
+import { useState } from "react";
 
-export default ImageExample
+const ImageSpinnerExample = ({}: {}) => {
+  const [loadingIndicator, setLoadingIndicator] = useState(false);
+
+  return (
+    <div className="mt-4">
+      <CImage
+        loadingIndicator={loadingIndicator}
+        pause
+        width={300}
+        height={300}
+        delay={2000}
+        src="/example.jpg"
+      ></CImage>
+
+      <div className="flex items-center justify-center pt-4 space-x-2">
+        <Switch
+          id={"loading"}
+          checked={loadingIndicator}
+          onCheckedChange={() => setLoadingIndicator(!loadingIndicator)}
+        />
+        <Label htmlFor={"loading"}>Loading Indicator</Label>
+      </div>
+    </div>
+  );
+};
+
+export default ImageSpinnerExample;
+
 ```
  </TabsContent></Tabs>
 
@@ -224,19 +250,49 @@ export default ImageExample
 <TabsList>  <TabsTrigger value="preview">Preview</TabsTrigger>
           <TabsTrigger value="code">Code</TabsTrigger></TabsList>
           <TabsContent value="preview">
-                <Viewport reloadButton >
-   <CImage skeleton={false} width={300} height={300} loadingIndicator src="/example.jpg" />
+                <Viewport>
+  <ImageSkeletonExample/>
 </Viewport>    </TabsContent> <TabsContent value="code">
    ```tsx showLineNumbers  
-import CImage from "./c-image";
+"use client";
 
-const ImageExample = () => {
-    return (
-        <CImage skeleton={false}  width={300} height={300} delay={2500}  src="/example.jpg" />
-    )
-}
+import CImage from "../c-image";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@radix-ui/react-label";
+import { useState } from "react";
 
-export default ImageExample
+const ImageSkeletonExample = ({}: {}) => {
+  const [propState, setPropState] = useState(true);
+  const [key, setKey] = useState(0);
+
+  return (
+    <div key={key} className="mt-4">
+      <CImage
+        skeleton={propState}
+        pause
+        width={300}
+        height={300}
+        delay={2000}
+        src="/example.jpg"
+      ></CImage>
+
+      <div className="flex items-center justify-center pt-4 space-x-2">
+        <Switch
+          id={"loading"}
+          checked={propState}
+          onCheckedChange={() => {
+            setPropState(!propState);
+            setKey(key + 1);
+          }}
+        />
+        <Label htmlFor={"loading"}>Skeleton</Label>
+      </div>
+    </div>
+  );
+};
+
+export default ImageSkeletonExample;
+
 ```
  </TabsContent></Tabs>
 
@@ -249,18 +305,47 @@ export default ImageExample
           <TabsTrigger value="code">Code</TabsTrigger></TabsList>
           <TabsContent value="preview">
                 <Viewport reloadButton >
-   <CImage cache={false}  width={300} height={300} delay={2500} src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F6985001%2Fpexels-photo-6985001.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D3%26h%3D750%26w%3D1260&f=1&nofb=1&ipt=8fa86b9c20df02ec9b860821dd6e23b1670f0a292ac298534df094cfc73843c7&ipo=images" />
+   <ImageCacheExample />
 </Viewport>    </TabsContent> <TabsContent value="code">
    ```tsx showLineNumbers  
-import CImage from "./c-image";
+"use client";
 
-const ImageExample = () => {
-    return (
-       <CImage cache={false} width={300} height={300} delay={2500} src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F6985001%2Fpexels-photo-6985001.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D3%26h%3D750%26w%3D1260&f=1&nofb=1&ipt=8fa86b9c20df02ec9b860821dd6e23b1670f0a292ac298534df094cfc73843c7&ipo=images" />
-    )
-}
+import CImage from "../c-image";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@radix-ui/react-label";
+import { useState } from "react";
 
-export default ImageExample
+const ImageCacheExample = ({}: {}) => {
+  const [propState, setPropState] = useState(true);
+  const [key, setKey] = useState(0);
+
+  return (
+    <div key={key} className="mt-4">
+      <CImage
+        cache={propState}
+        width={300}
+        height={300}
+        delay={2000}
+        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F6985001%2Fpexels-photo-6985001.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D3%26h%3D750%26w%3D1260&f=1&nofb=1&ipt=8fa86b9c20df02ec9b860821dd6e23b1670f0a292ac298534df094cfc73843c7&ipo=image"
+      ></CImage>
+
+      <div className="flex items-center justify-center pt-4 space-x-2">
+        <Switch
+          id={"loading"}
+          checked={propState}
+          onCheckedChange={() => {
+            setPropState(!propState);
+            setKey(key + 1);
+          }}
+        />
+        <Label htmlFor={"loading"}>Cache</Label>
+      </div>
+    </div>
+  );
+};
+
+export default ImageCacheExample;
+
 ```
  </TabsContent></Tabs>
 
@@ -273,18 +358,47 @@ export default ImageExample
           <TabsTrigger value="code">Code</TabsTrigger></TabsList>
           <TabsContent value="preview">
                 <Viewport reloadButton >
-   <CImage dropdown width={300} height={300} delay={2500} src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F6985001%2Fpexels-photo-6985001.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D3%26h%3D750%26w%3D1260&f=1&nofb=1&ipt=8fa86b9c20df02ec9b860821dd6e23b1670f0a292ac298534df094cfc73843c7&ipo=images" />
+   <ImageDropdownExample/>
 </Viewport>    </TabsContent> <TabsContent value="code">
    ```tsx showLineNumbers  
-import CImage from "./c-image";
+"use client";
 
-const ImageExample = () => {
-    return (
-       <CImage dropdown width={300} height={300} delay={2500} src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F6985001%2Fpexels-photo-6985001.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D3%26h%3D750%26w%3D1260&f=1&nofb=1&ipt=8fa86b9c20df02ec9b860821dd6e23b1670f0a292ac298534df094cfc73843c7&ipo=images" />
-    )
-}
+import CImage from "../c-image";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@radix-ui/react-label";
+import { useState } from "react";
 
-export default ImageExample
+const ImageDropdownExample = ({}: {}) => {
+  const [propState, setPropState] = useState(true);
+  const [key, setKey] = useState(0);
+
+  return (
+    <div className="mt-4">
+      <CImage
+        dropdown={propState}
+        width={300}
+        height={300}
+        delay={2000}
+        src="/example.jpg"
+      ></CImage>
+
+      <div className="flex items-center justify-center pt-4 space-x-2">
+        <Switch
+          id={"loading"}
+          checked={propState}
+          onCheckedChange={() => {
+            setPropState(!propState);
+            setKey(key + 1);
+          }}
+        />
+        <Label htmlFor={"loading"}>Dropdown</Label>
+      </div>
+    </div>
+  );
+};
+
+export default ImageDropdownExample;
+
 ```
  </TabsContent></Tabs>
 
@@ -297,28 +411,73 @@ export default ImageExample
           <TabsTrigger value="code">Code</TabsTrigger></TabsList>
           <TabsContent value="preview">
                 <Viewport reloadButton >
-   <CImage dropdown width={300} height={300} delay={2500} src="/example.jpg" >Colin Guinane</CImage>
+  <ImageChildrenExample/>
 </Viewport>    </TabsContent> <TabsContent value="code">
    ```tsx showLineNumbers  
-import CImage from "./c-image";
+"use client";
 
-const ImageExample = () => {
-    return (
-       <CImage dropdown width={300} height={300} delay={2500} src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F6985001%2Fpexels-photo-6985001.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D3%26h%3D750%26w%3D1260&f=1&nofb=1&ipt=8fa86b9c20df02ec9b860821dd6e23b1670f0a292ac298534df094cfc73843c7&ipo=images" />
-    )
-}
+import CImage from "../c-image";
+import { Avatar } from "../ui/avatar";
+import { Switch } from "@/components/ui/switch";
+import { AvatarImage } from "@radix-ui/react-avatar";
+import { Label } from "@radix-ui/react-label";
+import { useState } from "react";
+import { GoArrowUpRight } from "react-icons/go";
 
-export default ImageExample
+const ImageChildrenExample = ({}: {}) => {
+  const [propState, setPropState] = useState(true);
+  const [key, setKey] = useState(0);
+
+  return (
+    <div className="mt-4">
+      <CImage
+        dropdown={propState}
+        width={300}
+        height={300}
+        delay={2000}
+        src="/example.jpg"
+      >
+        {propState && (
+          <div className="flex items-center  gap-2">
+            <Avatar className="w-6 h-6">
+              <AvatarImage className="" src="/portrait.JPG"></AvatarImage>
+            </Avatar>
+            <p>Colin Guinane</p>
+            <GoArrowUpRight className="-ml-" size={18} />
+          </div>
+        )}
+      </CImage>
+
+      <div className="flex items-center justify-center pt-4 space-x-2">
+        <Switch
+          id={"loading"}
+          checked={propState}
+          onCheckedChange={() => {
+            setPropState(!propState);
+            setKey(key + 1);
+          }}
+        />
+        <Label htmlFor={"loading"}>Children</Label>
+      </div>
+    </div>
+  );
+};
+
+export default ImageChildrenExample;
+
 ```
  </TabsContent></Tabs>
 
  ---
+
+ ## Component API
 
 | Name      | Type    | Default   | Description                       |
 |-----------|---------|-----------|-----------------------------------|
 | `src`     | `string`|           | The image source                  |
 | `alt`     | `string`| `image`   | The image alt text                |
 | `skeleton`| `boolean`| `true`    | Show a loading skeleton           |
+| `pause`   | `boolean`| `false`   | Pause the skeleton, mainly for demonstration purposes               |
 | `dropdown`| `boolean`| `false`   | Show a dropdown menu              |
 | `width`   | `number` | `500`     | The image width                   |
 | `hide`    | `boolean`| `false`   | Hide the image                    |
