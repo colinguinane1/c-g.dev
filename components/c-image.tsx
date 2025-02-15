@@ -74,7 +74,7 @@ const CImage: React.FC<CImageProps> = ({
   return (
     <div className="relative">
       {!loaded && skeleton && (
-        <div className="absolute inset-0 rounded-lg transition-all shadow-2xl flex justify-center items-center animate-pulse bg-card shimmer">
+        <div className={`${className} absolute inset-0 rounded-lg transition-all shadow-2xl flex justify-center items-center animate-pulse bg-card shimmer`}>
           {loadingIndicator && (
             <div className="z-20">
               {" "}
