@@ -22,7 +22,7 @@ export default function ComponentCard({ component, idx }: ComponentCardProps) {
             <div className="text-lg flex items-center gap-2  text-primary font-bold hover:underline">
               <h1>{component.metadata.title}</h1>
               {idx === 0 && (
-                <span className="text-green-500  no-underline  px-1 rounded-md bg-green-500/10 ">
+                <span className="text-green-500  no-underline font-normal  px-1 rounded-md bg-green-500/10 ">
                   New
                 </span>
               )}

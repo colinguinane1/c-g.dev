@@ -22,7 +22,7 @@ export default async function EnhancedPortfolioComponent() {
         <Skills />
         <BlogList posts={publishedPosts} />
         <ComponentList components={components} />
-  </div>
+      </div>
     </div>
   );
 }

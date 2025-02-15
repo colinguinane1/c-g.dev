@@ -81,7 +81,7 @@ export default function RootLayout({
                 >
                   <Toaster richColors position="bottom-center" />
                   <Header />
-                  <div className="md:mt-16 min-h-screen">{children}</div>
+                  <div className="min-h-screen">{children}</div>
                   <Footer />
                 </ThemeProvider>
               </div>

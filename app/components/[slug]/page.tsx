@@ -86,11 +86,11 @@ export default async function DocsPage(props: {
                           className="w-fit "
                           href={`/components/${prevDoc.slug}`}
                         >
-                          <div className="flex flex-col border p-2 rounded-lg w-full items-center justify-end">
-                            <span>{prevDoc.metadata.title}</span>
-                            <span className="ml-2 text-primary flex items-center ">
-                              Prev <ChevronLeft />
+                          <div className="flex flex-col p-2 rounded-lg w-full items-start justify-end">
+                            <span className="text-foreground flex items-center ">
+                              <ChevronLeft size={15} className="-ml-1" /> Prev
                             </span>
+                            <span>{prevDoc.metadata.title}</span>
                           </div>
                         </Link>
                       )}
@@ -98,14 +98,15 @@ export default async function DocsPage(props: {
                     {nextDoc && (
                       <Link
                         key={nextDoc.slug}
-                        className="w-fit"
+                        className="w-fit "
                         href={`/components/${nextDoc.slug}`}
                       >
-                        <div className="flex flex-col  border p-2 rounded-lg w-full items-center justify-end">
-                          <span>{nextDoc.metadata.title}</span>
-                          <span className="ml-2 flex text-primary items-center">
-                            Next <ChevronRight />
+                        <div className="flex flex-col p-2 rounded-lg w-full items-end justify-end">
+                          <span className="text-foreground flex items-center ">
+                            Next
+                            <ChevronRight size={15} className="-mr-1" />
                           </span>
+                          <span>{nextDoc.metadata.title}</span>
                         </div>
                       </Link>
                     )}

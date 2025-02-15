@@ -208,8 +208,8 @@ export default async function Projects() {
   const recentProjects = projects.slice(0, 4);
   return (
     <FadeInSection>
-      <section>
-        <div className="flex justify-between items-center pb-4">
+      <section className="">
+        <div className="flex justify-between items-center pb-4 ">
           <h1 className="text-2xl font-bold  tracking-tighter text-primary">
             Recent Projects
           </h1>
