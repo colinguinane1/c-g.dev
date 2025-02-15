@@ -8,7 +8,7 @@ export default async function Projects() {
 
   const projects = await getAllProjects();
 
-  const recentProjects = projects.slice(0, 4);
+  // const recentProjects = projects.slice(0, 4);
 
   const pinnedProjects = ["mongate", "devnotes", "music-portfolio"];
 
