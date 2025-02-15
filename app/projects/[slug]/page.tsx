@@ -93,7 +93,7 @@ export default async function DocsPage(props: {
           </div>
           <DocComponent />{" "}
           <div className="flex justify-between mt-8">
-          {docs.map((doc, index) => {
+            {docs.map((doc, index) => {
               if (doc.slug === slug) {
                 const prevDoc = docs[index - 1];
                 const nextDoc = docs[index + 1];
@@ -107,7 +107,7 @@ export default async function DocsPage(props: {
                         <Link
                           key={prevDoc.slug}
                           className="w-fit "
-                          href={`/components/${prevDoc.slug}`}
+                          href={`/projects/${prevDoc.slug}`}
                         >
                           <div className="flex flex-col p-2 rounded-lg w-full items-start justify-end">
                             <span className="text-foreground flex items-center ">
@@ -122,7 +122,7 @@ export default async function DocsPage(props: {
                       <Link
                         key={nextDoc.slug}
                         className="w-fit "
-                        href={`/components/${nextDoc.slug}`}
+                        href={`/projects/${nextDoc.slug}`}
                       >
                         <div className="flex flex-col p-2 rounded-lg w-full items-end justify-end">
                           <span className="text-foreground flex items-center ">
