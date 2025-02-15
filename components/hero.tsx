@@ -1,5 +1,6 @@
 "use client";
 
+import CImage from "./c-image";
 import FadeInSection from "@/components/FadeInView";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -11,11 +12,10 @@ export default function Hero() {
       <section id="about" className="mb-10">
         <div className="flex  items-center h-full  w-full gap-6 py-4">
           {" "}
-          <Image
+          <CImage
             className="rounded-full border  mb-6 w-32 h-32 border-foreground/50"
             width={100}
             height={100}
-            alt="pfp"
             src="/portriat2.jpeg"
           />{" "}
           <div className="flex flex-col items-start h-full mb-6">
