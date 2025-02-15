@@ -5,6 +5,7 @@ export type Project = {
   slug: string;
   metadata: {
     title: string;
+    slug: string;
     projectNumber: string;
     category: string;
     published: boolean;

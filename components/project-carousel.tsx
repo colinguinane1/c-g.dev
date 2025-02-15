@@ -13,7 +13,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
       {/* <div  -- couldnt get this to work right
         className={`pointer-events-none fixed bg-gradient-to-r from-transparent to-background h-full w-[60%] ml-8 z-0`}
       ></div> */}
-      <ul className="animated-list -mx-6 z-10 flex snap-x snap-mandatory scroll-pl-6 gap-9 overflow-x-scroll pl-6 md:overflow-x-scroll p-4 scrollbar-padding">
+      <ul className="animated-list -mx-6 z-10 flex snap-x snap-mandatory scroll-pl-6 gap-9 overflow-x-scroll px-6 md:overflow-x-scroll p-4 scrollbar-padding">
         {projects.map((project, idx) => {
           return (
             <li

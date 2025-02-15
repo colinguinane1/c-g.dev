@@ -19,6 +19,7 @@ const ImageChildrenExample = () => {
         width={300}
         height={300}
         delay={2000}
+          className="rounded-lg"
         src="/example.jpg"
       >
         {propState && (
