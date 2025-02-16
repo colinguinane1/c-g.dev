@@ -5,8 +5,8 @@ import remarkGfm from "remark-gfm";
 /** @type {import('rehype-pretty-code').Options} */
 const options = {
   theme: {
-    dark: "github-dark-dimmed",
-    light: "one-light",
+    dark: "dark-plus",
+    light: "dark-plus",
   },
   keepBackground: false,
   highlight: {
