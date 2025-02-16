@@ -15,11 +15,10 @@ const ImageChildrenExample = () => {
   return (
     <div className="mt-4">
       <CImage
-        dropdown={propState}
         width={300}
         height={300}
         delay={2000}
-          className="rounded-lg"
+        className="rounded-lg"
         src="/example.jpg"
       >
         {propState && (

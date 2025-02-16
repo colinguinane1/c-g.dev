@@ -1,5 +1,6 @@
 export const metadata = {
   title: "Tech Stack Card",
+  order: 1,
   publishDate: "January 26 2025",
   description:
     "A card that displays a technology stack with logos and descriptions.",
@@ -30,7 +31,6 @@ I created this component for my portfolio to display the technology stack of my 
         <TabsContent value="manual">
         Create a file called **stack-card.tsx** in the **components/ui** directory and add the following code:
         ```tsx showLineNumbers
-    
 import {
   Tooltip,
   TooltipContent,
@@ -49,79 +49,11 @@ import { SiTypescript, SiExpress } from "react-icons/si";
 
 const iconSize = 18;
 
-export const Skills = [
-  {
-    label: "PostgreSQL",
-    color: "100, 149, 237",
-    icon: <BiLogoPostgresql size={iconSize} color="CornflowerBlue" />,
-    description: "Structured Database",
-  },
-  {
-    label: "Supabase",
-    color: "0, 255, 0",
-    icon: <RiSupabaseFill size={iconSize} color="Chartreuse" />,
-    description: "Backend Service",
-  },
-  {
-    label: "TypeScript",
-    color: "50, 100, 255", // Blue
-    icon: <SiTypescript size={iconSize} color="rgb(50,200,255)" />,
-    description: "JavaScript with type safety.",
-  },
-  {
-    label: "MongoDB",
-    color: "0, 128, 0", // Green
-    icon: <DiMongodb size={iconSize} color="green" />,
-    description: "NoSQL Database",
-  },
-  {
-    label: "Express",
-    color: "128, 128, 128", // Gray
-    icon: <SiExpress size={iconSize} color="gray" />,
-    description: "Node.js Framework",
-  },
-  {
-    label: "Node.js",
-    color: "0, 128, 0", // Green
-    icon: <FaNodeJs size={iconSize} color="green" />,
-    description: "Server language",
-  },
-  {
-    label: "JavaScript",
-    color: "245, 167, 39", // Yellow with 20% opacity
-    icon: <IoLogoJavascript size={iconSize} color="orange" />,
-    description: "Programming Language",
-  },
-  {
-    label: "Firebase",
-    color: "255, 0, 0", // Red with 20% opacity
-    icon: <IoLogoFirebase size={iconSize} color="red" />,
-    description: "Backend Service",
-  },
-  {
-    label: "Next.js",
-    color: "128, 128, 128", // Gray with 20% opacity
-    icon: <RiNextjsFill size={iconSize} color={"gray"} />,
-    description: "React Framework",
-  },
-  {
-    label: "React",
-    color: "0, 128, 128", // Teal
-    icon: <FaReact size={iconSize} color="teal" />,
-    description: "JavaScript Library",
-  },
-  {
-    label: "Angular",
-    color: "221, 27, 27", // Red
-    icon: <FaAngular size={iconSize} color="red" />,
-    description: "Web Application Framework",
-  },
-];
-
 interface StackCardProps {
   tech: string;
   key: string;
   className?: string;
+  ghost?: boolean;
   showLabel?: boolean;
   showDescription?: boolean;
   size?: "sm" | "md";
@@ -131,9 +63,92 @@ const StackCard: React.FC<StackCardProps> = ({
   tech,
   showLabel = false,
   className,
+  ghost = false,
   showDescription = false,
   size = "md",
 }) => {
+  const Skills = [
+    {
+      label: "PostgreSQL",
+      color: ghost ? "128, 128, 128" : "100, 149, 237",
+      icon: (
+        <BiLogoPostgresql
+          size={iconSize}
+          color={ghost ? "gray" : "CornflowerBlue"}
+        />
+      ),
+      description: "Structured Database",
+    },
+    {
+      label: "Supabase",
+      color: ghost ? "128, 128, 128" : "0, 255, 0",
+      icon: (
+        <RiSupabaseFill size={iconSize} color={ghost ? "gray" : "Chartreuse"} />
+      ),
+      description: "Backend Service",
+    },
+    {
+      label: "TypeScript",
+      color: ghost ? "128, 128, 128" : "50, 100, 255",
+      icon: (
+        <SiTypescript
+          size={iconSize}
+          color={ghost ? "gray" : "rgb(50,200,255)"}
+        />
+      ),
+      description: "JavaScript with type safety.",
+    },
+    {
+      label: "MongoDB",
+      color: ghost ? "128, 128, 128" : "0, 128, 0",
+      icon: <DiMongodb size={iconSize} color={ghost ? "gray" : "green"} />,
+      description: "NoSQL Database",
+    },
+    {
+      label: "Express",
+      color: ghost ? "128, 128, 128" : "128, 128, 128",
+      icon: <SiExpress size={iconSize} color={ghost ? "gray" : "gray"} />,
+      description: "Node.js Framework",
+    },
+    {
+      label: "Node.js",
+      color: ghost ? "128, 128, 128" : "0, 128, 0",
+      icon: <FaNodeJs size={iconSize} color={ghost ? "gray" : "green"} />,
+      description: "Server language",
+    },
+    {
+      label: "JavaScript",
+      color: ghost ? "128, 128, 128" : "245, 167, 39",
+      icon: (
+        <IoLogoJavascript size={iconSize} color={ghost ? "gray" : "orange"} />
+      ),
+      description: "Programming Language",
+    },
+    {
+      label: "Firebase",
+      color: ghost ? "128, 128, 128" : "255, 0, 0",
+      icon: <IoLogoFirebase size={iconSize} color={ghost ? "gray" : "red"} />,
+      description: "Backend Service",
+    },
+    {
+      label: "Next.js",
+      color: ghost ? "128, 128, 128" : "128, 128, 128",
+      icon: <RiNextjsFill size={iconSize} color={ghost ? "gray" : "gray"} />,
+      description: "React Framework",
+    },
+    {
+      label: "React",
+      color: ghost ? "128, 128, 128" : "0, 128, 128",
+      icon: <FaReact size={iconSize} color={ghost ? "gray" : "teal"} />,
+      description: "JavaScript Library",
+    },
+    {
+      label: "Angular",
+      color: ghost ? "128, 128, 128" : "221, 27, 27",
+      icon: <FaAngular size={iconSize} color={ghost ? "gray" : "red"} />,
+      description: "Web Application Framework",
+    },
+  ];
   const skill = Skills.find((skill) => skill.label === tech);
   if (skill) {
     if (size === "md") {
@@ -141,14 +156,16 @@ const StackCard: React.FC<StackCardProps> = ({
         <div
           key={skill.label}
           className={cn(
-            `flex items-center gap-2 border bg-card relative  p-2 rounded-md`,
+            `flex items-center gap-2 bg-card relative  p-2 rounded-md ${
+              ghost ? "" : "border"
+            }`,
             className
           )}
         >
           <div
             style={{
-              backgroundColor: `rgba(${skill.color}, 0.5)`,
-              borderColor: `rgba(${skill.color})`,
+              backgroundColor: ghost ? `` : `rgba(${skill.color}, 0.5)`,
+              borderColor: ghost ? `` : `rgba(${skill.color})`,
             }}
             className="w-10 h-10 opacity-15 relative border items-center  justify-center flex rounded-md"
           ></div>{" "}
@@ -170,10 +187,12 @@ const StackCard: React.FC<StackCardProps> = ({
             <TooltipTrigger>
               <div
                 style={{
-                  backgroundColor: `rgba(${skill.color}, 0.05)`,
-                  borderColor: `rgba(${skill.color}, 0.3)`,
+                  backgroundColor: ghost ? `` : `rgba(${skill.color}, 0.5)`,
+                  borderColor: ghost ? `` : `rgba(${skill.color})`,
                 }}
-                className=" border p-2 gap-1 items-center  justify-center flex rounded-md"
+                className={`p-1 gap-1 items-center  justify-center flex rounded-md ${
+                  ghost ? "" : "border p-2"
+                }`}
               >
                 {" "}
                 <div className="  "> {skill.icon}</div>
@@ -214,7 +233,6 @@ const StackCard: React.FC<StackCardProps> = ({
 };
 
 export default StackCard;
-
       ```
         </TabsContent>
       </Tabs>

@@ -42,7 +42,12 @@ const components: ComponentDefinition[] = [
     path: path.join(__dirname, "../registry/ui/c-image.tsx"),
 
     registryDependencies: ["button", "dialog", "drawer"],
-    dependencies: ["lucide-react", "@radix-ui/themes", "sonner", "react-icons/bs"],
+    dependencies: [
+      "lucide-react",
+      "@radix-ui/themes",
+      "sonner",
+      "react-icons/bs",
+    ],
     cssVars: {
       light: {},
       dark: {},
