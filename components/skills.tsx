@@ -42,7 +42,7 @@ export const backendSkills = [
   },
   {
     label: "Supabase",
-    color: "127, 255, 0", // Chartreuse
+    color: "140, 200, 0", // Chartreuse
     icon: <RiSupabaseFill size={iconSize} color="Chartreuse" />,
     description: "Backend Service",
   },
@@ -75,7 +75,7 @@ export const frontendSkills = [
   },
   {
     label: "Tailwind",
-    color: "0, 255, 255", // Cyan
+    color: "0, 209, 205", // Cyan
     icon: <RiTailwindCssFill size={iconSize} color="cyan" />,
     description: "Utility-first CSS",
   },
