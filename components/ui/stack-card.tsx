@@ -3,7 +3,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "./tooltip";
 import { cn } from "@/lib/utils";
 import { Database } from "lucide-react";
 import { BiLogoPostgresql } from "react-icons/bi";
@@ -12,7 +12,7 @@ import { FaAngular, FaNodeJs, FaReact } from "react-icons/fa";
 import { IoLogoJavascript, IoLogoFirebase } from "react-icons/io5";
 import { RiNextjsFill } from "react-icons/ri";
 import { RiSupabaseFill } from "react-icons/ri";
-import { SiTypescript, SiExpress } from "react-icons/si";
+import { SiTypescript, SiExpress, SiExpo } from "react-icons/si";
 
 const iconSize = 18;
 
@@ -35,6 +35,19 @@ const StackCard: React.FC<StackCardProps> = ({
   size = "md",
 }) => {
   const Skills = [
+    {
+      label: "Expo",
+           color: ghost ? "128, 128, 128" : "128, 128, 128",
+      icon: <SiExpo size={iconSize} color={ghost ? "gray" : "green"} />,
+      description: "React Native Framework"
+    },
+     {
+      label: "React Native",
+       color: ghost ? "128, 128, 128" : "0, 128, 128",
+      icon: <FaReact size={iconSize} color={ghost ? "gray" : "teal"} />,
+      description: "React for mobile development"
+    }
+    ,
     {
       label: "PostgreSQL",
       color: ghost ? "128, 128, 128" : "100, 149, 237",

@@ -12,12 +12,14 @@ import ResponsiveModal from "./components/modal-example";
 import StackCard from "./components/stack-card";
 import StackCardExample from "./components/stack-card-example";
 import { Alert, AlertDescription, AlertTitle } from "./components/ui/alert";
+import MailList from "./components/ui/mail-list";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import type { MDXComponents } from "mdx/types";
 import { GoArrowUpRight } from "react-icons/go";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
+       MailList: (props) => <MailList {...props} />,
     ImageExample: (props) => <ImageExample {...props} />,
     ImageSpinnerExample: (props) => <ImageSpinnerExample {...props} />,
     ImageSkeletonExample: (props) => <ImageSkeletonExample {...props} />,

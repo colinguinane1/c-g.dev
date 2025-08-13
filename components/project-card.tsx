@@ -3,6 +3,7 @@ import StackCard from "./ui/stack-card";
 import { Project } from "@/lib/get-projects";
 import { Link } from "next-view-transitions";
 import React from "react";
+import PlatformCard from "./ui/platform-card";
 
 interface ProjectCardProps {
   project: Project;
@@ -28,6 +29,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, idx }) => {
               objectPosition: "top",
             }}
           />
+        
         </div>{" "}
         <div className="p-4 space-y-2">
           {" "}

@@ -12,6 +12,7 @@ export type Project = {
     description: string;
     image: string;
     stack: string[];
+    platforms: string[];
   };
 };
 

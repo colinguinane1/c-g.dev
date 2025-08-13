@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import PlatformCard from "@/components/ui/platform-card";
 import { getAllProjects } from "@/lib/get-projects";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
@@ -80,8 +81,14 @@ export default async function DocsPage(props: {
                 />
               )}
             </div>
-            <h1 className="text-3xl py-4 font-extrabold text-primary">
+            <h1 className="text-3xl flex items-center gap-4 py-4 font-extrabold text-primary">
               {selectedDoc.metadata.title}
+                <div className="font-bold items-center flex gap-2 text-lg text-secondary-foreground">
+                            {selectedDoc.metadata.platforms.map((platform) => (
+              <PlatformCard key={platform} tech={platform} size="sm" showLabel ghost />
+                            ))} 
+                           
+                          </div>
             </h1>{" "}
             {selectedDoc.metadata.stack && (
               <div className="flex flex-wrap gap-2">

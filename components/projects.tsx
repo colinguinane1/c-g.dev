@@ -10,7 +10,7 @@ export default async function Projects() {
 
   // const recentProjects = projects.slice(0, 4);
 
-  const pinnedProjects = ["mongate", "devnotes", "music-portfolio"];
+  const pinnedProjects = ["minamail", "mongate", "music-portfolio"];
 
   const sortedProjects = [...projects].sort((a, b) => {
     const isAPinned = pinnedProjects.includes(a.metadata.slug);
