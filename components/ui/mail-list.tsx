@@ -35,19 +35,19 @@ export default function MailList() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
+    <form onSubmit={handleSubmit} className="flex border rounded-lg w-fit">
       <input
         type="email"
         placeholder="Enter your email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
-        className="border px-3 py-2 rounded"
+        className=" px-3 rounded"
       />
 
       <Button
         type="submit"
-        className="bg-primary text-white w-24 py-2 rounded relative overflow-hidden"
+        className="bg-primary text-white w-24 py-2  relative overflow-hidden"
         disabled={status === "loading"}
       >
         <AnimatePresence mode="wait" initial={false}>
@@ -59,7 +59,7 @@ export default function MailList() {
               transition={{ duration: 0.2 }}
               className="inline-block"
             >
-              Join Beta
+              Join Waitlist
             </motion.span>
           )}
 
