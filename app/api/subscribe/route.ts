@@ -1,36 +1,20 @@
-import { NextResponse } from "next/server";
-import axios from "axios";
+import { NextRequest, NextResponse } from "next/server";
+import { LoopsClient } from "loops";
 
-const BUTTONDOWN_API_KEY = process.env.BUTTONDOWN_API_KEY;
+const loops = new LoopsClient(process.env.LOOPS_API_KEY as string);
 
-export async function POST(request: Request) {
-  try {
-    const body = await request.json();
-    console.log("Request body:", body); // 👈 debug
+export async function POST(request: NextRequest) {
+  const res = await request.json();
 
-    const email = body.email;
-    if (!email || !email.includes("@")) {
-      return NextResponse.json({ error: "Invalid email" }, { status: 400 });
-    }
+  const email = res["email"];
 
-    const response = await axios.post(
-      "https://api.buttondown.com/v1/subscribers",
-      { email_address: email, tags: ["beta"], },
-      
-      {
-        headers: {
-          Authorization: `Token ${BUTTONDOWN_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if(response.status == 200) {
- return NextResponse.json({ success: false, data: response.data, error: response.data.detail });
-    }
+  // Note: updateContact() will create or update a contact
 
-    return NextResponse.json({ success: true, data: response.data });
-  } catch (error: any) {
-    console.error("Error from Buttondown:", error.response?.data || error.message);
-    return NextResponse.json({ error: "Failed to subscribe" }, { status: 500 });
-  }
+  const resp: {
+    success: boolean,
+    id?: string,
+    message?: string
+  } = await loops.updateContact(email, { signupSource: "website"});
+
+  return NextResponse.json({ success: resp.success });
 }

@@ -108,7 +108,7 @@ const PlatformCard: React.FC<PlatformCardProps> = ({
                 <div className="  "> {platform.icon}</div>
                 {showLabel && (
                   <div className="flex items-center justify-center flex-col">
-                    <h1 className="font-normal">
+                    <h1 className="font-normal text-[rgb(128,128,128)]">
                       {" "}
                       {platform.title}
                     </h1>

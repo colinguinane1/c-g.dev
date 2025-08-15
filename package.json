@@ -32,6 +32,7 @@
     "framer-motion": "^11.11.9",
     "gray-matter": "^4.0.3",
     "hamburger-react": "^2.5.1",
+    "loops": "^5.0.1",
     "lucide-react": "^0.453.0",
     "motion": "^12.4.3",
     "next": "14.2.15",

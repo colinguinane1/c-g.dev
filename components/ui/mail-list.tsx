@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "./button"; // your existing button
-import { Check, X, Loader2 } from "lucide-react"; // icons
+import { Button } from "./button";
+import { Check, X, Loader2 } from "lucide-react";
 
 export default function MailList() {
   const [email, setEmail] = useState("");
@@ -25,84 +25,91 @@ export default function MailList() {
       setEmail("");
       setTimeout(() => setStatus("idle"), 2000);
     } else {
-        console.log(res)
-       const errorData = await res.json();
-    setMessage(errorData.error);
-
+      const errorData = await res.json();
+      setMessage(errorData.error);
       setStatus("error");
       setTimeout(() => setStatus("idle"), 2000);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex border rounded-lg w-fit">
+    <form
+      onSubmit={handleSubmit}
+      className="flex w-full rounded-xl overflow-hidden border border-border focus-within:ring-2 focus-within:ring-primary/50 transition-all"
+    >
       <input
         type="email"
         placeholder="Enter your email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
-        className=" px-3 rounded"
+        className="px-4 w-full py-2 outline-none bg-transparent  text-sm placeholder-gray-400"
       />
 
-      <Button
-        type="submit"
-        className="bg-primary text-white w-24 py-2  relative overflow-hidden"
-        disabled={status === "loading"}
+      <motion.div
+        layout
+        transition={{ duration: 0.25, ease: "easeInOut" }}
       >
-        <AnimatePresence mode="wait" initial={false}>
-          {status === "idle" && (
-            <motion.span
-              key="text"
-              initial={{ y: 0, opacity: 1 }}
-              exit={{ y: -10, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="inline-block"
-            >
-              Join Waitlist
-            </motion.span>
-          )}
+        <Button
+          
+          type="submit"
+          className="bg-primary  border-l w-32 border-t-0 border-b-0 flex items-center justify-center relative overflow-hidden rounded-none rounded-r-xl transition-colors hover:bg-primary/90 disabled:opacity-70"
+          disabled={status === "loading"}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            {status === "idle" && (
+              <motion.span
+                key="text"
+                initial={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="inline-block text-sm whitespace-nowrap"
+              >
+                Join Mail List
+              </motion.span>
+            )}
 
-          {status === "loading" && (
-            <motion.span
-              key="spinner"
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -10, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="inline-flex items-center"
-            >
-              <Loader2 className="h-4 w-4 animate-spin" />
-            </motion.span>
-          )}
+            {status === "loading" && (
+              <motion.span
+                key="spinner"
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="inline-flex items-center"
+              >
+                <Loader2 className="h-4 w-4 animate-spin" />
+              </motion.span>
+            )}
 
-          {status === "success" && (
-            <motion.span
-              key="check"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0 }}
-              transition={{ duration: 0.2 }}
-              className="inline-flex items-center text-green-500"
-            >
-              <Check className="h-4 w-4" />
-            </motion.span>
-          )}
+            {status === "success" && (
+              <motion.span
+                key="check"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0 }}
+                transition={{ duration: 0.2 }}
+                className="inline-flex items-center text-green-400"
+              >
+                <Check className="h-4 w-4" />
+              </motion.span>
+            )}
 
-          {status === "error" && (
-            <motion.span
-              key="error"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0 }}
-              transition={{ duration: 0.2 }}
-              className="inline-flex items-center text-red-500"
-            >
-              <X className="h-4 w-4" />
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </Button>
+            {status === "error" && (
+              <motion.span
+                key="error"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0 }}
+                transition={{ duration: 0.2 }}
+                className="inline-flex items-center text-red-400"
+              >
+                <X className="h-4 w-4" />
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </Button>
+      </motion.div>
     </form>
   );
 }

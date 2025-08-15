@@ -4,6 +4,8 @@ import ComponentList from "@/components/component-list";
 import Hero from "@/components/hero";
 import Projects from "@/components/projects";
 import Skills from "@/components/skills";
+import MailList from "@/components/ui/mail-list";
+import MailListAdd from "@/components/ui/mail-list-add";
 import { getAllComponents } from "@/lib/get-components";
 import { getAllPosts } from "@/lib/get-posts";
 
@@ -22,6 +24,7 @@ export default async function EnhancedPortfolioComponent() {
         <Skills />
         <BlogList posts={publishedPosts} />
         <ComponentList components={components} />
+        <MailListAdd/>
       </div>
     </div>
   );
