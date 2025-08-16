@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./button";
-import { Check, X, Loader2 } from "lucide-react";
+import { Check, X, Loader2, ChevronRight } from "lucide-react";
 
 export default function MailList() {
   const [email, setEmail] = useState("");
@@ -51,9 +51,9 @@ export default function MailList() {
         transition={{ duration: 0.25, ease: "easeInOut" }}
       >
         <Button
-          
+          variant={"outline"}
           type="submit"
-          className="bg-primary  border-l w-32 border-t-0 border-b-0 flex items-center justify-center relative overflow-hidden rounded-none rounded-r-xl transition-colors hover:bg-primary/90 disabled:opacity-70"
+          className="border-l border-r-0 w-32 border-t-0 border-b-0 flex items-center justify-center relative overflow-hidden rounded-none rounded-r-xl transition-colors"
           disabled={status === "loading"}
         >
           <AnimatePresence mode="wait" initial={false}>
@@ -63,9 +63,9 @@ export default function MailList() {
                 initial={{ y: 0, opacity: 1 }}
                 exit={{ y: -10, opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="inline-block text-sm whitespace-nowrap"
+                className=" flex items-center justify-center text-sm whitespace-nowrap"
               >
-                Join Mail List
+                Join Mail List <ChevronRight className="ml-1" size={15} />
               </motion.span>
             )}
 

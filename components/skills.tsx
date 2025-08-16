@@ -11,7 +11,7 @@ import { IoLogoFirebase } from "react-icons/io5";
 import { RiNextjsFill } from "react-icons/ri";
 import { RiSupabaseFill } from "react-icons/ri";
 import { RiTailwindCssFill } from "react-icons/ri";
-import { SiTypescript } from "react-icons/si";
+import { SiExpo, SiTypescript } from "react-icons/si";
 import { SiExpress } from "react-icons/si";
 
 export const iconSize = 25;
@@ -85,6 +85,19 @@ export const frontendSkills = [
     icon: <IoIosGitBranch size={iconSize} color="orange" />,
     description: "Version control",
   },
+  {
+    label: "React Native",
+        color: "0, 128, 128", // Teal
+    icon: <FaReact size={iconSize} color="teal" />,
+    description: "JavaScript Library",
+
+  },
+    {
+        label: "Expo",
+             color: "128, 128, 128",
+        icon: <SiExpo size={iconSize} color={"gray"} />,
+        description: "React Native Framework"
+      },
 ];
 
 export default function Skills() {
@@ -133,7 +146,7 @@ export default function Skills() {
                         {" "}
                         {skill.label}
                       </h1>
-                      <p className="hidden md:block">{skill.description}</p>
+                      <p className="hidden">{skill.description}</p>
                     </div>
                   </div>
                 </FadeInSection>
@@ -162,7 +175,7 @@ export default function Skills() {
                         {" "}
                         {skill.label}
                       </h1>
-                      <p className="hidden md:block">{skill.description}</p>
+                      <p className="hidden">{skill.description}</p>
                     </div>
                   </div>
                 </FadeInSection>
