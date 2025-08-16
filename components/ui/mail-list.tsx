@@ -35,7 +35,7 @@ export default function MailList() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-full rounded-xl overflow-hidden border border-border focus-within:ring-2 focus-within:ring-primary/50 transition-all"
+      className="flex w-full rounded-lg overflow-hidden border border-border focus-within:ring-2 focus-within:ring-primary/50 transition-all"
     >
       <input
         type="email"
@@ -53,7 +53,7 @@ export default function MailList() {
         <Button
           variant={"outline"}
           type="submit"
-          className="border-l border-r-0 w-32 border-t-0 border-b-0 flex items-center justify-center relative overflow-hidden rounded-none rounded-r-xl transition-colors"
+          className="border-l border-r-0 w-32 border-t-0 border-b-0 flex items-center justify-center relative overflow-hidden rounded-none rounded-r-lg transition-colors"
           disabled={status === "loading"}
         >
           <AnimatePresence mode="wait" initial={false}>
