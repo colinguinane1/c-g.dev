@@ -3,7 +3,7 @@
 import FadeInSection from "./FadeInView";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Linkedin, Mail } from "lucide-react";
+import { Download, ExternalLink, Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 
 // shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset]
@@ -114,20 +114,20 @@ export default function BentoGrid() {
             </CardDescription>
           </Card>
         </Link>
-        <Link
-          href="https://mongate.vercel.app/"
+        <a
+          href="/resume.pdf"
+          download="resume.pdf"
           className="col-span-3 flex items-center justify-center"
           target="_blank"
         >
           {" "}
           <Card className="col-span-3 flex w-full items-center justify-center">
             {" "}
-            <CardDescription className="flex w-full items-center justify-center gap-1">
-              <div className="w-2 h-2 rounded-xl  animate-pulse bg-green-500"></div>
-              Latest project <ExternalLink size={15} />
+            <CardDescription className="flex w-full items-center justify-center gap-2">
+              <Download size={14} /> Download Resume
             </CardDescription>
           </Card>{" "}
-        </Link>{" "}
+        </a>{" "}
       </motion.div>
     </FadeInSection>
   );
