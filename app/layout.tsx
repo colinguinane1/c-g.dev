@@ -10,6 +10,8 @@ import { ViewTransitions } from "next-view-transitions";
 import { DM_Sans } from "next/font/google";
 import { Toaster } from "sonner";
 import "@radix-ui/themes/styles.css";
+import Clarity from "@microsoft/clarity";
+import Script from "next/script";
 
 // If loading a variable font, you don't need to specify the font weight
 const dm_sans = DM_Sans({ subsets: ["latin"] });
@@ -70,6 +72,18 @@ export default function RootLayout({
         lang="en"
         className={` ${dm_sans.className} grid bg-background  place-content-center antialiased`}
       >
+        <head>
+          {/* Microsoft Clarity */}
+          <Script id="clarity-script" strategy="afterInteractive">
+            {`
+           (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "teexs4ee0z");
+          `}
+          </Script>
+        </head>
         <body className="max-w-2xl w-screen  bg-background ">
           <Theme>
             <div vaul-drawer-wrapper="">

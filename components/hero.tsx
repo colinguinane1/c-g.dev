@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <FadeInSection>
-      <section id="about" className="mb-10">
+      <section id="about" className="">
         <div className="flex  items-center h-full  w-full gap-6 py-4">
           {" "}
           <CImage
