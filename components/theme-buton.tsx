@@ -1,14 +1,16 @@
 "use client";
 
-import * as React from "react";
+import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
+import * as React from "react";
 
 export function ModeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
 
   const themeCheck = () => {
+    console.log("pressed!");
+    console.log(resolvedTheme);
     if (resolvedTheme === "dark") {
       setTheme("light");
     }
@@ -22,7 +24,7 @@ export function ModeToggle() {
       onClick={() => themeCheck()}
       variant={"ghost"}
       size="icon"
-      className="outline-none z-10"
+      className="outline-none z-100"
     >
       {resolvedTheme === "dark" ? (
         <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />

@@ -1,46 +1,56 @@
 "use client";
 
 import FadeInSection from "./FadeInView";
+import { Button } from "./ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-import { Mail } from "lucide-react";
+import { GithubIcon, Link2, LinkIcon } from "lucide-react";
 import Link from "next/link";
-import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { BiLinkExternal, BiMailSend } from "react-icons/bi";
+import { FaLinkedin } from "react-icons/fa";
 
 const Links = [
   {
     name: "GitHub",
     link: "https://github.com/colinguinane1",
-    icon: <BsGithub size={25} color={"gray"} />,
+    Icon: GithubIcon,
   },
   {
     name: "Email",
     link: "mailto:colin@c-g.dev",
-    icon: <Mail size={25} color={"gray"} />,
+    Icon: BiMailSend,
   },
   {
     name: "LinkedIn",
     link: "https://linkedin.com/in/colinguinaneca",
-    icon: <BsLinkedin size={25} color={"gray"} />,
+    Icon: FaLinkedin,
   },
 ];
 
 export default function BentoGrid() {
   return (
-    <div className="flex gap-4 mb-10">
-      {Links.map((link) => (
-        <Tooltip key={link.link}>
-          <TooltipTrigger asChild>
+    <div className="flex gap-4 my-6 mb-10">
+      {Links.map((link) => {
+        const Icon = link.Icon;
+        return (
+          <Tooltip key={link.link}>
             <Link
               href={link.link}
               className="hover:scale-105 duration-200 active:scale-95"
               target="__blank"
             >
-              <FadeInSection>{link.icon}</FadeInSection>{" "}
+              <FadeInSection>
+                <Button variant={"outline"}>
+                  <Icon size={20} />
+                  {link.name}
+                  <BiLinkExternal />
+                </Button>
+              </FadeInSection>
             </Link>
-          </TooltipTrigger>
-          <TooltipContent>{link.name}</TooltipContent>
-        </Tooltip>
-      ))}
+
+            <TooltipContent>{link.name}</TooltipContent>
+          </Tooltip>
+        );
+      })}
     </div>
   );
 }
