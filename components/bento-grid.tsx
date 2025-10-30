@@ -28,7 +28,7 @@ const Links = [
 
 export default function BentoGrid() {
   return (
-    <div className="flex gap-4 my-6 mb-10">
+    <div className="flex flex-wrap gap-4 my-6 mb-10">
       {Links.map((link) => {
         const Icon = link.Icon;
         return (
