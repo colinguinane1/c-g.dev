@@ -6,7 +6,8 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { GithubIcon, Link2, LinkIcon } from "lucide-react";
 import Link from "next/link";
 import { BiLinkExternal, BiMailSend } from "react-icons/bi";
-import { FaLinkedin } from "react-icons/fa";
+import { FaLinkedin, FaYoutube } from "react-icons/fa";
+
 
 const Links = [
   {
@@ -24,6 +25,11 @@ const Links = [
     link: "https://linkedin.com/in/colinguinaneca",
     Icon: FaLinkedin,
   },
+  {
+    name: "YouTube",
+    link: "https://youtube.com/channel/UCE7P8-8oACI7n8-d60-s0yw",
+    Icon: FaYoutube,
+  }
 ];
 
 export default function BentoGrid() {
