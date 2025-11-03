@@ -25,11 +25,6 @@ const Links = [
     link: "https://linkedin.com/in/colinguinaneca",
     Icon: FaLinkedin,
   },
-  {
-    name: "YouTube",
-    link: "https://youtube.com/channel/UCE7P8-8oACI7n8-d60-s0yw",
-    Icon: FaYoutube,
-  }
 ];
 
 export default function BentoGrid() {
