@@ -16,7 +16,7 @@ import {
 import { Spinner } from "@radix-ui/themes";
 import { Clipboard, Download } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { toast } from "sonner";
 
@@ -34,7 +34,7 @@ interface CImageProps {
   layout?: "fill" | "responsive" | "fixed" | "intrinsic";
   height?: number;
   className?: string;
-  style?: object;
+  style?: CSSProperties;
   delay?: number;
 }
 
