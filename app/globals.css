@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
-
-
   /* Hide scrollbar for Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -66,9 +63,8 @@ code[data-theme*=" "] span {
 }
 
 body {
-  font-family: DM+sans-serif, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, var(--font-dm-sans), sans-serif;
   scroll-behavior: smooth;
-  
 }
 
 @layer utilities {
@@ -135,6 +131,10 @@ body {
 }
 
 @layer base {
+  .radix-themes {
+    --default-font-family: -apple-system, BlinkMacSystemFont, var(--font-dm-sans), sans-serif;
+  }
+
   * {
     @apply border-border;
   }

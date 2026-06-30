@@ -13,6 +13,14 @@ const config: Config = {
   prefix: "",
   theme: {
   	extend: {
+  		fontFamily: {
+  			sans: [
+  				"-apple-system",
+  				"BlinkMacSystemFont",
+  				"var(--font-dm-sans)",
+  				"sans-serif",
+  			],
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

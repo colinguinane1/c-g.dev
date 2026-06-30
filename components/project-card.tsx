@@ -24,7 +24,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, idx }) => {
             layout="responsive"
             width={600}
             height={400}
-            className="w-full h-full"
+            className={`w-full h-full ${project.slug === "vidlo" && "aspect-video"}`}
             style={{
               objectPosition: "top",
             }}

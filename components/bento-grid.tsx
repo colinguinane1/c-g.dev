@@ -20,11 +20,7 @@ const Links = [
     link: "mailto:colin@c-g.dev",
     Icon: BiMailSend,
   },
-  {
-    name: "LinkedIn",
-    link: "https://linkedin.com/in/colinguinaneca",
-    Icon: FaLinkedin,
-  },
+ 
 ];
 
 export default function BentoGrid() {

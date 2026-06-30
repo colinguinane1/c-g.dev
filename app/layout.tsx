@@ -13,8 +13,10 @@ import "@radix-ui/themes/styles.css";
 import Clarity from "@microsoft/clarity";
 import Script from "next/script";
 
-// If loading a variable font, you don't need to specify the font weight
-const dm_sans = DM_Sans({ subsets: ["latin"] });
+const dm_sans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -70,7 +72,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html
         lang="en"
-        className={` ${dm_sans.className} grid bg-background  place-content-center antialiased`}
+        className={`${dm_sans.variable} grid bg-background place-content-center antialiased`}
       >
         <head>
           {/* Microsoft Clarity */}
@@ -87,7 +89,7 @@ export default function RootLayout({
         <body className="max-w-2xl w-screen  bg-background ">
           <Theme>
             <div vaul-drawer-wrapper="">
-              <div className={` ${dm_sans.className} bg-background`}>
+              <div className="bg-background">
                 <ThemeProvider
                   attribute="class"
                   defaultTheme="system"
