@@ -1,34 +1,23 @@
 import CImage from "@/components/c-image";
+import { ContentDetailLayout } from "@/components/content-detail-layout";
 import StackCard from "@/components/stack-card";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import PlatformCard from "@/components/ui/platform-card";
+import { getAdjacentContent } from "@/lib/content-nav";
 import { getAllProjects } from "@/lib/get-projects";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
-// Assuming getDocs() is an async function that returns the list of docs
 export async function generateStaticParams() {
-  const docs = await getAllProjects(); // Await the result if getDocs is async
+  const docs = await getAllProjects();
   return docs.map((doc) => ({
     slug: doc.slug,
   }));
 }
 
-export default async function DocsPage(props: {
+export default async function ProjectPage(props: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await props.params; // Await the params here
-
-  const docs = await getAllProjects(); // Fetch docs on the server
-
+  const { slug } = await props.params;
+  const docs = await getAllProjects();
   const selectedDoc = docs.find((doc) => doc.slug === slug);
 
   if (!selectedDoc) {
@@ -38,126 +27,76 @@ export default async function DocsPage(props: {
   const { metadata, default: DocComponent } = await import(
     `../../projects/content/${slug}.mdx`
   ).catch(() => {
-    notFound(); // If import fails, show 404
+    notFound();
   });
 
+  const { prev, next } = getAdjacentContent(docs, slug);
+
   return (
-    <section className="mt-2 flex flex-col items-center">
-      <div className="flex  flex-col  max-w-2xl">
-        <div className="px-4 md:hidden flex items-center gap-4 w-full">
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">Home</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/projects">Projects</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>{metadata.title}</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
-        <div className="">
-          <div className="p-4 flex  flex-col">
-            {" "}
-            <div className="aspect-video rounded-md w-full bg-secondary ">
-              {metadata.image && (
-                <CImage
-                  src={metadata.image ? metadata.image : "/gradient.jpg"}
-                  width={800}
-                  height={450}
-                  alt="Blog Post Image"
-                  className="h-full w-full rounded-md transition-all group-hover:scale-[1.01]"
-                  style={{
-                    filter: "brightness(0.9)",
-                    aspectRatio: "16/9",
-                    objectFit: "cover",
-                    objectPosition: "top",
-                  }}
-                />
-              )}
-            </div>
-            <h1 className="text-3xl flex items-center gap-4 pt-4  font-extrabold text-primary">
-              {selectedDoc.metadata.title}
-               
-            </h1>{" "} <div className="font-bold pb-2 items-center flex gap-2 text-lg text-secondary-foreground">
-                            {selectedDoc.metadata.platforms.map((platform) => (
-              <PlatformCard key={platform} tech={platform} size="sm" showLabel ghost />
-                            ))} 
-                           
-                          </div>
-            {selectedDoc.metadata.stack && (
-              <div className="flex flex-wrap gap-2">
-                {selectedDoc.metadata.stack.map((tech: string) => (
-                  <StackCard showLabel key={tech} tech={tech} />
-                ))}
-              </div>
+    <ContentDetailLayout
+      basePath="/projects"
+      breadcrumbs={[
+        { label: "Home", href: "/" },
+        { label: "Projects", href: "/projects" },
+        { label: metadata.title },
+      ]}
+      prev={prev ? { slug: prev.slug, title: prev.metadata.title } : undefined}
+      next={next ? { slug: next.slug, title: next.metadata.title } : undefined}
+      header={
+        <>
+          <div className="aspect-video rounded-md w-full bg-secondary">
+            {metadata.image && (
+              <CImage
+                src={metadata.image}
+                width={800}
+                height={450}
+                alt={metadata.title}
+                className="h-full w-full rounded-md transition-all group-hover:scale-[1.01]"
+                style={{
+                  filter: "brightness(0.9)",
+                  aspectRatio: "16/9",
+                  objectFit: "cover",
+                  objectPosition: "top",
+                }}
+              />
             )}
           </div>
-          <DocComponent />{" "}
-          <div className="flex justify-between mt-8">
-            {docs.map((doc, index) => {
-              if (doc.slug === slug) {
-                const prevDoc = docs[index - 1];
-                const nextDoc = docs[index + 1];
-                return (
-                  <div
-                    key={doc.slug}
-                    className="flex p-4 justify-between w-full"
-                  >
-                    <div>
-                      {prevDoc && (
-                        <Link
-                          key={prevDoc.slug}
-                          className="w-fit "
-                          href={`/projects/${prevDoc.slug}`}
-                        >
-                          <div className="flex flex-col p-2 rounded-lg w-full items-start justify-end">
-                            <span className="text-foreground flex items-center ">
-                              <ChevronLeft size={15} className="-ml-1" /> Prev
-                            </span>
-                            <span>{prevDoc.metadata.title}</span>
-                          </div>
-                        </Link>
-                      )}
-                    </div>
-                    {nextDoc && (
-                      <Link
-                        key={nextDoc.slug}
-                        className="w-fit "
-                        href={`/projects/${nextDoc.slug}`}
-                      >
-                        <div className="flex flex-col p-2 rounded-lg w-full items-end justify-end">
-                          <span className="text-foreground flex items-center ">
-                            Next
-                            <ChevronRight size={15} className="-mr-1" />
-                          </span>
-                          <span>{nextDoc.metadata.title}</span>
-                        </div>
-                      </Link>
-                    )}
-                  </div>
-                );
-              }
-            })}
+          <h1 className="text-3xl flex items-center gap-4 pt-4 font-extrabold text-primary">
+            {selectedDoc.metadata.title}
+          </h1>
+          <div className="font-bold pb-2 items-center flex gap-2 text-lg text-secondary-foreground">
+            {selectedDoc.metadata.platforms.map((platform) => (
+              <PlatformCard
+                key={platform}
+                tech={platform}
+                size="sm"
+                showLabel
+                ghost
+              />
+            ))}
           </div>
-        </div>
-      </div>
-    </section>
+          {selectedDoc.metadata.stack && (
+            <div className="flex flex-wrap gap-2">
+              {selectedDoc.metadata.stack.map((tech: string) => (
+                <StackCard showLabel key={tech} tech={tech} />
+              ))}
+            </div>
+          )}
+        </>
+      }
+    >
+      <DocComponent />
+    </ContentDetailLayout>
   );
 }
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await props.params; // Await the params here
+  const { slug } = await props.params;
   const { metadata } = await import(`../../projects/content/${slug}.mdx`).catch(
     () => {
-      notFound(); // If import fails, show 404
+      notFound();
     }
   );
   return {

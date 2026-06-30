@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { motion, Transition, useMotionValue } from 'motion/react';
+import { motion, Transition, useMotionValue } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 

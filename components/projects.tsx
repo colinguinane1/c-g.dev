@@ -10,18 +10,18 @@ export default async function Projects() {
 
   // const recentProjects = projects.slice(0, 4);
 
-  const pinnedProjects = ["vidlo", "minamail", "mongate", "music-portfolio"];
+  const pinnedProjects = ["vidlo", "minamail", "mongate", "music"];
 
   const sortedProjects = [...projects].sort((a, b) => {
-    const isAPinned = pinnedProjects.includes(a.metadata.slug);
-    const isBPinned = pinnedProjects.includes(b.metadata.slug);
+    const isAPinned = pinnedProjects.includes(a.slug);
+    const isBPinned = pinnedProjects.includes(b.slug);
     if (isAPinned === isBPinned) return 0;
 
     return isAPinned ? -1 : 1;
   });
 
   const pinned = sortedProjects.filter((project) =>
-    pinnedProjects.includes(project.metadata.slug)
+    pinnedProjects.includes(project.slug)
   );
   return (
     <FadeInSection>
