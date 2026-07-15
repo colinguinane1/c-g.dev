@@ -12,7 +12,7 @@ import { FaAngular, FaNodeJs, FaReact } from "react-icons/fa";
 import { IoLogoJavascript, IoLogoFirebase } from "react-icons/io5";
 import { RiNextjsFill } from "react-icons/ri";
 import { RiSupabaseFill } from "react-icons/ri";
-import { SiTypescript, SiExpress, SiExpo } from "react-icons/si";
+import { SiTypescript, SiExpress, SiExpo, SiHono } from "react-icons/si";
 
 const iconSize = 18;
 
@@ -89,6 +89,12 @@ const StackCard: React.FC<StackCardProps> = ({
       color: ghost ? "128, 128, 128" : "128, 128, 128",
       icon: <SiExpress size={iconSize} color={ghost ? "gray" : "gray"} />,
       description: "Node.js Framework",
+    },
+    {
+      label: "Hono",
+      color: ghost ? "128, 128, 128" : "227, 96, 2",
+      icon: <SiHono size={iconSize} color={ghost ? "gray" : "rgb(227,96,2)"} />,
+      description: "Web Framework",
     },
     {
       label: "Node.js",

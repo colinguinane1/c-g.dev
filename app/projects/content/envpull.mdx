@@ -1,0 +1,37 @@
+export const metadata = {
+  title: "envpull",
+  projectNumber: 7,
+  description:
+    "Sync environment variables across machines — encrypted locally, readable only by you.",
+  category: "CLI",
+  image: "/envpull.png",
+  stack: ["TypeScript", "Node.js", "Hono", "PostgreSQL", "Next.js"],
+  platforms: ["web"]
+};
+
+import MdxLayout from "@/components/mdx/layout.tsx";
+
+envpull is a secure, client-side encrypted `.env` sync tool for developers. Push encrypted env files from one machine and pull them on another — without the server ever seeing your plaintext secrets.
+
+It was born out of needing a simple way to keep `.env` files in sync across machines without dumping secrets into git, password managers, or cloudy vault UIs. Encrypt on your machine with AES-GCM, unlock with your password (Argon2id), and recover with a recovery key if you forget it.
+
+Your workflow stays familiar: plain `.env` files on disk, no proprietary vault format locking you in. Just `login`, `init`, `push`, and `pull`.
+
+## Features
+
+- Zero-knowledge encryption — ciphertext only on the server
+- CLI workflow: `envpull login`, `init`, `push`, `pull`
+- Recovery key if you forget your password
+- Optional macOS Touch ID unlock
+- Self-hostable API
+
+## Links
+
+- [Website](https://envpull.dev)
+- [GitHub Repository](https://github.com/colinguinane1/envpull)
+- [npm](https://www.npmjs.com/package/@colinguinane/envpull-cli)
+
+export default function MDXPage({ children }) {
+return <MdxLayout>{children}</MdxLayout>
+
+}
